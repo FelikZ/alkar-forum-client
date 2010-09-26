@@ -3,7 +3,6 @@
 // @namespace      FelikZ
 // @description    enjoy it :)
 // @include        http://games.alkar.net/phpBB*
-// @include        http://games.alkar.net/phpBB2*
 // ==/UserScript==
 (function() 
 {
