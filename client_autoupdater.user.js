@@ -15,199 +15,213 @@
 	/***************************************************
 	General settings
 	***************************************************/
-	var enable_smiles = true;				//Показывать новые смайлы
-	var enable_style = true;				//Показывать стильную кнопку
-	var enable_vualizator = true;			//Включить вуализатор
-	var enable_linkyfy = true;				//Делать текстовые ссылки кликабельными
-	var enable_flash_videos = true;			//Менять ссылки видео на флеш
-	
-	var enable_quote_hider = true;			//Прятать цитаты. Прячет длинные цитаты (1000+ символов) / цитаты с картинками, видео
-	var enable_quote_force_hide = false;	//Прятать все цитаты без разбору
-	
-	var enable_ignore_remover = true;		//Удалять сообщения игнорируемого пользоватедя, целиком
-	var enable_uncounter = true;			//Удалять ПК
-	var enable_status = true;				//Показывать статус в зависимости от даты регистрации
-	var enable_auto_topic_sort = true;		//Авто сортировка тем по "отвечено" / "не"
-	var enable_topic_hover_links = true;	//Подсветка тем + ссылки
-	var enable_extended_ignore = false;		//Удалять сообщения описанных ниже пользователей*
-	var enable_punisher = false;			//FFFFFFFFFFFFFFFUUUUUUUUUUUU mode
-	var theme = 0;							//Тема на форуме: 0 - стандартная, 1 - prosilver
-	/***************************************************
-	Smile settings
-	***************************************************/
-	var enable_qip_smiles = true;			//Показывать смайлы qip
-	var enable_goha_smiles = true;			//Показывать смайлы гохи
-	var enable_anime_smiles = true;			//Показывать смайлы анимэ
-	var enable_yap_smiles = true;			//Показывать смайлы ЯПлакал.com
-	var enable_spoiler = true;
-	/***************************************************
-	Style settings
-	***************************************************/
-	var tags_before = "";					//Теги перед текстом
-	var color = "#220000";					//Цвет текста
-	var tags_after = "";					//Теги после текста
-	/***************************************************
-	Vualizator settings
-	***************************************************/
-	var enable_vual_all_button = false;		//Показывать кнопку "завуалировать все"
-	var enable_vual_part_button = false;	//Показывать кнопку "завуалировать часть"
-	var auto_vualization = true;			//Включить авто-вуализацию
-	
+	function Script()
+	{
+		var enable_smiles = true;				//РџРѕРєР°Р·С‹РІР°С‚СЊ РЅРѕРІС‹Рµ СЃРјР°Р№Р»С‹
+		var enable_style = true;				//РџРѕРєР°Р·С‹РІР°С‚СЊ СЃС‚РёР»СЊРЅСѓСЋ РєРЅРѕРїРєСѓ
+		var enable_vualizator = true;			//Р’РєР»СЋС‡РёС‚СЊ РІСѓР°Р»РёР·Р°С‚РѕСЂ
+		var enable_linkyfy = true;				//Р”РµР»Р°С‚СЊ С‚РµРєСЃС‚РѕРІС‹Рµ СЃСЃС‹Р»РєРё РєР»РёРєР°Р±РµР»СЊРЅС‹РјРё
+		var enable_flash_videos = true;			//РњРµРЅСЏС‚СЊ СЃСЃС‹Р»РєРё РІРёРґРµРѕ РЅР° С„Р»РµС€
+		
+		var enable_quote_hider = true;			//РџСЂСЏС‚Р°С‚СЊ С†РёС‚Р°С‚С‹. РџСЂСЏС‡РµС‚ РґР»РёРЅРЅС‹Рµ С†РёС‚Р°С‚С‹ (1000+ СЃРёРјРІРѕР»РѕРІ) / С†РёС‚Р°С‚С‹ СЃ РєР°СЂС‚РёРЅРєР°РјРё, РІРёРґРµРѕ
+		var enable_quote_force_hide = false;	//РџСЂСЏС‚Р°С‚СЊ РІСЃРµ С†РёС‚Р°С‚С‹ Р±РµР· СЂР°Р·Р±РѕСЂСѓ
+		
+		var enable_ignore_remover = true;		//РЈРґР°Р»СЏС‚СЊ СЃРѕРѕР±С‰РµРЅРёСЏ РёРіРЅРѕСЂРёСЂСѓРµРјРѕРіРѕ РїРѕР»СЊР·РѕРІР°С‚РµРґСЏ, С†РµР»РёРєРѕРј
+		var enable_uncounter = true;			//РЈРґР°Р»СЏС‚СЊ РџРљ
+		var enable_status = true;				//РџРѕРєР°Р·С‹РІР°С‚СЊ СЃС‚Р°С‚СѓСЃ РІ Р·Р°РІРёСЃРёРјРѕСЃС‚Рё РѕС‚ РґР°С‚С‹ СЂРµРіРёСЃС‚СЂР°С†РёРё
+		var enable_auto_topic_sort = true;		//РђРІС‚Рѕ СЃРѕСЂС‚РёСЂРѕРІРєР° С‚РµРј РїРѕ "РѕС‚РІРµС‡РµРЅРѕ" / "РЅРµ"
+		var enable_topic_hover_links = true;	//РџРѕРґСЃРІРµС‚РєР° С‚РµРј + СЃСЃС‹Р»РєРё
+		var enable_extended_ignore = false;		//РЈРґР°Р»СЏС‚СЊ СЃРѕРѕР±С‰РµРЅРёСЏ РѕРїРёСЃР°РЅРЅС‹С… РЅРёР¶Рµ РїРѕР»СЊР·РѕРІР°С‚РµР»РµР№*
+		var enable_punisher = false;			//FFFFFFFFFFFFFFFUUUUUUUUUUUU mode
+		var theme = 0;							//РўРµРјР° РЅР° С„РѕСЂСѓРјРµ: 0 - СЃС‚Р°РЅРґР°СЂС‚РЅР°СЏ, 1 - prosilver
+		/***************************************************
+		Smile settings
+		***************************************************/
+		var enable_qip_smiles = true;			//РџРѕРєР°Р·С‹РІР°С‚СЊ СЃРјР°Р№Р»С‹ qip
+		var enable_goha_smiles = true;			//РџРѕРєР°Р·С‹РІР°С‚СЊ СЃРјР°Р№Р»С‹ РіРѕС…Рё
+		var enable_anime_smiles = true;			//РџРѕРєР°Р·С‹РІР°С‚СЊ СЃРјР°Р№Р»С‹ Р°РЅРёРјСЌ
+		var enable_yap_smiles = true;			//РџРѕРєР°Р·С‹РІР°С‚СЊ СЃРјР°Р№Р»С‹ РЇРџР»Р°РєР°Р».com
+		var enable_spoiler = true;
+		/***************************************************
+		Style settings
+		***************************************************/
+		var tags_before = "";					//РўРµРіРё РїРµСЂРµРґ С‚РµРєСЃС‚РѕРј
+		var color = "#220000";					//Р¦РІРµС‚ С‚РµРєСЃС‚Р°
+		var tags_after = "";					//РўРµРіРё РїРѕСЃР»Рµ С‚РµРєСЃС‚Р°
+		/***************************************************
+		Vualizator settings
+		***************************************************/
+		var enable_vual_all_button = false;		//РџРѕРєР°Р·С‹РІР°С‚СЊ РєРЅРѕРїРєСѓ "Р·Р°РІСѓР°Р»РёСЂРѕРІР°С‚СЊ РІСЃРµ"
+		var enable_vual_part_button = false;	//РџРѕРєР°Р·С‹РІР°С‚СЊ РєРЅРѕРїРєСѓ "Р·Р°РІСѓР°Р»РёСЂРѕРІР°С‚СЊ С‡Р°СЃС‚СЊ"
+		var auto_vualization = true;			//Р’РєР»СЋС‡РёС‚СЊ Р°РІС‚Рѕ-РІСѓР°Р»РёР·Р°С†РёСЋ
+		
+		//---------------------------------------------------------------------------------------------------
+		// Ignore arrays
+		//---------------------------------------------------------------------------------------------------
+		var ignore_authors = new Array();			//("Felikz");
+		var punisher_authors = new Array();			//("Felikz");
+		var punisher_avatar = "http://img405.imageshack.us/img405/994/ffffuuuu.gif";
+		var punisher_inner_html = "<span style=\"font-weight: bold;\"><span style=\"font-size: 150%; line-height: normal;\">РЇ РЅСѓР±СЉ Рё Р°РїР°Р·РѕСЂРёР»СЃСЏ.РѕРє</span></span>";
+		//---------------------------------------------------------------------------------------------------
+		// Smiles
+		//---------------------------------------------------------------------------------------------------
+		
+		// Smile arrays
+		//------------------------------------------------------------------------------------------------------
+		var qip_smiles = new Array(
+		"http://img16.imageshack.us/img16/1474/59588970.gif",
+		"http://img16.imageshack.us/img16/3651/21328387.gif",
+		"http://img16.imageshack.us/img16/636/60126107.gif",
+		"http://img16.imageshack.us/img16/603/15063209.gif",
+		"http://img16.imageshack.us/img16/149/63022318.gif",
+		"http://img16.imageshack.us/img16/6841/27440985.gif",
+		"http://img16.imageshack.us/img16/3858/70081607.gif",
+		"http://img16.imageshack.us/img16/7379/98295683.gif",
+		"http://img16.imageshack.us/img16/9664/11638824.gif",
+		"http://img16.imageshack.us/img16/3098/72183619.gif",
+		"http://img16.imageshack.us/img16/2166/21957296.gif",
+		"http://img16.imageshack.us/img16/2677/48482627.gif",
+		"http://img16.imageshack.us/img16/7307/72825764.gif",
+		"http://img16.imageshack.us/img16/5913/18928027.gif",
+		"http://img16.imageshack.us/img16/4060/75574763.gif",
+		"http://img16.imageshack.us/img16/4589/22956234.gif",
+		"http://img16.imageshack.us/img16/2065/35121820.gif",
+		"http://img16.imageshack.us/img16/9445/31228367.gif",
+		"http://img16.imageshack.us/img16/1545/57928042.gif",
+		"http://img16.imageshack.us/img16/5500/71617807.gif",
+		"http://img16.imageshack.us/img16/7691/21563409.gif",
+		"http://img16.imageshack.us/img16/2193/94102077.gif",
+		"http://img16.imageshack.us/img16/626/85925404.gif",
+		"http://img16.imageshack.us/img16/223/52489547.gif",
+		"http://img16.imageshack.us/img16/5862/63315924.gif",
+		"http://img16.imageshack.us/img16/9052/51061320.gif",
+		"http://img16.imageshack.us/img16/6523/63604431.gif",
+		"http://img16.imageshack.us/img16/6821/79846507.gif",
+		"http://img16.imageshack.us/img16/6595/68945793.gif",
+		"http://img16.imageshack.us/img16/8851/23635877.gif",
+		"http://img16.imageshack.us/img16/8169/91434478.gif",
+		"http://img16.imageshack.us/img16/7159/41456276.gif",
+		"http://img16.imageshack.us/img16/9687/13868181.gif",
+		"http://img16.imageshack.us/img16/6792/25108241.gif",
+		"http://img16.imageshack.us/img16/7153/66946959.gif",
+		"http://img16.imageshack.us/img16/1843/69678388.gif",
+		"http://img16.imageshack.us/img16/967/45744481.gif",
+		"http://img16.imageshack.us/img16/8415/35620811.gif",
+		"http://img16.imageshack.us/img16/7824/bobrp.gif",
+		"http://img16.imageshack.us/img16/9003/bowk.gif",
+		"http://img16.imageshack.us/img16/8965/18437069.gif",
+		"http://img16.imageshack.us/img16/5715/84485976.gif",
+		"http://img16.imageshack.us/img16/1835/11105684.gif",
+		"http://img16.imageshack.us/img16/2963/brberbrb.gif",
+		"http://img16.imageshack.us/img16/822/46713123.gif",
+		"http://img16.imageshack.us/img16/5604/65020210.gif",
+		"http://img16.imageshack.us/img16/1574/94538708.gif",
+		"http://img16.imageshack.us/img16/4231/41686570.gif",
+		"http://img16.imageshack.us/img16/6111/62331137.gif",
+		"http://img16.imageshack.us/img16/9068/28202384.gif",
+		"http://img14.imageshack.us/img14/9389/82277031.gif",
+		"http://img205.imageshack.us/img205/1787/kysmiles.gif",
+		"http://img8.imageshack.us/img8/5299/cry29004875.gif",
+		"http://img13.imageshack.us/img13/778/m16xjdjfvi9583613.jpg",
+		"http://img382.imageshack.us/img382/6701/smileloh.gif",
+		"http://img7.imageshack.us/img7/2930/159953570.gif",
+		"http://img29.imageshack.us/img29/4210/starwarsmb.gif",
+		"http://img33.imageshack.us/img33/5576/81236651.png",
+		"http://img130.imageshack.us/img130/5639/lolcrybyfel.gif",
+		"http://img682.imageshack.us/img682/615/7b6e0c0140aa.gif",
+		"http://savepic.org/439821.gif"
+		//"http://img97.imageshack.us/img97/6443/cooltext444338987.gif"
+		);
+		//----------------------------------
+		var goha_smiles = new Array(
+		"http://img16.imageshack.us/img16/8338/emolol.gif",
+		"http://img16.imageshack.us/img16/1853/goplol.gif",
+		"http://img16.imageshack.us/img16/5534/greenlol.gif",
+		"http://img16.imageshack.us/img16/2186/hapydancsmil.gif",
+		"http://img16.imageshack.us/img16/644/pandaredlol.gif",
+		"http://img16.imageshack.us/img16/8002/redlol.gif",
+		"http://img132.imageshack.us/img132/4035/plus1.gif",
+		"http://img132.imageshack.us/img132/5029/eusathink.gif"
+		);
+		//----------------------------------
+		var anime_smiles = new Array(
+		"http://img8.imageshack.us/img8/7531/112gzr.gif",
+		"http://img8.imageshack.us/img8/162/51503725.gif",
+		"http://img8.imageshack.us/img8/66/26332379.gif",
+		"http://img27.imageshack.us/img27/6862/81266344.gif",
+		"http://img8.imageshack.us/img8/4416/61583659.gif",
+		"http://img16.imageshack.us/img16/1905/57567350.gif",
+		"http://img15.imageshack.us/img15/3682/38114373.gif",
+		"http://img13.imageshack.us/img13/2637/17759245.gif",
+		"http://img15.imageshack.us/img15/7315/24336725.gif"
+		);
+		var yap_smiles = new Array(
+		"http://yaplakal.com/html/emoticons/agree.gif",
+		 "http://yaplakal.com/html/emoticons/alk.gif",
+		 "http://yaplakal.com/html/emoticons/alkash.gif",
+		 "http://yaplakal.com/html/emoticons/ass.gif",
+		 "http://yaplakal.com/html/emoticons/cranky.gif",
+		 "http://yaplakal.com/html/emoticons/cry.gif",
+		 "http://yaplakal.com/html/emoticons/dead.gif",
+		 "http://yaplakal.com/html/emoticons/deal.gif",
+		 "http://yaplakal.com/html/emoticons/disgust.gif",
+		 "http://yaplakal.com/html/emoticons/figa.gif",
+		 "http://yaplakal.com/html/emoticons/fight.gif",
+		 "http://yaplakal.com/html/emoticons/fuck.gif",
+		 "http://yaplakal.com/html/emoticons/fucking.gif",
+		 "http://yaplakal.com/html/emoticons/gigi.gif",
+		 "http://yaplakal.com/html/emoticons/lol.gif",
+		 "http://yaplakal.com/html/emoticons/moral.gif",
+		 "http://yaplakal.com/html/emoticons/poke.gif",
+		 "http://yaplakal.com/html/emoticons/rulez.gif",
+		 "http://yaplakal.com/html/emoticons/spy.gif",
+		 "http://yaplakal.com/html/emoticons/why.gif",
+		 "http://yaplakal.com/html/emoticons/zombie.gif",
+		 "http://yaplakal.com/html/emoticons/disco.gif",
+		 "http://yaplakal.com/html/emoticons/shum_lol.gif",
+		 "http://yaplakal.com/html/emoticons/banan.gif",
+		 "http://yaplakal.com/html/emoticons/bananfuck.gif",
+		 "http://yaplakal.com/html/emoticons/bud.gif",
+		 "http://yaplakal.com/html/emoticons/inv.gif",
+		 "http://yaplakal.com/html/emoticons/maniac.gif",
+		 "http://yaplakal.com/html/emoticons/rap.gif",
+		 "http://yaplakal.com/html/emoticons/tango.gif",
+		 "http://yaplakal.com/html/emoticons/bravo.gif",
+		 "http://yaplakal.com/html/emoticons/bayan.gif",
+		 "http://yaplakal.com/html/emoticons/divide.gif",
+		 "http://yaplakal.com/html/emoticons/iq0.gif",
+		 "http://yaplakal.com/html/emoticons/lalala.gif",
+		 "http://yaplakal.com/html/emoticons/murdered.gif",
+		 "http://yaplakal.com/html/emoticons/rip.gif",
+		 "http://yaplakal.com/html/emoticons/rofl.gif",
+		 "http://yaplakal.com/html/emoticons/scary.gif",
+		 "http://yaplakal.com/html/emoticons/shoot.gif",
+		 "http://yaplakal.com/html/emoticons/slava.gif",
+		 "http://yaplakal.com/html/emoticons/cheer.gif",
+		 "http://yaplakal.com/html/emoticons/fear.gif",
+		 "http://yaplakal.com/html/emoticons/fekaloid.gif",
+		 "http://yaplakal.com/html/emoticons/bdsm.gif",
+		 "http://yaplakal.com/html/emoticons/old.gif",
+		 "http://yaplakal.com/html/emoticons/faceoff.gif"
+		);
+	}
 	//---------------------------------------------------------------------------------------------------
-	// Ignore arrays
-	//---------------------------------------------------------------------------------------------------
-	var ignore_authors = new Array();			//("Felikz");
-	var punisher_authors = new Array();			//("Felikz");
-	var punisher_avatar = "http://img405.imageshack.us/img405/994/ffffuuuu.gif";
-	var punisher_inner_html = "<span style=\"font-weight: bold;\"><span style=\"font-size: 150%; line-height: normal;\">Я нубъ и апазорился.ок</span></span>";
-	//---------------------------------------------------------------------------------------------------
-	// Smiles
+	// /End of Settings
 	//---------------------------------------------------------------------------------------------------
 	
-	// Smile arrays
-	//------------------------------------------------------------------------------------------------------
-	var qip_smiles = new Array(
-	"http://img16.imageshack.us/img16/1474/59588970.gif",
-	"http://img16.imageshack.us/img16/3651/21328387.gif",
-	"http://img16.imageshack.us/img16/636/60126107.gif",
-	"http://img16.imageshack.us/img16/603/15063209.gif",
-	"http://img16.imageshack.us/img16/149/63022318.gif",
-	"http://img16.imageshack.us/img16/6841/27440985.gif",
-	"http://img16.imageshack.us/img16/3858/70081607.gif",
-	"http://img16.imageshack.us/img16/7379/98295683.gif",
-	"http://img16.imageshack.us/img16/9664/11638824.gif",
-	"http://img16.imageshack.us/img16/3098/72183619.gif",
-	"http://img16.imageshack.us/img16/2166/21957296.gif",
-	"http://img16.imageshack.us/img16/2677/48482627.gif",
-	"http://img16.imageshack.us/img16/7307/72825764.gif",
-	"http://img16.imageshack.us/img16/5913/18928027.gif",
-	"http://img16.imageshack.us/img16/4060/75574763.gif",
-	"http://img16.imageshack.us/img16/4589/22956234.gif",
-	"http://img16.imageshack.us/img16/2065/35121820.gif",
-	"http://img16.imageshack.us/img16/9445/31228367.gif",
-	"http://img16.imageshack.us/img16/1545/57928042.gif",
-	"http://img16.imageshack.us/img16/5500/71617807.gif",
-	"http://img16.imageshack.us/img16/7691/21563409.gif",
-	"http://img16.imageshack.us/img16/2193/94102077.gif",
-	"http://img16.imageshack.us/img16/626/85925404.gif",
-	"http://img16.imageshack.us/img16/223/52489547.gif",
-	"http://img16.imageshack.us/img16/5862/63315924.gif",
-	"http://img16.imageshack.us/img16/9052/51061320.gif",
-	"http://img16.imageshack.us/img16/6523/63604431.gif",
-	"http://img16.imageshack.us/img16/6821/79846507.gif",
-	"http://img16.imageshack.us/img16/6595/68945793.gif",
-	"http://img16.imageshack.us/img16/8851/23635877.gif",
-	"http://img16.imageshack.us/img16/8169/91434478.gif",
-	"http://img16.imageshack.us/img16/7159/41456276.gif",
-	"http://img16.imageshack.us/img16/9687/13868181.gif",
-	"http://img16.imageshack.us/img16/6792/25108241.gif",
-	"http://img16.imageshack.us/img16/7153/66946959.gif",
-	"http://img16.imageshack.us/img16/1843/69678388.gif",
-	"http://img16.imageshack.us/img16/967/45744481.gif",
-	"http://img16.imageshack.us/img16/8415/35620811.gif",
-	"http://img16.imageshack.us/img16/7824/bobrp.gif",
-	"http://img16.imageshack.us/img16/9003/bowk.gif",
-	"http://img16.imageshack.us/img16/8965/18437069.gif",
-	"http://img16.imageshack.us/img16/5715/84485976.gif",
-	"http://img16.imageshack.us/img16/1835/11105684.gif",
-	"http://img16.imageshack.us/img16/2963/brberbrb.gif",
-	"http://img16.imageshack.us/img16/822/46713123.gif",
-	"http://img16.imageshack.us/img16/5604/65020210.gif",
-	"http://img16.imageshack.us/img16/1574/94538708.gif",
-	"http://img16.imageshack.us/img16/4231/41686570.gif",
-	"http://img16.imageshack.us/img16/6111/62331137.gif",
-	"http://img16.imageshack.us/img16/9068/28202384.gif",
-	"http://img14.imageshack.us/img14/9389/82277031.gif",
-	"http://img205.imageshack.us/img205/1787/kysmiles.gif",
-	"http://img8.imageshack.us/img8/5299/cry29004875.gif",
-	"http://img13.imageshack.us/img13/778/m16xjdjfvi9583613.jpg",
-	"http://img382.imageshack.us/img382/6701/smileloh.gif",
-	"http://img7.imageshack.us/img7/2930/159953570.gif",
-	"http://img29.imageshack.us/img29/4210/starwarsmb.gif",
-	"http://img33.imageshack.us/img33/5576/81236651.png",
-	"http://img130.imageshack.us/img130/5639/lolcrybyfel.gif",
-	"http://img682.imageshack.us/img682/615/7b6e0c0140aa.gif",
-	"http://savepic.org/439821.gif"
-	//"http://img97.imageshack.us/img97/6443/cooltext444338987.gif"
-	);
-	//----------------------------------
-	var goha_smiles = new Array(
-	"http://img16.imageshack.us/img16/8338/emolol.gif",
-	"http://img16.imageshack.us/img16/1853/goplol.gif",
-	"http://img16.imageshack.us/img16/5534/greenlol.gif",
-	"http://img16.imageshack.us/img16/2186/hapydancsmil.gif",
-	"http://img16.imageshack.us/img16/644/pandaredlol.gif",
-	"http://img16.imageshack.us/img16/8002/redlol.gif",
-	"http://img132.imageshack.us/img132/4035/plus1.gif",
-	"http://img132.imageshack.us/img132/5029/eusathink.gif"
-	);
-	//----------------------------------
-	var anime_smiles = new Array(
-	"http://img8.imageshack.us/img8/7531/112gzr.gif",
-	"http://img8.imageshack.us/img8/162/51503725.gif",
-	"http://img8.imageshack.us/img8/66/26332379.gif",
-	"http://img27.imageshack.us/img27/6862/81266344.gif",
-	"http://img8.imageshack.us/img8/4416/61583659.gif",
-	"http://img16.imageshack.us/img16/1905/57567350.gif",
-	"http://img15.imageshack.us/img15/3682/38114373.gif",
-	"http://img13.imageshack.us/img13/2637/17759245.gif",
-	"http://img15.imageshack.us/img15/7315/24336725.gif"
-	);
-	var yap_smiles = new Array(
-	"http://yaplakal.com/html/emoticons/agree.gif",
-     "http://yaplakal.com/html/emoticons/alk.gif",
-     "http://yaplakal.com/html/emoticons/alkash.gif",
-     "http://yaplakal.com/html/emoticons/ass.gif",
-     "http://yaplakal.com/html/emoticons/cranky.gif",
-     "http://yaplakal.com/html/emoticons/cry.gif",
-     "http://yaplakal.com/html/emoticons/dead.gif",
-     "http://yaplakal.com/html/emoticons/deal.gif",
-     "http://yaplakal.com/html/emoticons/disgust.gif",
-     "http://yaplakal.com/html/emoticons/figa.gif",
-     "http://yaplakal.com/html/emoticons/fight.gif",
-     "http://yaplakal.com/html/emoticons/fuck.gif",
-     "http://yaplakal.com/html/emoticons/fucking.gif",
-     "http://yaplakal.com/html/emoticons/gigi.gif",
-     "http://yaplakal.com/html/emoticons/lol.gif",
-     "http://yaplakal.com/html/emoticons/moral.gif",
-     "http://yaplakal.com/html/emoticons/poke.gif",
-     "http://yaplakal.com/html/emoticons/rulez.gif",
-     "http://yaplakal.com/html/emoticons/spy.gif",
-     "http://yaplakal.com/html/emoticons/why.gif",
-     "http://yaplakal.com/html/emoticons/zombie.gif",
-     "http://yaplakal.com/html/emoticons/disco.gif",
-     "http://yaplakal.com/html/emoticons/shum_lol.gif",
-     "http://yaplakal.com/html/emoticons/banan.gif",
-     "http://yaplakal.com/html/emoticons/bananfuck.gif",
-     "http://yaplakal.com/html/emoticons/bud.gif",
-     "http://yaplakal.com/html/emoticons/inv.gif",
-     "http://yaplakal.com/html/emoticons/maniac.gif",
-     "http://yaplakal.com/html/emoticons/rap.gif",
-     "http://yaplakal.com/html/emoticons/tango.gif",
-     "http://yaplakal.com/html/emoticons/bravo.gif",
-     "http://yaplakal.com/html/emoticons/bayan.gif",
-     "http://yaplakal.com/html/emoticons/divide.gif",
-     "http://yaplakal.com/html/emoticons/iq0.gif",
-     "http://yaplakal.com/html/emoticons/lalala.gif",
-     "http://yaplakal.com/html/emoticons/murdered.gif",
-     "http://yaplakal.com/html/emoticons/rip.gif",
-     "http://yaplakal.com/html/emoticons/rofl.gif",
-     "http://yaplakal.com/html/emoticons/scary.gif",
-     "http://yaplakal.com/html/emoticons/shoot.gif",
-     "http://yaplakal.com/html/emoticons/slava.gif",
-     "http://yaplakal.com/html/emoticons/cheer.gif",
-     "http://yaplakal.com/html/emoticons/fear.gif",
-     "http://yaplakal.com/html/emoticons/fekaloid.gif",
-     "http://yaplakal.com/html/emoticons/bdsm.gif",
-     "http://yaplakal.com/html/emoticons/old.gif",
-     "http://yaplakal.com/html/emoticons/faceoff.gif"
-	);
 	var root = typeof unsafeWindow != 'undefined' ? unsafeWindow : window;
 	//----------------------------------
 	var scr = root.document.createElement('script');
+	var fstring = Script.toString(); 
+	var code   = /\{([\S\s]*)\}$/i.exec(fstring)[1]; 
 	scr.setAttribute('type', 'text/javascript');
-	scr.setAttribute('src', 'http://alkar-forum-client.googlecode.com/files/alkar_forum_client.user.js');
+	scr.innerHTML = code; 
 	//----------------------------------
 	var body = root.document.getElementsByTagName('body')[0];
+	body.appendChild(scr);
+	
+	var scr = root.document.createElement('script');
+	scr.setAttribute('type', 'text/javascript');
+	scr.setAttribute('src', 'http://alkar-forum-client.googlecode.com/files/alkar_forum_client.user.js');
 	body.appendChild(scr);
 })();
