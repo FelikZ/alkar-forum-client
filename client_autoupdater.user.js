@@ -1,4 +1,4 @@
-// ==UserScript==
+﻿// ==UserScript==
 // @name           ForumClient 2 [Alkar]
 // @namespace      FelikZ
 // @description    enjoy it :)
@@ -58,10 +58,10 @@
 		//---------------------------------------------------------------------------------------------------
 		// Ignore arrays
 		//---------------------------------------------------------------------------------------------------
-		var ignore_authors = new Array();			//("Felikz");
-		var punisher_authors = new Array();			//("Felikz");
+		var ignore_authors = new Array();			
+		var punisher_authors = new Array();			
 		var punisher_avatar = "http://img405.imageshack.us/img405/994/ffffuuuu.gif";
-		var punisher_inner_html = "<span style=\"font-weight: bold;\"><span style=\"font-size: 150%; line-height: normal;\">Я нубъ и апазорился.ок</span></span>";
+		var punisher_inner_html = "<span style='font-weight: bold;'><span style='font-size: 150%; line-height: normal;'>Я нубъ и апазорился.ок</span></span>";
 		//---------------------------------------------------------------------------------------------------
 		// Smiles
 		//---------------------------------------------------------------------------------------------------
@@ -214,16 +214,17 @@
 	var scr = root.document.createElement('script');
 	var fstring = Script.toString(); 
 	var code   = /\{([\S\s]*)\}$/i.exec(fstring)[1]; 
+	
 	scr.setAttribute('type', 'text/javascript');
 	scr.setAttribute('charset', 'utf-8');
-	scr.innerHTML = code; 
+	scr.innerHTML = "eval(unescape('" +escape(code)+ "'));"; 
 	//----------------------------------
 	var body = root.document.getElementsByTagName('body')[0];
 	body.appendChild(scr);
 	
-	var scr = root.document.createElement('script');
-	scr.setAttribute('type', 'text/javascript');
-	scr.setAttribute('charset', 'utf-8');
-	scr.setAttribute('src', 'http://alkar-forum-client.googlecode.com/files/alkar_forum_client.user.js');
-	body.appendChild(scr);
+	var scr2 = root.document.createElement('script');
+	scr2.setAttribute('type', 'text/javascript');
+	scr2.setAttribute('charset', 'utf-8');
+	scr2.setAttribute('src', 'http://alkar-forum-client.googlecode.com/files/alkar_forum_client.user.js');
+	body.appendChild(scr2);
 })();

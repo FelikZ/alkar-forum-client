@@ -1,4 +1,4 @@
-// ==UserScript==
+﻿// ==UserScript==
 // @name           ForumClient 2 [Alkar]
 // @namespace      FelikZ
 // @description    enjoy it :)
@@ -1251,7 +1251,7 @@
 	div_info.innerHTML = "• Forum client v" + version + " • by <a href='http://thefelikz.blogspot.com/' title='Блог разработчика' style='color:darkred;letter-spacing:1px;'><strong>FelikZ</strong></a>";
 	datebar.appendChild(div_info);
 	//---------------------------------------------------------------------------------------------------
-	// Start sripts
+	// Start scripts
 	//---------------------------------------------------------------------------------------------------
 	if(enable_quote_force_hide)
 		enable_quote_hider = true;
