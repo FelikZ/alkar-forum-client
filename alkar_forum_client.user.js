@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name           ForumClient [Alkar]
+// @name           ForumClient 2 [Alkar]
 // @namespace      FelikZ
 // @description    enjoy it :)
 // @include        http://games.alkar.net/phpBB*
