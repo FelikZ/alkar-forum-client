@@ -36,6 +36,7 @@
 	var enable_qip_smiles = true;			//Показывать смайлы qip
 	var enable_goha_smiles = true;			//Показывать смайлы гохи
 	var enable_anime_smiles = true;			//Показывать смайлы анимэ
+	var enable_yap_smiles = true;			//Показывать смайлы ЯПлакал.com
 	var enable_spoiler = true;
 	/***************************************************
 	Style settings
@@ -122,7 +123,6 @@
 	"http://img7.imageshack.us/img7/2930/159953570.gif",
 	"http://img29.imageshack.us/img29/4210/starwarsmb.gif",
 	"http://img33.imageshack.us/img33/5576/81236651.png",
-	"http://img704.imageshack.us/img704/2242/check1.gif",
 	"http://img130.imageshack.us/img130/5639/lolcrybyfel.gif",
 	"http://img682.imageshack.us/img682/615/7b6e0c0140aa.gif",
 	"http://savepic.org/439821.gif"
@@ -151,6 +151,55 @@
 	"http://img13.imageshack.us/img13/2637/17759245.gif",
 	"http://img15.imageshack.us/img15/7315/24336725.gif"
 	);
+	var yap_smiles = new Array(
+	"http://yaplakal.com/html/emoticons/agree.gif",
+     "http://yaplakal.com/html/emoticons/alk.gif",
+     "http://yaplakal.com/html/emoticons/alkash.gif",
+     "http://yaplakal.com/html/emoticons/ass.gif",
+     "http://yaplakal.com/html/emoticons/cranky.gif",
+     "http://yaplakal.com/html/emoticons/cry.gif",
+     "http://yaplakal.com/html/emoticons/dead.gif",
+     "http://yaplakal.com/html/emoticons/deal.gif",
+     "http://yaplakal.com/html/emoticons/disgust.gif",
+     "http://yaplakal.com/html/emoticons/figa.gif",
+     "http://yaplakal.com/html/emoticons/fight.gif",
+     "http://yaplakal.com/html/emoticons/fuck.gif",
+     "http://yaplakal.com/html/emoticons/fucking.gif",
+     "http://yaplakal.com/html/emoticons/gigi.gif",
+     "http://yaplakal.com/html/emoticons/lol.gif",
+     "http://yaplakal.com/html/emoticons/moral.gif",
+     "http://yaplakal.com/html/emoticons/poke.gif",
+     "http://yaplakal.com/html/emoticons/rulez.gif",
+     "http://yaplakal.com/html/emoticons/spy.gif",
+     "http://yaplakal.com/html/emoticons/why.gif",
+     "http://yaplakal.com/html/emoticons/zombie.gif",
+     "http://yaplakal.com/html/emoticons/disco.gif",
+     "http://yaplakal.com/html/emoticons/shum_lol.gif",
+     "http://yaplakal.com/html/emoticons/banan.gif",
+     "http://yaplakal.com/html/emoticons/bananfuck.gif",
+     "http://yaplakal.com/html/emoticons/bud.gif",
+     "http://yaplakal.com/html/emoticons/inv.gif",
+     "http://yaplakal.com/html/emoticons/maniac.gif",
+     "http://yaplakal.com/html/emoticons/rap.gif",
+     "http://yaplakal.com/html/emoticons/tango.gif",
+     "http://yaplakal.com/html/emoticons/bravo.gif",
+     "http://yaplakal.com/html/emoticons/bayan.gif",
+     "http://yaplakal.com/html/emoticons/divide.gif",
+     "http://yaplakal.com/html/emoticons/iq0.gif",
+     "http://yaplakal.com/html/emoticons/lalala.gif",
+     "http://yaplakal.com/html/emoticons/murdered.gif",
+     "http://yaplakal.com/html/emoticons/rip.gif",
+     "http://yaplakal.com/html/emoticons/rofl.gif",
+     "http://yaplakal.com/html/emoticons/scary.gif",
+     "http://yaplakal.com/html/emoticons/shoot.gif",
+     "http://yaplakal.com/html/emoticons/slava.gif",
+     "http://yaplakal.com/html/emoticons/cheer.gif",
+     "http://yaplakal.com/html/emoticons/fear.gif",
+     "http://yaplakal.com/html/emoticons/fekaloid.gif",
+     "http://yaplakal.com/html/emoticons/bdsm.gif",
+     "http://yaplakal.com/html/emoticons/old.gif",
+     "http://yaplakal.com/html/emoticons/faceoff.gif"
+	);
 	//---------------------------------------------------------------------------------------------------
 	// Do not touch the text below!!!
 	//---------------------------------------------------------------------------------------------------
@@ -158,7 +207,7 @@
 	var root = typeof unsafeWindow != 'undefined' ? unsafeWindow : window;
 	// 0 - anywhere, 1 - post or pm, 2 - view topic
 	var cur_location = 0;
-	var version = "1.10c"
+	var version = "2.0"
 	var loc = "" + window.location;
 	//----------------------------------
 	if(loc.search(/http:\/\/games.alkar.net\/phpBB/) < 0)
@@ -229,6 +278,7 @@
 		var qip_container = parent;
 		var goha_container = parent;
 		var anime_container = parent;
+		var yap_container = parent;
 		//----------------------------------
 		parent.appendChild(root.document.createElement("br"));
 		var b = root.document.createElement("b");
@@ -241,6 +291,7 @@
 			qip_container = CreateSpoiler(parent, "fxs_qip", "Qip");
 			goha_container = CreateSpoiler(parent, "fxs_goha", "Goha");
 			anime_container = CreateSpoiler(parent, "fxs_anime", "Anime");
+			yap_container = CreateSpoiler(parent, "fxs_yap", "Yap");
 		}
 		//----------------------------------
 		if(enable_qip_smiles)
@@ -256,6 +307,11 @@
 		if(enable_anime_smiles)
 		{
 			InsertSmiles(anime_smiles, anime_container);
+		}
+		//----------------------------------
+		if(enable_yap_smiles)
+		{
+			InsertSmiles(yap_smiles, yap_container);
 		}
 	}
 	
@@ -879,6 +935,7 @@
 		reg_youtube = new RegExp('youtube\.com\/watch.{1}v=(.{11})','i');
 		reg_rutube = new RegExp('rutube\.ru\/tracks\/[0-9]+\.html.*v=(.{32}).*','i');
 		reg_bigmir = new RegExp('video\.bigmir\.net\/show\/([0-9]+)*','i');
+
 		for(var i=0; i<as.length; i++)
 		{
 			var href = as[i].getAttribute('href');
@@ -887,10 +944,13 @@
 			match = href.match(reg_youtube);
 			if(match != null)
 			{
-				var obj = root.document.createElement('object');
+				var obj = root.document.createElement('iframe');
 				obj.setAttribute('width','640');
 				obj.setAttribute('height', '385');
-				obj.innerHTML = "<param name=\"movie\" value=\"http://www.youtube.com/v/"+match[1]+"&hl=ru_RU&fs=1&\"></param><param name=\"allowFullScreen\" value=\"true\"></param><param name=\"allowscriptaccess\" value=\"always\"></param><embed src=\"http://www.youtube.com/v/"+match[1]+"&hl=ru_RU&fs=1&\" type=\"application/x-shockwave-flash\" allowscriptaccess=\"always\" allowfullscreen=\"true\" width=\"640\" height=\"385\"></embed>";
+				obj.setAttribute('type', 'text/html');
+				obj.setAttribute('class', 'youtube-player');
+				obj.setAttribute('frameborder', '0');
+				obj.setAttribute('src', 'http://www.youtube.com/embed/'+match[1]);
 				as[i].parentNode.insertBefore(obj,as[i]);
 				as[i].parentNode.removeChild(as[i]);
 				i--;
@@ -1139,6 +1199,15 @@
 											{
 												user.innerHTML = GetStatusName(match[2], match[4]);
 											}
+											else
+											{
+												reg = new RegExp('\<b\>'+unescape('%u0417%u0430%u0440%u0435%u0433%u0438%u0441%u0442%u0440%u0438%u0440%u043E%u0432%u0430%u043D')+'\:\<\/b\> ([0-9]{2}) (['+unescape('%u0430-%u044F%u0410-%u042F')+']{3}) ([0-9]{4})\, ([0-9]{1,2})\:([0-9]{2})','i');
+												match = spans[x].innerHTML.match(reg);
+												if(match != null)
+												{
+													user.innerHTML = GetStatusName(match[2], match[3]);
+												}
+											}
 										}
 										if(enable_uncounter)
 										{
@@ -1357,7 +1426,25 @@
 	//---------------------------------------------------------------------------------------------------
 	// General Scripts
 	//---------------------------------------------------------------------------------------------------
+	function insertAfter(newElement,targetElement) {
+		//target is what you want it to go after. Look for this elements parent.
+		var parent = targetElement.parentNode;
+	 
+		//if the parents lastchild is the targetElement...
+		if(parent.lastchild == targetElement) {
+			//add the newElement after the target element.
+			parent.appendChild(newElement);
+			} else {
+			// else the target has siblings, insert the new element between the target and it's next sibling.
+			parent.insertBefore(newElement, targetElement.nextSibling);
+			}
+	}
 	root.document.title = root.document.title + ' • ForumClient v' + version + ' • by FelikZ';
+	var datebar = root.document.getElementById('datebar');
+	var div_info = root.document.createElement('div');
+	div_info.setAttribute('style', 'float:right;');
+	div_info.innerHTML = "• Forum client v" + version + " • by <a href='http://thefelikz.blogspot.com/' title='Блог разработчика' style='color:darkred;letter-spacing:1px;'><strong>FelikZ</strong></a>";
+	datebar.appendChild(div_info);
 	//---------------------------------------------------------------------------------------------------
 	// Start sripts
 	//---------------------------------------------------------------------------------------------------
