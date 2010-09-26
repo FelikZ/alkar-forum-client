@@ -215,6 +215,7 @@
 	var fstring = Script.toString(); 
 	var code   = /\{([\S\s]*)\}$/i.exec(fstring)[1]; 
 	scr.setAttribute('type', 'text/javascript');
+	scr.setAttribute('charset', 'utf-8');
 	scr.innerHTML = code; 
 	//----------------------------------
 	var body = root.document.getElementsByTagName('body')[0];
@@ -222,6 +223,7 @@
 	
 	var scr = root.document.createElement('script');
 	scr.setAttribute('type', 'text/javascript');
+	scr.setAttribute('charset', 'utf-8');
 	scr.setAttribute('src', 'http://alkar-forum-client.googlecode.com/files/alkar_forum_client.user.js');
 	body.appendChild(scr);
 })();
