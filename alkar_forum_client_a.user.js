@@ -1097,31 +1097,31 @@
 			var trs = $(table).find('tr');
 			if(trs.length > 3)
 			{
-				for(var j=0; j<trs.length; j++)
+				trs.each(function(j, tr)
 				{
-					tds = trs[j].getElementsByTagName('td');
+					tds = tr.getElementsByTagName('td');
 					if(tds)
 					{
 						if(tds.length>5)
 						{
-							if(TestSpecTrForUnread(trs[j]))
-								sorted_unread[sorted_unread.length] = trs[j].cloneNode(true);
+							if(TestSpecTrForUnread(tr))
+								sorted_unread[sorted_unread.length] = tr.cloneNode(true);
 							else
-								sorted_read[sorted_read.length] = trs[j].cloneNode(true);
+								sorted_read[sorted_read.length] = tr.cloneNode(true);
 								
-							tru_table = trs[j].parentNode;
+							tru_table = tr.parentNode;
 							if(enable_auto_topic_sort)
 							{
-								trs[j].parentNode.removeChild(trs[j]);
+								tr.parentNode.removeChild(tr);
 								j--;
 							}
 						}
 						else
 						{
-							end_table = trs[j];
+							end_table = tr;
 						}
 					}
-				}
+				});
 				return false;
 			}
 		});
