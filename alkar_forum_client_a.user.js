@@ -41,6 +41,7 @@
 	jq.setAttribute('type', 'text/javascript');
 	var head = document.getElementsByTagName('head')[0];
 	head.appendChild(jq);
+	alert(1);
 	//----------------------------------
 	// inserting array of 'smiles' into td element
 	//------------------------------------------------------------------------------------------------------
