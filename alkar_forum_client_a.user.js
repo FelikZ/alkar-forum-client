@@ -1075,7 +1075,7 @@
 			var href = '#';
 			if(typeof(hrefs) != 'undefined' && hrefs != null)
 			{
-				href = hrefs.getAttribute('href');
+				href = hrefs.attr('href');
 			}
 			if(tds[i].getAttribute('class') == 'row1')
 			{
