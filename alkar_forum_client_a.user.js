@@ -733,7 +733,7 @@
 		reg_bigmir = new RegExp('video\.bigmir\.net\/show\/([0-9]+)*','i');
 		$('a').each(function(i, as)
 		{
-			var href = as.attr('href');
+			var href = $(as).attr('href');
 			if(href == null)
 				return;
 			match = href.match(reg_youtube);
