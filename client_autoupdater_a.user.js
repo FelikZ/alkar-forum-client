@@ -211,6 +211,14 @@
 	//---------------------------------------------------------------------------------------------------
 	
 	var root = typeof unsafeWindow != 'undefined' ? unsafeWindow : window;
+	// load jQuery
+	//----------------------------------
+	var jq = document.createElement('script');
+	jq.setAttribute('src', 'https://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js');
+	jq.setAttribute('charset', 'utf-8');
+	jq.setAttribute('type', 'text/javascript');
+	var head = document.getElementsByTagName('head')[0];
+	head.appendChild(jq);
 	//----------------------------------
 	var scr = root.document.createElement('script');
 	var fstring = Script.toString(); 
