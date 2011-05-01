@@ -137,7 +137,7 @@
 					if(td.html().search("insert_text") != -1)
 					{
 						InsertSmileContainers(td);
-						break;
+						return;
 					}
 				});
 				break;
