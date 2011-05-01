@@ -1094,7 +1094,7 @@
 		var sorted_read = new Array();
 		$('table.tablebg').each(function(i, table)
 		{
-			var trs = table[i].getElementsByTagName('tr');
+			var trs = table.getElementsByTagName('tr');
 			if(trs)
 			{
 				if(trs.length > 3)
