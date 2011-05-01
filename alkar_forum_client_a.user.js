@@ -1097,28 +1097,32 @@
 			var trs = $(table).find('tr');
 			if(trs.length > 3)
 			{
-				trs.each(function(j, tr)
+				for(var j=0; j<trs.length; j++)
 				{
-					tds = $(tr).find('td');
-					if(tds.length>5)
+					tds = trs[j].getElementsByTagName('td');
+					if(tds)
 					{
-						if(TestSpecTrForUnread(tr))
-							sorted_unread[sorted_unread.length] = tr.cloneNode(true);
-						else
-							sorted_read[sorted_read.length] = tr.cloneNode(true);
-							
-						tru_table = tr.parentNode;
-						if(enable_auto_topic_sort)
+						if(tds.length>5)
 						{
-							tr.parentNode.removeChild(tr);
+							if(TestSpecTrForUnread(trs[j]))
+								sorted_unread[sorted_unread.length] = trs[j].cloneNode(true);
+							else
+								sorted_read[sorted_read.length] = trs[j].cloneNode(true);
+								
+							tru_table = trs[j].parentNode;
+							if(enable_auto_topic_sort)
+							{
+								trs[j].parentNode.removeChild(trs[j]);
+								j--;
+							}
+						}
+						else
+						{
+							end_table = trs[j];
 						}
 					}
-					else
-					{
-						end_table = tr;
-					}
-				});
-				return false;
+				}
+				break;
 			}
 		});
 		if(sorted_unread.length > 0 && enable_auto_topic_sort)
