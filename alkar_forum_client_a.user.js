@@ -134,11 +134,7 @@
 				//----------------------------------
 				tds.each(function(i, td)
 				{
-					var html = td.html();
-					if(!html)
-						continue;
-					//----------------------------------
-					if(html.search("insert_text") != -1)
+					if(td.html().search("insert_text") != -1)
 					{
 						InsertSmileContainers(td);
 						break;
