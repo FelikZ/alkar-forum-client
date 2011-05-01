@@ -728,14 +728,12 @@
 	//---------------------------------------------------------------------------------------------------
 	function LinksPass()
 	{
-		var as = root.document.getElementsByTagName('a');
 		reg_youtube = new RegExp('youtube\.com\/watch.{1}v=(.{11})','i');
 		reg_rutube = new RegExp('rutube\.ru\/tracks\/[0-9]+\.html.*v=(.{32}).*','i');
 		reg_bigmir = new RegExp('video\.bigmir\.net\/show\/([0-9]+)*','i');
-
-		for(var i=0; i<as.length; i++)
+		$('a').each(function(i, as)
 		{
-			var href = as[i].getAttribute('href');
+			var href = as.attr('href');
 			if(href == null)
 				continue;
 			match = href.match(reg_youtube);
@@ -748,9 +746,9 @@
 				obj.setAttribute('class', 'youtube-player');
 				obj.setAttribute('frameborder', '0');
 				obj.setAttribute('src', 'http://www.youtube.com/embed/'+match[1]);
-				as[i].parentNode.insertBefore(obj,as[i]);
-				as[i].parentNode.removeChild(as[i]);
-				i--;
+				as.parentNode.insertBefore(obj,as);
+				as.parentNode.removeChild(as);
+				//i--;
 			}
 			else
 			{
@@ -762,9 +760,9 @@
 					obj.setAttribute('width','640');
 					obj.setAttribute('height', '385');
 					obj.innerHTML = "<param name=\"movie\" value=\"http://video.rutube.ru/"+match[1]+"\"></param><param name=\"allowFullScreen\" value=\"true\"></param><param name=\"allowscriptaccess\" value=\"always\"></param><embed src=\"http://video.rutube.ru/"+match[1]+"\" type=\"application/x-shockwave-flash\" allowscriptaccess=\"always\" wmode=\"window\" allowfullscreen=\"true\" width=\"640\" height=\"385\"></embed>";
-					as[i].parentNode.insertBefore(obj,as[i]);
-					as[i].parentNode.removeChild(as[i]);
-					i--;
+					as.parentNode.insertBefore(obj,as);
+					as.parentNode.removeChild(as);
+					//i--;
 				}
 				else
 				{
@@ -776,13 +774,13 @@
 						obj.setAttribute('width','640');
 						obj.setAttribute('height', '385');
 						obj.innerHTML = "<param name=\"movie\" value=\"http://video.bigmir.net/extplayer/"+match[1]+"/\"></param><param name=\"allowFullScreen\" value=\"true\"></param><param name=\"allowscriptaccess\" value=\"always\"></param><embed src=\"http://video.bigmir.net/extplayer/"+match[1]+"/\" type=\"application/x-shockwave-flash\" allowscriptaccess=\"always\" wmode=\"window\" allowfullscreen=\"true\" width=\"640\" height=\"385\"></embed>";
-						as[i].parentNode.insertBefore(obj,as[i]);
-						as[i].parentNode.removeChild(as[i]);
-						i--;
+						as.parentNode.insertBefore(obj,as);
+						as.parentNode.removeChild(as);
+						//i--;
 					}
 				}
 			}
-		}
+		});
 
 	}
 	//---------------------------------------------------------------------------------------------------
