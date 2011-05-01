@@ -1080,15 +1080,15 @@
 			if(tds[i].getAttribute('class') == 'row1')
 			{
 				tds[i].setAttribute('onclick', 'location.href="'+ href +'"');
-				$(tds[i]).hover(function(e)
+				$(tds[i]).hover(function()
 				{ 
-					e.setAttribute("class", "row1-hover");
-					e.style.cursor = "pointer";
+					this.setAttribute("class", "row1-hover");
+					this.style.cursor = "pointer";
 				},
-				function(e)
+				function()
 				{
-					e.setAttribute("class", "row1");
-					e.style.cursor = "auto";
+					this.setAttribute("class", "row1");
+					this.style.cursor = "auto";
 				});
 			}
 			break;
