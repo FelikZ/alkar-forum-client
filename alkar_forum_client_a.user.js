@@ -735,7 +735,7 @@
 		{
 			var href = as.attr('href');
 			if(href == null)
-				continue;
+				return;
 			match = href.match(reg_youtube);
 			if(match != null)
 			{
