@@ -1094,38 +1094,35 @@
 		var sorted_read = new Array();
 		$('table.tablebg').each(function(i, table)
 		{
-			var trs = table.getElementsByTagName('tr');
-			if(trs)
+			var trs = $(table).find('tr');
+			if(trs.length > 3)
 			{
-				if(trs.length > 3)
+				for(var j=0; j<trs.length; j++)
 				{
-					for(var j=0; j<trs.length; j++)
+					tds = trs[j].getElementsByTagName('td');
+					if(tds)
 					{
-						tds = trs[j].getElementsByTagName('td');
-						if(tds)
+						if(tds.length>5)
 						{
-							if(tds.length>5)
-							{
-								if(TestSpecTrForUnread(trs[j]))
-									sorted_unread[sorted_unread.length] = trs[j].cloneNode(true);
-								else
-									sorted_read[sorted_read.length] = trs[j].cloneNode(true);
-									
-								tru_table = trs[j].parentNode;
-								if(enable_auto_topic_sort)
-								{
-									trs[j].parentNode.removeChild(trs[j]);
-									j--;
-								}
-							}
+							if(TestSpecTrForUnread(trs[j]))
+								sorted_unread[sorted_unread.length] = trs[j].cloneNode(true);
 							else
+								sorted_read[sorted_read.length] = trs[j].cloneNode(true);
+								
+							tru_table = trs[j].parentNode;
+							if(enable_auto_topic_sort)
 							{
-								end_table = trs[j];
+								trs[j].parentNode.removeChild(trs[j]);
+								j--;
 							}
 						}
+						else
+						{
+							end_table = trs[j];
+						}
 					}
-					return false;
 				}
+				return false;
 			}
 		});
 		if(sorted_unread.length > 0 && enable_auto_topic_sort)
