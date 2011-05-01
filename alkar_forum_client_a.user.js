@@ -1088,53 +1088,39 @@
 	}
 	function AutoSort()
 	{
-		var table = root.document.getElementsByTagName('table');
 		var tru_table = null;
 		var end_table = null;
 		var sorted_unread = new Array();
 		var sorted_read = new Array();
-		if(table)
+		$('table.tablebg tr').each(function(i, table)
 		{
-			for(var i=0; i<table.length; i++)
+			var trs = $(table).find('tr');
+			if(trs.length > 3)
 			{
-				if(table[i].getAttribute('class') == "tablebg")
+				trs.each(function(j, tr)
 				{
-					var trs = table[i].getElementsByTagName('tr');
-					if(trs)
+					tds = $(tr).find('td');
+					if(tds.length>5)
 					{
-						if(trs.length > 3)
+						if(TestSpecTrForUnread(tr))
+							sorted_unread[sorted_unread.length] = tr.cloneNode(true);
+						else
+							sorted_read[sorted_read.length] = tr.cloneNode(true);
+							
+						tru_table = tr.parentNode;
+						if(enable_auto_topic_sort)
 						{
-							for(var j=0; j<trs.length; j++)
-							{
-								tds = trs[j].getElementsByTagName('td');
-								if(tds)
-								{
-									if(tds.length>5)
-									{
-										if(TestSpecTrForUnread(trs[j]))
-											sorted_unread[sorted_unread.length] = trs[j].cloneNode(true);
-										else
-											sorted_read[sorted_read.length] = trs[j].cloneNode(true);
-											
-										tru_table = trs[j].parentNode;
-										if(enable_auto_topic_sort)
-										{
-											trs[j].parentNode.removeChild(trs[j]);
-											j--;
-										}
-									}
-									else
-									{
-										end_table = trs[j];
-									}
-								}
-							}
-							break;
+							tr.parentNode.removeChild(tr);
 						}
 					}
-				}
+					else
+					{
+						end_table = tr;
+					}
+				});
+				break;
 			}
-		}
+		});
 		if(sorted_unread.length > 0 && enable_auto_topic_sort)
 		{
 			for(var i=0; i<sorted_unread.length; i++)
