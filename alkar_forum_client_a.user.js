@@ -1082,13 +1082,11 @@
 				tds[i].setAttribute('onclick', 'location.href="'+ href +'"');
 				$(tds[i]).hover(function()
 				{ 
-					this.setAttribute("class", "row1-hover");
-					this.style.cursor = "pointer";
+					$(this).attr('class', 'row1-hover').css('cursor', 'pointer');
 				},
 				function()
 				{
-					this.setAttribute("class", "row1");
-					this.style.cursor = "auto";
+					$(this).attr('class', 'row1').css('cursor', 'auto');
 				});
 			}
 			break;
