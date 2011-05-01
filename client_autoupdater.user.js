@@ -4,7 +4,7 @@
 // @namespace      FelikZ
 // @description    enjoy it :)
 // @include        http://games.alkar.net/phpBB*
-// @version        2.0
+// @version        2.1
 // @author		   FelikZ ( http://thefelikz.blogspot.com/ )
 // ==/UserScript==
 
@@ -211,6 +211,14 @@
 	//---------------------------------------------------------------------------------------------------
 	
 	var root = typeof unsafeWindow != 'undefined' ? unsafeWindow : window;
+	// load jQuery
+	//----------------------------------
+	var jq = document.createElement('script');
+	jq.setAttribute('src', 'https://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js');
+	jq.setAttribute('charset', 'utf-8');
+	jq.setAttribute('type', 'text/javascript');
+	var head = document.getElementsByTagName('head')[0];
+	head.appendChild(jq);
 	//----------------------------------
 	var scr = root.document.createElement('script');
 	var fstring = Script.toString(); 
@@ -220,12 +228,11 @@
 	scr.setAttribute('charset', 'utf-8');
 	scr.innerHTML = "eval(unescape('" +escape(code)+ "'));"; 
 	//----------------------------------
-	var body = root.document.getElementsByTagName('body')[0];
-	body.appendChild(scr);
+	head.appendChild(scr);
 	
 	var scr2 = root.document.createElement('script');
 	scr2.setAttribute('type', 'text/javascript');
 	scr2.setAttribute('charset', 'utf-8');
-	scr2.setAttribute('src', 'http://alkar-forum-client.googlecode.com/files/alkar_forum_client.user.js');
-	body.appendChild(scr2);
+	scr2.setAttribute('src', 'http://alkar-forum-client.googlecode.com/svn/trunk/alkar_forum_client.user.js');
+	head.appendChild(scr2);
 })();
