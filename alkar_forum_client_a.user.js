@@ -35,13 +35,14 @@
 	{
 		cur_location = 3;
 	}
+	// load jQuery
+	//------------------------------------------------------------------------------------------------------
 	var jq = document.createElement('script');
 	jq.setAttribute('src', 'https://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js');
 	jq.setAttribute('charset', 'utf-8');
 	jq.setAttribute('type', 'text/javascript');
 	var head = document.getElementsByTagName('head')[0];
 	head.appendChild(jq);
-	alert(1);
 	//----------------------------------
 	// inserting array of 'smiles' into td element
 	//------------------------------------------------------------------------------------------------------
@@ -134,7 +135,8 @@
 			case 0:
 				// looking for TD's
 				//------------------------------------------------------------------------------------------------------
-				var tds = document.getElementsByTagName("td");
+				
+				var tds = $('td[align="center"]');
 				if(!tds)
 					return;
 				var first_td = null;
