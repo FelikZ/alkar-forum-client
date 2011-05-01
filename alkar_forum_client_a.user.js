@@ -1118,7 +1118,7 @@
 						end_table = tr;
 					}
 				});
-				break;
+				return false;
 			}
 		});
 		if(sorted_unread.length > 0 && enable_auto_topic_sort)
