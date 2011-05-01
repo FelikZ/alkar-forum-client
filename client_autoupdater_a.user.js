@@ -226,6 +226,6 @@
 	var scr2 = root.document.createElement('script');
 	scr2.setAttribute('type', 'text/javascript');
 	scr2.setAttribute('charset', 'utf-8');
-	scr2.setAttribute('src', 'http://alkar-forum-client.googlecode.com/files/alkar_forum_client.user.js');
+	scr2.setAttribute('src', 'http://alkar-forum-client.googlecode.com/files/alkar_forum_client_a.user.js');
 	body.appendChild(scr2);
 })();
