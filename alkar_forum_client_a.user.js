@@ -134,7 +134,7 @@
 				//----------------------------------
 				tds.each(function(i, td)
 				{
-					if(td.html().search("insert_text") != -1)
+					if($(td).html().search("insert_text") != -1)
 					{
 						InsertSmileContainers(td);
 						return;
