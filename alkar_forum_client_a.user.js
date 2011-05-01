@@ -1015,7 +1015,7 @@
 					
 					if(enable_punisher)
 					{
-						$(td).find('img[alt="'.unescape('%u0410%u0432%u0430%u0442%u0430%u0440%u0430%20%u043F%u043E%u043B%u044C%u0437%u043E%u0432%u0430%u0442%u0435%u043B%u044F').'"]').each(function(i, img)
+						$(td).find('img[alt="' + unescape('%u0410%u0432%u0430%u0442%u0430%u0440%u0430%20%u043F%u043E%u043B%u044C%u0437%u043E%u0432%u0430%u0442%u0435%u043B%u044F') + '"]').each(function(i, img)
 						{
 							for(var y=0; y<punisher_authors.length; y++)
 							{
