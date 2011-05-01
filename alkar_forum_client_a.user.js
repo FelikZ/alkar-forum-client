@@ -1071,17 +1071,25 @@
 		
 		for(var i=1; i<tds.length;)
 		{
-			var hrefs = tds[i].getElementsByTagName('a');
+			var hrefs = $(tds[i]).find('a:first');
 			var href = '#';
-			if(typeof(hrefs[0]) != 'undefined')
+			if(typeof(hrefs) != 'undefined' && hrefs != null)
 			{
-				href = hrefs[0].getAttribute('href');
+				href = hrefs.getAttribute('href');
 			}
 			if(tds[i].getAttribute('class') == 'row1')
 			{
 				tds[i].setAttribute('onclick', 'location.href="'+ href +'"');
-				tds[i].setAttribute('onmouseover', 'this.setAttribute("class", "row1-hover"); this.style.cursor = "pointer"');
-				tds[i].setAttribute('onmouseout', 'this.setAttribute("class", "row1");this.style.cursor = "auto";');
+				$(tds[i]).hover(function(e)
+				{ 
+					e.setAttribute("class", "row1-hover");
+					e.style.cursor = "pointer";
+				},
+				function(e)
+				{
+					e.setAttribute("class", "row1");
+					e.style.cursor = "auto";
+				});
 			}
 			break;
 		}
