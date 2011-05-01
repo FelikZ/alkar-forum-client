@@ -831,20 +831,14 @@
 	function PostPass()
 	{
 		var tables = root.document.getElementsByTagName('table');
-		
-		for(var i=0; i<tables.length; i++)
+		$('table.tablebg').each(function(i, table)
 		{
-			if(tables[i].getAttribute('class') == 'tablebg')
+			if(ProfilePass(table) == -1)
 			{
-				var r = ProfilePass(tables[i]);
-				if(r == -1)
-				{
-					tables[i].parentNode.removeChild(tables[i]);
-					i--;
-					continue;
-				}
+				table.parentNode.removeChild(table);
+				return;
 			}
-		}
+		});
 	}
 	//---------------------------------------------------------------------------------------------------
 	// Ignore remover 
