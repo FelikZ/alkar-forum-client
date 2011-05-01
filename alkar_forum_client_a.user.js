@@ -993,7 +993,7 @@
 								reg = new RegExp('\<br.{0,2}\>\<b\>'+unescape('%u0421%u043E%u043E%u0431%u0449%u0435%u043D%u0438%u044F')+'\:\<\/b\> [0-9]*','i');
 								span.innerHTML = span.innerHTML.replace(reg, '');
 							}
-							return;
+							return false;
 						});
 					});
 				}
@@ -1012,56 +1012,36 @@
 							}
 						}
 					}
-					//alert(enable_punisher);
-					//alert(1);
 					
 					if(enable_punisher)
 					{
-						var imgs = td.getElementsByTagName('img');
-						if(imgs != null && imgs.length == 1)
+						$(td).find('img[alt="'.unescape('%u0410%u0432%u0430%u0442%u0430%u0440%u0430%20%u043F%u043E%u043B%u044C%u0437%u043E%u0432%u0430%u0442%u0435%u043B%u044F').'"]').each(function(i, img)
 						{
-							
-							if(imgs[0].getAttribute('alt') == unescape( '%u0410%u0432%u0430%u0442%u0430%u0440%u0430%20%u043F%u043E%u043B%u044C%u0437%u043E%u0432%u0430%u0442%u0435%u043B%u044F'))
+							for(var y=0; y<punisher_authors.length; y++)
 							{
-								for(var y=0; y<punisher_authors.length; y++)
+								if(punisher_authors[y] == user_name)
 								{
-									if(punisher_authors[y] == user_name)
-									{
-										imgs[0].setAttribute('src', punisher_avatar);
-										imgs[0].setAttribute('width', "120");
-										imgs[0].setAttribute('height', "120");
-										is_punisher_target = true;
-										break;
-									}
+									img.setAttribute('src', punisher_avatar);
+									img.setAttribute('width', "120");
+									img.setAttribute('height', "120");
+									is_punisher_target = true;
+									break;
 								}
 							}
-						}
+						});
 						
-						var divs = td.getElementsByTagName('div');
-						//alert(1);
-						
-						if(divs != null && divs.length > 0 && is_punisher_target)
+						if(is_punisher_target)
 						{
-							for(var t=0; t<divs.length; t++)
+							$(td).find('div.postbody').each(function(t, div)
 							{
-								if(divs[t].getAttribute('class') != 'postbody')
-									continue;
-								divs[t].innerHTML = punisher_inner_html;
+								div.innerHTML = punisher_inner_html;
 							
-								var spans = td.getElementsByTagName('span');
-								if(spans != null)
+								$(td).find('span.postbody,span.gensmall').each(function(u, span)
 								{
-									for(var u=0; u<spans.length; u++)
-									{
-										if(spans[u].getAttribute('class') == 'postbody' || spans[u].getAttribute('class') == 'gensmall')
-										{
-											spans[u].innerHTML = '';
-											//break;
-										}
-									}
-								}
-								break;
-							}
+									span.innerHTML = '';
+								});
+								return false;
+							});
 						}
 					}
 				}
