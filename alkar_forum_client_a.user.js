@@ -1145,22 +1145,17 @@
 	//---------------------------------------------------------------------------------------------------
 	function QuotePass()
 	{
-		var divs = root.document.getElementsByTagName('div');
-
 		var reg = new RegExp("(\<object.*\>)|(\<img.*alt\=\""+unescape('%u0418%u0437%u043E%u0431%u0440%u0430%u0436%u0435%u043D%u0438%u0435')+"\")",'i');
-		for(var i=0; i<divs.length; i++)
+		$('div.quotecontent').each(function(i, div)
 		{
-			if(divs[i].getAttribute('class') == 'quotecontent')
-			{
-				if(!enable_quote_force_hide && divs[i].innerHTML.length < 1000 && divs[i].innerHTML.match(reg) == null)
-					continue;
-				var div = root.document.createElement("div");
-				div.style.display = 'none';
-				div.innerHTML = divs[i].innerHTML;
-				divs[i].innerHTML = "<a href=\"javascript: void(0);\" onclick=\"this.parentNode.getElementsByTagName('div')[0].style.display=null; this.parentNode.removeChild(this); return false;\"> [раскрыть цитату] </a>";
-				divs[i].appendChild(div);
-			}
-		}
+			if(!enable_quote_force_hide && div.innerHTML.length < 1000 && div.innerHTML.match(reg) == null)
+				return true;
+			var sub_div = root.document.createElement("div");
+			sub_div.style.display = 'none';
+			sub_div.innerHTML = div.innerHTML;
+			div.innerHTML = "<a href=\"javascript: void(0);\" onclick=\"this.parentNode.getElementsByTagName('div')[0].style.display=null; this.parentNode.removeChild(this); return false;\"> [раскрыть цитату] </a>";
+			div.appendChild(sub_div);
+		});
 	}
 
 	//---------------------------------------------------------------------------------------------------
