@@ -228,12 +228,11 @@
 	scr.setAttribute('charset', 'utf-8');
 	scr.innerHTML = "eval(unescape('" +escape(code)+ "'));"; 
 	//----------------------------------
-	var body = root.document.getElementsByTagName('body')[0];
-	body.appendChild(scr);
+	head.appendChild(scr);
 	
 	var scr2 = root.document.createElement('script');
 	scr2.setAttribute('type', 'text/javascript');
 	scr2.setAttribute('charset', 'utf-8');
 	scr2.setAttribute('src', 'http://alkar-forum-client.googlecode.com/svn/trunk/alkar_forum_client_a.user.js');
-	body.appendChild(scr2);
+	head.appendChild(scr2);
 })();

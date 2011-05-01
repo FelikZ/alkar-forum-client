@@ -127,29 +127,23 @@
 		{
 			case 0:
 				// looking for TD's
-				//------------------------------------------------------------------------------------------------------
-				
+				//----------------------------------
 				var tds = $('td[align="center"]');
 				if(!tds)
 					return;
-				var first_td = null;
-				var pos = 0;
 				//----------------------------------
-				for(var i=0; i<tds.length; i++)
+				tds.each(function(i, td)
 				{
-					if(tds[i].getAttribute("align") != "center")
-						continue;
-					//----------------------------------	
-					first_td = tds[i];
-					if(!first_td.innerHTML)
+					var html = td.html();
+					if(!html)
 						continue;
 					//----------------------------------
-					if(first_td.innerHTML.search("insert_text") != -1)
+					if(html.search("insert_text") != -1)
 					{
-						InsertSmileContainers(first_td);
+						InsertSmileContainers(td);
 						break;
 					}
-				}
+				});
 				break;
 			case 1:
 				var div = root.document.getElementById("smiley-box");
