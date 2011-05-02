@@ -1196,7 +1196,13 @@
 	}
 	function FastQuote()
 	{
-		$('table.tablebg div[class="gensmall"][style="float: right;"] a:nth-child(2)').click(function(e){ alert($(this).attr('href')); return false; }); 
+		$('table.tablebg div[class="gensmall"][style="float: right;"] a:last-child').click(function(e)
+		{ 
+			insert_text($(e).closest('table.tablebg').find('div.postbody').html(), true); 
+			$('table.tablebg textarea').focus();
+			return false; 
+		}); 
+		
 
 	}
 	function FastReply()
