@@ -1197,12 +1197,29 @@
 				break;
 		}
 	}
+	function SetPageFooterFormFromData(data)
+	{
+		var form = $(data).find('form[name="postform"]:first').outer();
+		$('#pagefooter').html(form);
+	}
 	function FastQuote()
 	{
 		$('table.tablebg div[class="gensmall"][style="float: right;"] a:last-child').click(function(e)
 		{ 
-			insert_text($(this).closest('table.tablebg').find('div.postbody').html(), true); 
-			$('table.tablebg textarea').focus();
+			$(this).attr('href');
+			$.get(url, null, function(data)
+			{
+				SetPageFooterFormFromData(data);
+
+				if(enable_smiles)
+					SmileIt();
+				if(enable_style && theme == 0)
+					StyleIt();
+				if(enable_vualizator && theme == 0)
+					VualIt();
+				BindCtrlEnter();
+				$('table.tablebg textarea').focus();
+			});
 			return false; 
 		}); 
 		
@@ -1216,9 +1233,8 @@
 		var url = $('div#pagecontent table tr td[align="left"][valign="middle"][nowrap="nowrap"]:last a:nth-child(2)').attr('href');
 		$.get(url, null, function(data)
 		{
-			var form = $(data).find('form[name="postform"]:first').outer();
-			$('#pagefooter').html(form);
-			
+			SetPageFooterFormFromData(data);
+
 			if(enable_smiles)
 				SmileIt();
 			if(enable_style && theme == 0)
