@@ -1237,6 +1237,7 @@
 				LinksPass();
 			if(enable_quote_hider)
 				QuotePass();
+			FastReply();
 			break;
 		case 3: // viewing a forum
 			AddStyle();
