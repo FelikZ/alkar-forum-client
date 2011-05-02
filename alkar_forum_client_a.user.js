@@ -1206,18 +1206,17 @@
 	{
 		$('table.tablebg div[class="gensmall"][style="float: right;"] a:last-child').click(function(e)
 		{ 
-			alert($(this).attr('href'));
 			$.get($(this).attr('href'), null, function(data)
 			{
-				SetPageFooterFormFromData(data);
-
-				if(enable_smiles)
+				var quote = $(data).find('form[name="postform"]:first table.tablebg textarea').html();
+				$('form[name="postform"]:first table.tablebg textarea').append(quote);
+				/*if(enable_smiles)
 					SmileIt();
 				if(enable_style && theme == 0)
 					StyleIt();
 				if(enable_vualizator && theme == 0)
 					VualIt();
-				BindCtrlEnter();
+				BindCtrlEnter();*/
 				$('table.tablebg textarea').focus();
 			});
 			return false; 
