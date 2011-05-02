@@ -28,7 +28,7 @@
 		var enable_quote_force_hide = false;	//Прятать все цитаты без разбору
 		
 		var enable_ignore_remover = true;		//Удалять сообщения игнорируемого пользоватедя, целиком
-		var enable_uncounter = true;			//Удалять ПК
+		var enable_uncounter = false;			//Удалять ПК
 		var enable_status = true;				//Показывать статус в зависимости от даты регистрации
 		var enable_auto_topic_sort = true;		//Авто сортировка тем по "отвечено" / "не"
 		var enable_topic_hover_links = true;	//Подсветка тем + ссылки
