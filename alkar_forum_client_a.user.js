@@ -1206,8 +1206,8 @@
 	{
 		$('table.tablebg div[class="gensmall"][style="float: right;"] a:last-child').click(function(e)
 		{ 
-			$(this).attr('href');
-			$.get(url, null, function(data)
+			alert($(this).attr('href'));
+			$.get($(this).attr('href'), null, function(data)
 			{
 				SetPageFooterFormFromData(data);
 
