@@ -1179,13 +1179,19 @@
 	
 	function FastReply()
 	{
+		$('head').append('<script type="text/javascript" src="/phpBB/styles/subsilver2/template/editor.js"></script>');
 		var url = $('div#pagecontent table tr td[align="left"][valign="middle"][nowrap="nowrap"]:last a:nth-child(2)').attr('href');
 		$.get(url, null, function(data)
 		{
 			var form = $(data).find('form[name="postform"]').html();
 			$('#pagefooter').html(form);
-			SmileIt();
-			StyleIt();
+			
+			if(enable_smiles)
+				SmileIt();
+			if(enable_style && theme == 0)
+				StyleIt();
+			if(enable_vualizator && theme == 0)
+				VualIt();
 		});
 		
 	}
@@ -1220,12 +1226,12 @@
 	switch(cur_location)
 	{
 		case 1:	// posting
+			if(enable_smiles)
+				SmileIt();
 			if(enable_style && theme == 0)
 				StyleIt();
 			if(enable_vualizator && theme == 0)
 				VualIt();
-			if(enable_smiles)
-				SmileIt();
 			if(enable_quote_hider)
 				QuotePass();
 			break;
