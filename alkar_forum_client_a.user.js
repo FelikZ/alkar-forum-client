@@ -35,7 +35,7 @@
 	{
 		cur_location = 3;
 	}
-	(typeof(enable_fast_reply) == 'undefined') ? var enable_fast_reply = true; : enable_fast_reply = false;
+	(typeof(enable_fast_reply) == 'undefined') ? (var enable_fast_reply = true;) : (var enable_fast_reply = false);
 	//------------------------------------------------------------------------------------------------------
 	// jQuery outer plugin
 	//------------------------------------------------------------------------------------------------------
