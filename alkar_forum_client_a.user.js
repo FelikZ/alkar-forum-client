@@ -1275,7 +1275,11 @@
 				LinksPass();
 			if(enable_quote_hider)
 				QuotePass();
-			FastReply();
+			if(enable_fast_reply)
+			{
+				FastReply();
+				FastQuote();
+			}
 			break;
 		case 3: // viewing a forum
 			AddStyle();
