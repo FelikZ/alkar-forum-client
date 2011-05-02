@@ -1174,20 +1174,23 @@
 	//---------------------------------------------------------------------------------------------------
 	// Hotkeys
 	//---------------------------------------------------------------------------------------------------
+	function BindCtrlEnter()
+	{
+		$('textarea[name="message"]').keydown(function (e) 
+		{
+			if (e.ctrlKey && e.keyCode == 13) 
+			{
+				$('form[name="postform"] input[type="submit"][value="'+unescape("%u041E%u0442%u043F%u0440%u0430%u0432%u0438%u0442%u044C")+'"]').click();
+			}
+		});
+	}
 	function SetHotkeys(location)
 	{
 		switch(location)
 		{
 			case 1:
-			case 2:
 				// ctrl+enter
-				$('textarea[name="message"]').keydown(function (e) 
-				{
-					if (e.ctrlKey && e.keyCode == 13) 
-					{
-						$('form[name="postform"] input[type="submit"][value="'+unescape("%u041E%u0442%u043F%u0440%u0430%u0432%u0438%u0442%u044C")+'"]').click();
-					}
-				});
+				BindCtrlEnter();
 				break;
 		}
 	}
@@ -1209,6 +1212,7 @@
 				StyleIt();
 			if(enable_vualizator && theme == 0)
 				VualIt();
+			BindCtrlEnter();
 		});
 		
 	}
