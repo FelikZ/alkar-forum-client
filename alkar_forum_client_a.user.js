@@ -1176,6 +1176,19 @@
 				break;
 		}
 	}
+	
+	function FastReply()
+	{
+		var url = $('div#pagecontent table tr td[align="left"][valign="middle"][nowrap="nowrap"]:last a:nth-child(2)').attr('href');
+		$.get(url, null, function(data)
+		{
+			var form = $(data).find('form[name="postform"]').html();
+			$('#pagefooter').html(form);
+			SmileIt();
+		});
+		
+	}
+	
 	//---------------------------------------------------------------------------------------------------
 	// General Scripts
 	//---------------------------------------------------------------------------------------------------
