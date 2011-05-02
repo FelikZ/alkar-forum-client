@@ -1201,9 +1201,7 @@
 	{
 		$('table.tablebg div[class="gensmall"][style="float: right;"] a:last-child').click(function(e)
 		{ 
-			alert(e);
-			alert($(e));
-			var cl = $(e).closest('table.tablebg');
+			var cl = $(this).closest('table.tablebg');
 			//insert_text($(e).closest('table.tablebg').find('div.postbody').html(), true); 
 			$('table.tablebg textarea').focus();
 			return false; 
