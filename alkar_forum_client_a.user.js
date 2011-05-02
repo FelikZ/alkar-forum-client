@@ -1179,6 +1179,7 @@
 		switch(location)
 		{
 			case 1:
+			case 2:
 				// ctrl+enter
 				$('textarea[name="message"]').keydown(function (e) 
 				{
