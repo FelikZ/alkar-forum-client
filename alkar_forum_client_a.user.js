@@ -1179,7 +1179,9 @@
 	
 	function FastReply()
 	{
-		$('head').append('<script type="text/javascript" src="/phpBB/styles/subsilver2/template/editor.js"></script>');
+		$('head').append('<script type="text/javascript">var form_name = "postform";var text_name = "message";</script>')
+				.append('<script type="text/javascript" src="/phpBB/styles/subsilver2/template/editor.js"></script>');
+
 		var url = $('div#pagecontent table tr td[align="left"][valign="middle"][nowrap="nowrap"]:last a:nth-child(2)').attr('href');
 		$.get(url, null, function(data)
 		{
