@@ -1162,6 +1162,7 @@
 	//---------------------------------------------------------------------------------------------------
 	function SetHotkeys(location)
 	{
+		alert(location);
 		switch(location)
 		{
 			case 2:
