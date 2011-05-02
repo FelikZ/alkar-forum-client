@@ -35,8 +35,22 @@
 	{
 		cur_location = 3;
 	}
-	
-	//----------------------------------
+	//------------------------------------------------------------------------------------------------------
+	// jQuery outer plugin
+	//------------------------------------------------------------------------------------------------------
+	if(typeof ($.fn.outer) == 'undefined')
+	{
+		$.fn.outer = function(val)
+		{
+			if(val)
+			{
+				$(val).insertBefore(this);
+				$(this).remove();
+			}
+			else{ return $("<div>").append($(this).clone()).html(); }
+		}
+	}
+	//------------------------------------------------------------------------------------------------------
 	// inserting array of 'smiles' into td element
 	//------------------------------------------------------------------------------------------------------
 	function InsertSmiles(smiles, td)
@@ -1185,7 +1199,7 @@
 		var url = $('div#pagecontent table tr td[align="left"][valign="middle"][nowrap="nowrap"]:last a:nth-child(2)').attr('href');
 		$.get(url, null, function(data)
 		{
-			var form = $(data).find('form[name="postform"]:first').outerHTML;
+			var form = $(data).find('form[name="postform"]:first').outer();
 			$('#pagefooter').html(form);
 			
 			if(enable_smiles)
