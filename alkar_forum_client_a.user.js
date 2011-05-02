@@ -1185,6 +1185,7 @@
 			var form = $(data).find('form[name="postform"]').html();
 			$('#pagefooter').html(form);
 			SmileIt();
+			StyleIt();
 		});
 		
 	}
