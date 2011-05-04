@@ -725,6 +725,7 @@
         if(td == null)
             return;
             
+        td.html('');
         td.attr('bgcolor', color);
         var a = root.document.createElement('a');
         a.setAttribute('href', '#');
