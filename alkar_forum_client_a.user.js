@@ -12,7 +12,7 @@
 	var root = typeof unsafeWindow != 'undefined' ? unsafeWindow : window;
 	// 0 - anywhere, 1 - post or pm, 2 - view topic
 	var cur_location = 0;
-	var version = "2.81";
+	var version = "2.85";
 	var loc = "" + window.location;
 	//----------------------------------
 	if(loc.search(/http:\/\/games.alkar.net\/phpBB/) < 0)
@@ -721,7 +721,7 @@
 	//---------------------------------------------------------------------------------------------------
     function StyleIt()
 	{
-		var td = $('table.tablebg tbody tr td.row2 table[border="0"] tr:nth-child(3) td:nth-child(2)');
+		var td = $('table.tablebg tbody tr td.row2 table[border="0"][cellspacing="1"] tr:nth-child(3) td:nth-child(2)');
         if(td == null)
             return;
             
