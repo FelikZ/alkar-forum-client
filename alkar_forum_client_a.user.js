@@ -721,23 +721,18 @@
 	//---------------------------------------------------------------------------------------------------
     function StyleIt()
 	{
-		var td = $('table.tablebg tbody tr td.row2 table td');
-		td.each(function(i, td)
-		{
-	        if ('Цвет шрифта' == td.innerHTML) 
-			{
-	            td.innerHTML = "";
-	            td.setAttribute('bgcolor',color);
-	            var a = root.document.createElement('a');
-	            a.setAttribute('href', '#');
-	            a.setAttribute('style', 'text-decoration: none;style="color:'+color+';');
-				a.setAttribute('onclick', "bbfontstyle('"+tags_before+"[color="+color+"]', '[/color]"+tags_after+"'); return false;");
-	            a.innerHTML = '<img height="10" width="50" title="FelikZ Color" alt="FelikZ Color" src="images/spacer.gif"/>';
-				
-	            td.appendChild(a);
-	            return;
-	        }
-	    });
+		var td = $('table.tablebg tbody tr td.row2 table[border="0"] tr:nth-child(3) td:nth-child(2)');
+        if(td == null)
+            return;
+        td.innerHTML = "";
+        td.setAttribute('bgcolor',color);
+        var a = root.document.createElement('a');
+        a.setAttribute('href', '#');
+        a.setAttribute('style', 'text-decoration: none;style="color:'+color+';');
+        a.setAttribute('onclick', "bbfontstyle('"+tags_before+"[color="+color+"]', '[/color]"+tags_after+"'); return false;");
+        a.innerHTML = '<img height="10" width="50" title="FelikZ Color" alt="FelikZ Color" src="images/spacer.gif"/>';
+        
+        td.appendChild(a);
 	}
 	//---------------------------------------------------------------------------------------------------
 	// Link remaker 
