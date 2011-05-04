@@ -12,7 +12,7 @@
 	var root = typeof unsafeWindow != 'undefined' ? unsafeWindow : window;
 	// 0 - anywhere, 1 - post or pm, 2 - view topic
 	var cur_location = 0;
-	var version = "2.81";
+	var version = "2.87";
 	var loc = "" + window.location;
 	//----------------------------------
 	if(loc.search(/http:\/\/games.alkar.net\/phpBB/) < 0)
@@ -721,23 +721,19 @@
 	//---------------------------------------------------------------------------------------------------
     function StyleIt()
 	{
-		var td = $('table.tablebg tbody tr td.row2 table td');
-		td.each(function(i, td)
-		{
-	        if ('Цвет шрифта' == td.innerHTML) 
-			{
-	            td.innerHTML = "";
-	            td.setAttribute('bgcolor',color);
-	            var a = root.document.createElement('a');
-	            a.setAttribute('href', '#');
-	            a.setAttribute('style', 'text-decoration: none;style="color:'+color+';');
-				a.setAttribute('onclick', "bbfontstyle('"+tags_before+"[color="+color+"]', '[/color]"+tags_after+"'); return false;");
-	            a.innerHTML = '<img height="10" width="50" title="FelikZ Color" alt="FelikZ Color" src="images/spacer.gif"/>';
-				
-	            td.appendChild(a);
-	            return;
-	        }
-	    });
+		var td = $('table.tablebg tbody tr td.row2 table[border="0"][cellspacing="0"] tr:nth-child(3) td:nth-child(2)');
+        if(td == null)
+            return;
+            
+        td.html('');
+        td.attr('bgcolor', color);
+        var a = root.document.createElement('a');
+        a.setAttribute('href', '#');
+        a.setAttribute('style', 'text-decoration: none;style="color:'+color+';');
+        a.setAttribute('onclick', "bbfontstyle('"+tags_before+"[color="+color+"]', '[/color]"+tags_after+"'); return false;");
+        a.innerHTML = '<img height="10" width="50" title="FelikZ Color" alt="FelikZ Color" src="images/spacer.gif"/>';
+ 
+        td.html(a);
 	}
 	//---------------------------------------------------------------------------------------------------
 	// Link remaker 
