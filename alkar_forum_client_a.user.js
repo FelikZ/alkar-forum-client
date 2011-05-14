@@ -1364,9 +1364,10 @@
         FastRefreshIt();
 	if(enable_linkyfy)
 		LinkyfyIt();
-    $('head').append('<script src="http://widgets.twimg.com/j/2/widget.js"></script>');
-    $('#logodesc > table tr > td:nth-child(2)').html("<div id='twitter_widget'></div>")
-    setTimeout(function(){ $('#twitter_widget').html("<script>new TWTR.Widget({ id: 'twitter_widget',  version: 2,  type: 'profile',  rpp: 3,  interval: 6000,  width: 450,  height: 80,  theme: {    shell: {      background: '#C1CAD2',      color: '#000000'    },    tweets: {      background: '#c1cad2',      color: '#000000',      links: '#006597'    }  },  features: {    scrollbar: true,    loop: false,    live: true,    hashtags: true,    timestamp: true,    avatars: false,    behavior: 'all'  }}).render().setUser('thefelikz').start();</script>");
-    }, 3000);
+    $('#logodesc > table tr > td:nth-child(2)').html('<ul id="twitter_update_list"><li>Twitter feed loading</li></ul>');
+    $('#wrapfooter').append('<script type="text/javascript" src="http://twitter.com/javascripts/blogger.js"></script><script type="text/javascript" src="http://twitter.com/statuses/user_timeline/thefelikz.json?callback=twitterCallback2&count=3"></script>');
+    
+    //setTimeout(function(){ $('#twitter_widget').html("<script>new TWTR.Widget({ id: 'twitter_widget',  version: 2,  type: 'profile',  rpp: 3,  interval: 6000,  width: 450,  height: 80,  theme: {    shell: {      background: '#C1CAD2',      color: '#000000'    },    tweets: {      background: '#c1cad2',      color: '#000000',      links: '#006597'    }  },  features: {    scrollbar: true,    loop: false,    live: true,    hashtags: true,    timestamp: true,    avatars: false,    behavior: 'all'  }}).render().setUser('thefelikz').start();</script>");
+    //}, 3000);
 	//#
 })();
