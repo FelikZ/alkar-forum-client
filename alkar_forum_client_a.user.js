@@ -35,8 +35,9 @@
 		cur_location = 3;
 	}
 	if(typeof(enable_fast_reply) == 'undefined') 
-		var enable_fast_reply = true;
-
+		enable_fast_reply = true;
+    if(typeof(enable_fast_reply) == 'undefined') 
+        enable_fast_paging = true;
 	//------------------------------------------------------------------------------------------------------
 	// jQuery outer plugin
 	//------------------------------------------------------------------------------------------------------
@@ -1236,7 +1237,48 @@
 		});
 		
 	}
-	
+	//---------------------------------------------------------------------------------------------------
+	// Fast paging
+	//---------------------------------------------------------------------------------------------------
+    function FastPaging()
+    {
+        var first = true;
+        $('table[class!="tablebg"] tr td.gensmall[width="100%"][align="right"] b').each(function()
+        {
+            if(first)
+            {
+                $(this).find('a[href!="#"]').click(function()
+                {
+                    $.get($(this).attr('href'), null, _FPCallback);
+                    return false;
+                });
+                first = false;
+            }
+            else
+            {
+                $(this).find('a[href!="#"]').click(function()
+                {
+                    $.get($(this).attr('href'), null, _FPCallbackToTop);
+                    return false;
+                });
+                first = true;
+            }
+        });
+    }
+    function _FPCallback(data)
+    {
+        var content = $(data).find('#pagecontent');
+        $('#pagecontent').replaceWith(content);
+        FastPaging();
+        if(enable_fast_reply)
+            FastQuote();
+    }
+    function _FPCallbackToTop(data)
+    {
+        _FPCallback(data);
+        $('html, body').animate( { scrollTop: $("#pageheader").offset().top }, 500);
+    }
+    
 	//---------------------------------------------------------------------------------------------------
 	// General Scripts
 	//---------------------------------------------------------------------------------------------------
@@ -1290,6 +1332,10 @@
 				FastReply();
 				FastQuote();
 			}
+            if(enable_fast_paging)
+            {
+                FastPaging();
+            }
 			break;
 		case 3: // viewing a forum
 			AddStyle();

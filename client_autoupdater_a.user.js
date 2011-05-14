@@ -4,7 +4,7 @@
 // @namespace      FelikZ
 // @description    enjoy it :)
 // @include        http://games.alkar.net/phpBB*
-// @version        2.1
+// @version        2.1+
 // @author		   FelikZ ( http://thefelikz.blogspot.com/ )
 // ==/UserScript==
 
@@ -56,9 +56,10 @@
 		var enable_vual_part_button = false;	//Показывать кнопку "завуалировать часть"
 		var auto_vualization = true;			//Включить авто-вуализацию
 		/***************************************************
-		Fast reply settings
+		Fast settings
 		***************************************************/
 		var enable_fast_reply = true;
+        var enable_fast_paging = true;
 		//---------------------------------------------------------------------------------------------------
 		// Ignore arrays
 		//---------------------------------------------------------------------------------------------------
