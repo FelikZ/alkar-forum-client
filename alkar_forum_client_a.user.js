@@ -1368,7 +1368,15 @@
     var td = $('#logodesc > table tr > td:nth-child(2)');
     td.removeAttr('align');
     td.html('<ul id="twitter_update_list"><li></li></ul>');
-    function twitterCallback2(twitters) {
+    
+    
+    
+    $('#wrapfooter').append('<script type="text/javascript" src="http://twitter.com/statuses/user_timeline/thefelikz.json?callback=twitterCallback2&count=3"></script>');
+    
+	//#
+})();
+
+function twitterCallback2(twitters) {
   var statusHTML = [];
   for (var i=0; i<twitters.length; i++){
     var username = twitters[i].user.screen_name;
@@ -1406,7 +1414,3 @@ function relative_time(time_value) {
     return (parseInt(delta / 86400)).toString() + ' days ago';
   }
 }
-    $('#wrapfooter').append('<script type="text/javascript" src="http://twitter.com/statuses/user_timeline/thefelikz.json?callback=twitterCallback2&count=3"></script>');
-    
-	//#
-})();
