@@ -12,7 +12,7 @@
 	var root = typeof unsafeWindow != 'undefined' ? unsafeWindow : window;
 	// 0 - anywhere, 1 - post or pm, 2 - view topic
 	var cur_location = 0;
-	var version = "2.89";
+	var version = "2.90";
 	var loc = "" + window.location;
 	//----------------------------------
 	if(loc.search(/http:\/\/games.alkar.net\/phpBB/) < 0)
@@ -1208,7 +1208,9 @@
 			$.get($(this).attr('href'), null, function(data)
 			{
 				var quote = $(data).find('form[name="postform"]:first table.tablebg textarea').html();
-				$('form[name="postform"]:first table.tablebg textarea').append(quote);
+				var area = $('form[name="postform"]:first table.tablebg textarea');
+                var new_txt = area.attr('value') + quote;
+                area.attr('value', new_txt);
 				$('table.tablebg textarea').focus();
 			});
 			return false; 
