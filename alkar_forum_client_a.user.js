@@ -1209,7 +1209,11 @@
 			{
 				var quote = $(data).find('form[name="postform"]:first table.tablebg textarea').html();
 				var area = $('form[name="postform"]:first table.tablebg textarea');
-                var new_txt = area.attr('value') + '\n' +quote;
+                var old_txt = area.attr('value');
+                var new_txt = old_txt;
+                if(new_txt.length > 0 && new_txt.charAt(new_txt.length-1) != '\n')
+                    new_txt += '\n';
+                new_txt += quote;
                 area.attr('value', new_txt);
 				$('table.tablebg textarea').focus();
 			});
