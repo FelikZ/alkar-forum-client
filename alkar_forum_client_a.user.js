@@ -1364,7 +1364,7 @@
         FastRefreshIt();
 	if(enable_linkyfy)
 		LinkyfyIt();
-    $('head').append("#twitter_update_list {	font-size: 13px;	line-height: 21px;	list-style: none;	}#twitter_update_list li {	background: url('images/twitter-divider.gif') bottom left repeat-x;	padding-bottom: 7px;	margin-bottom: 9px;	}#twitter_update_list span, #twitter_update_list span a {	color: #ababab;	text-decoration: none;	}#twitter_update_list a {	color: #6f7276;	}");
+    $('head').append("<style type='text/css'>#twitter_update_list {	font-size: 13px;	line-height: 21px;	list-style: none;	}#twitter_update_list li {	background: url('images/twitter-divider.gif') bottom left repeat-x;	padding-bottom: 7px;	margin-bottom: 9px;	}#twitter_update_list span, #twitter_update_list span a {	color: #ababab;	text-decoration: none;	}#twitter_update_list a {	color: #6f7276;	}</style>");
     var td = $('#logodesc > table tr > td:nth-child(2)');
     td.removeAttr('align');
     td.html('<ul id="twitter_update_list"><li>Twitter feed loading</li></ul>');
