@@ -1367,7 +1367,7 @@
     $('head').append("<style type='text/css'>#twitter_update_list {	line-height: 18px;	list-style: none;	}#twitter_update_list li {	padding-bottom: 0;	margin-bottom: 0;	}</style>");
     var td = $('#logodesc > table tr > td:nth-child(2)');
     td.removeAttr('align');
-    td.html('<ul id="twitter_update_list"><li></li></ul>');
+    td.html('<b>FelikZ News</b> (Beta):<br /><ul id="twitter_update_list"><li></li></ul>');
     
     
     
