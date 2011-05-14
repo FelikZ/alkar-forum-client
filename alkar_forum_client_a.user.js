@@ -722,7 +722,7 @@
 	//---------------------------------------------------------------------------------------------------
     function StyleIt()
 	{
-		var td = $('table.tablebg tbody tr td.row2 table[border="0"][cellspacing="0"] > tbody > tr:nth-child(3) > td:nth-child(2)');
+		var td = $('table.tablebg tbody tr td.row2 table[border="0"][cellspacing="0"] > tbody > tr:nth-child(3) > td:nth-child(2):last');
         if(td == null)
             return;
             
