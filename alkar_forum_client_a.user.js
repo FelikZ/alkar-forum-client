@@ -1371,7 +1371,7 @@
     
     
     
-    $('#wrapfooter').append('<script type="text/javascript" src="http://twitter.com/statuses/user_timeline/thefelikz.json?callback=twitterCallback2&count=3"></script>');
+    $('#wrapfooter').append('<script type="text/javascript" src="http://twitter.com/statuses/user_timeline/thefelikz.json?callback=twitterCallback2&count=3"&include_entities=1></script>');
     
 	//#
 })();
