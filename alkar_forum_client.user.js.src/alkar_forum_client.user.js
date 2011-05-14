@@ -6,13 +6,13 @@
 // ==/UserScript==
 (function() 
 {
-	//---------------------------------------------------------------------------------------------------
+	//#
 	// Do not touch the text below!!!
-	//---------------------------------------------------------------------------------------------------
+	//#
 	var root = typeof unsafeWindow != 'undefined' ? unsafeWindow : window;
 	// 0 - anywhere, 1 - post or pm, 2 - view topic
 	var cur_location = 0;
-	var version = "2.91";
+	var version = "2.110";
 	var loc = "" + window.location;
 	//----------------------------------
 	if(loc.search(/http:\/\/games.alkar.net\/phpBB/) < 0)
@@ -34,13 +34,18 @@
 	{
 		cur_location = 3;
 	}
+    //#
+    // Settings definer
+    //#
 	if(typeof(enable_fast_reply) == 'undefined') 
 		enable_fast_reply = true;
     if(typeof(enable_fast_reply) == 'undefined') 
         enable_fast_paging = true;
-	//------------------------------------------------------------------------------------------------------
+    if(typeof(enable_fast_refresh) == 'undefined') 
+        enable_fast_refresh = true;
+	//#
 	// jQuery outer plugin
-	//------------------------------------------------------------------------------------------------------
+	//#
 	if(typeof ($.fn.outer) == 'undefined')
 	{
 		$.fn.outer = function(val)
@@ -53,9 +58,9 @@
 			else{ return $("<div>").append($(this).clone()).html(); }
 		}
 	}
-	//------------------------------------------------------------------------------------------------------
+	//#
 	// inserting array of 'smiles' into td element
-	//------------------------------------------------------------------------------------------------------
+	//#
 	function InsertSmiles(smiles, td)
 	{
 		if(!smiles || !td)
@@ -189,9 +194,9 @@
 				break;
 		}
 	}
-	//---------------------------------------------------------------------------------------------------
+	//#
 	// Vualizator
-	//---------------------------------------------------------------------------------------------------
+	//#
 	var scr = "var auto_vualization=";
 	if(auto_vualization)
 		scr += "true;";
@@ -717,9 +722,9 @@
 		}
 		
 	}
-	//---------------------------------------------------------------------------------------------------
+	//#
 	// Style
-	//---------------------------------------------------------------------------------------------------
+	//#
     function StyleIt()
 	{
 		var td = $('table.tablebg tbody tr td.row2 table[border="0"][cellspacing="0"] > tbody > tr:nth-child(3) > td:nth-child(2):last');
@@ -736,9 +741,9 @@
  
         td.html(a);
 	}
-	//---------------------------------------------------------------------------------------------------
+	//#
 	// Link remaker 
-	//---------------------------------------------------------------------------------------------------
+	//#
 	function LinksPass()
 	{
 		reg_youtube = new RegExp('youtube\.com\/watch.{1}v=(.{11})','i');
@@ -796,9 +801,9 @@
 		});
 
 	}
-	//---------------------------------------------------------------------------------------------------
+	//#
 	// Linkyfy 
-	//---------------------------------------------------------------------------------------------------
+	//#
 	function LinkyfyIt()
 	{
 		
@@ -840,7 +845,7 @@
 		}
 		} catch(e) {dump('Linkify Plus Error ('+e.lineNumber+'): '+e+'\n');}
 	}
-	//---------------------------------------------------------------------------------------------------
+	//#
 	function PostPass()
 	{
 		var tables = root.document.getElementsByTagName('table');
@@ -853,9 +858,9 @@
 			}
 		});
 	}
-	//---------------------------------------------------------------------------------------------------
+	//#
 	// Ignore remover 
-	//---------------------------------------------------------------------------------------------------
+	//#
 	function IgnoreIt()
 	{
 			var trs = root.document.getElementsByTagName('tr');
@@ -894,9 +899,9 @@
 				}
 			}
 	}
-	//---------------------------------------------------------------------------------------------------
+	//#
 	// Status It
-	//---------------------------------------------------------------------------------------------------
+	//#
 	function GetStatusName(month, year)
 	{
 		if(unescape('%u044F%u043D%u0432') == month){
@@ -1061,9 +1066,9 @@
 			});
 			return 0;
 	}
-	//---------------------------------------------------------------------------------------------------
+	//#
 	// Auto Sort
-	//---------------------------------------------------------------------------------------------------
+	//#
 	function TestSpecTrForUnread(tr)
 	{
 		var img = tr.getElementsByTagName('img');
@@ -1153,9 +1158,9 @@
 			}
 		}
 	}
-	//---------------------------------------------------------------------------------------------------
+	//#
 	// Quote pass
-	//---------------------------------------------------------------------------------------------------
+	//#
 	function QuotePass()
 	{
 		var reg = new RegExp("(\<object.*\>)|(\<img.*alt\=\""+unescape('%u0418%u0437%u043E%u0431%u0440%u0430%u0436%u0435%u043D%u0438%u0435')+"\")",'i');
@@ -1170,9 +1175,9 @@
 			div.appendChild(sub_div);
 		});
 	}
-	//---------------------------------------------------------------------------------------------------
+	//#
 	// Hotkeys
-	//---------------------------------------------------------------------------------------------------
+	//#
 	function BindCtrlEnter()
 	{
 		$('textarea[name="message"]').keydown(function (e) 
@@ -1193,9 +1198,9 @@
 				break;
 		}
 	}
-	//---------------------------------------------------------------------------------------------------
+	//#
 	// Fast qoute
-	//---------------------------------------------------------------------------------------------------
+	//#
 	function SetPageFooterFormFromData(data)
 	{
 		var form = $(data).find('form[name="postform"]:first').outer();
@@ -1220,9 +1225,9 @@
 			return false; 
 		}); 
 	}
-	//---------------------------------------------------------------------------------------------------
+	//#
 	// Fast reply
-	//---------------------------------------------------------------------------------------------------
+	//#
 	function FastReply()
 	{
 		$('head').append('<script type="text/javascript">var form_name = "postform";var text_name = "message";var bbcode = new Array();var bbtags = new Array(\'[b]\',\'[/b]\',\'[i]\',\'[/i]\',\'[u]\',\'[/u]\',\'[quote]\',\'[/quote]\',\'[code]\',\'[/code]\',\'[list]\',\'[/list]\',\'[list=]\',\'[/list]\',\'[img]\',\'[/img]\',\'[url]\',\'[/url]\',\'[flash=]\', \'[/flash]\',\'[size=]\',\'[/size]\', \'[a_center]\', \'[/a_center]\', \'[a_right]\', \'[/a_right]\', \'[frame]\', \'[/frame]\', \'[line]\', \'[/line]\', \'[offtopic]\', \'[/offtopic]\', \'[s]\', \'[/s]\', \'[spoiler2=]\', \'[/spoiler2]\', \'[spoiler=]\', \'[/spoiler]\', \'[youtube]\', \'[/youtube]\');var imageTag = false;var help_line = {			b:unescape(\'%u0416%u0438%u0440%u043D%u044B%u0439%20%u0442%u0435%u043A%u0441%u0442%3A%20%5Bb%5Dtext%5B/b%5D\'),			i:unescape(\'%u041D%u0430%u043A%u043B%u043E%u043D%u043D%u044B%u0439%20%u0442%u0435%u043A%u0441%u0442%3A%20%5Bi%5Dtext%5B/i%5D\'),			u:unescape(\'%u041F%u043E%u0434%u0447%u0435%u0440%u043A%u043D%u0443%u0442%u044B%u0439%20%u0442%u0435%u043A%u0441%u0442%3A%20%5Bu%5Dtext%5B/u%5D\'),			q:unescape(\'%u0426%u0438%u0442%u0430%u0442%u0430%3A%20%5Bquote%5Dtext%5B/quote%5D\'),			c:unescape(\'%u041A%u043E%u0434%3A%20%5Bcode%5Dcode%5B/code%5D\'),			l:unescape(\'%u0421%u043F%u0438%u0441%u043E%u043A%3A%20%5Blist%5Dtext%5B/list%5D\'),			o:unescape(\'%u041D%u0443%u043C%u0435%u0440%u043E%u0432%u0430%u043D%u043D%u044B%u0439%20%u0441%u043F%u0438%u0441%u043E%u043A%3A%20%5Blist%3D%5Dtext%5B/list%5D\'),			p:unescape(\'%u0412%u0441%u0442%u0430%u0432%u0438%u0442%u044C%20%u0438%u0437%u043E%u0431%u0440%u0430%u0436%u0435%u043D%u0438%u0435%3A%20%5Bimg%5Dhttp%3A//image_url%5B/img%5D\'),			w:unescape(\'%u0412%u0441%u0442%u0430%u0432%u0438%u0442%u044C%20%u0441%u0441%u044B%u043B%u043A%u0443%3A%20%5Burl%5Dhttp%3A//url%5B/url%5D%20%u0438%u043B%u0438%20%5Burl%3Dhttp%3A//url%5DURL%20text%5B/url%5D\'),			s:unescape(\'%u0426%u0432%u0435%u0442%20%u0448%u0440%u0438%u0444%u0442%u0430%3A%20%5Bcolor%3Dred%5Dtext%5B/color%5D%20%u0421%u043E%u0432%u0435%u0442%3A%20%u0412%u044B%20%u043C%u043E%u0436%u0435%u0442%u0435%20%u0438%u0441%u043F%u043E%u043B%u044C%u0437%u043E%u0432%u0430%u0442%u044C%20%u0442%u0430%u043A%u0436%u0435%20%u043A%u043E%u043D%u0441%u0442%u0440%u0443%u043A%u0446%u0438%u044E%20color%3D%23FF0000\'),			f:unescape(\'%u0420%u0430%u0437%u043C%u0435%u0440%20%u0448%u0440%u0438%u0444%u0442%u0430%3A%20%5Bsize%3D85%5Dsmall%20text%5B/size%5D\'),			e:unescape(\'%u0421%u043F%u0438%u0441%u043E%u043A%3A%20%u0434%u043E%u0431%u0430%u0432%u0438%u0442%u044C%20%u044D%u043B%u0435%u043C%u0435%u043D%u0442%20%u0441%u043F%u0438%u0441%u043A%u0430\'),			d:unescape(\'%u0424%u043B%u044D%u0448%3A%20%5Bflash%3Dwidth%2Cheight%5Dhttp%3A//url%5B/flash%5D\'),			t:unescape(\'%7B%20BBCODE_T_HELP%20%7D\'),			tip:unescape(\'%u0421%u043E%u0432%u0435%u0442%3A%20%u043C%u043E%u0436%u043D%u043E%20%u0431%u044B%u0441%u0442%u0440%u043E%20%u043F%u0440%u0438%u043C%u0435%u043D%u0438%u0442%u044C%20%u0441%u0442%u0438%u043B%u0438%20%u043A%20%u0432%u044B%u0434%u0435%u043B%u0435%u043D%u043D%u043E%u043C%u0443%20%u0442%u0435%u043A%u0441%u0442%u0443.\')							,cb_22:unescape(\'%u0412%u044B%u0440%u0430%u0432%u043D%u0438%u0432%u0430%u043D%u0438%u0435%20%u043F%u043E%20%u0446%u0435%u043D%u0442%u0440%u0443%3A%20%5Ba_center%5Dtext%5B/a_center%5D\')							,cb_24:unescape(\'%u0412%u044B%u0440%u0430%u0432%u043D%u0438%u0432%u0430%u043D%u0438%u0435%20%u043F%u043E%20%u043F%u0440%u0430%u0432%u043E%u043C%u0443%20%u043A%u0440%u0430%u044E%3A%20%5Ba_right%5Dtext%5B/a_right%5D\')							,cb_26:unescape(\'%u0422%u0435%u043A%u0441%u0442%20%u0432%20%u0440%u0430%u043C%u043A%u0435%3A%20%5Bframe%5Dtext%5B/frame%5D\')							,cb_28:unescape(\'%u0413%u043E%u0440%u0438%u0437%u043E%u043D%u0442%u0430%u043B%u044C%u043D%u0430%u044F%20%u043B%u0438%u043D%u0438%u044F\')							,cb_30:unescape(\'%u041E%u0444%u0444%u0442%u043E%u043F%3A%20%5Bofftopic%5Dtext%5B/offtopic%5D\')							,cb_32:unescape(\'%u0417%u0430%u0447%u0451%u0440%u043A%u043D%u0443%u0442%u044B%u0439%20%u0442%u0435%u043A%u0441%u0442%3A%20%5Bs%5Dtext%5B/s%5D\')							,cb_34:unescape(\'%u0421%u043A%u0440%u044B%u0432%u0430%u0435%u043C%u043E%u0435%20%u0441%u043E%u0434%u0435%u0440%u0436%u0438%u043C%u043E%u0435%3A%20%5Bspoiler2%3D%u043D%u0430%u0437%u0432%u0430%u043D%u0438%u0435%20%u0441%u043F%u043E%u0439%u043B%u0435%u0440%u0430%5Dtext%5B/spoiler2%5D\')							,cb_36:unescape(\'%u0421%u043A%u0440%u044B%u0432%u0430%u0435%u043C%u043E%u0435%20%u0441%u043E%u0434%u0435%u0440%u0436%u0438%u043C%u043E%u0435%3A%20%5Bspoiler%3D%u043D%u0430%u0437%u0432%u0430%u043D%u0438%u0435%20%u0441%u043F%u043E%u0439%u043B%u0435%u0440%u0430%5Dtext%5B/spoiler%5D\')							,cb_38:unescape(\'%u0412%u0441%u0442%u0440%u043E%u0435%u043D%u043D%u044B%u0439%20%u043F%u043B%u0435%u0435%u0440%3A%20%5Byoutube%5D%u0421%u0441%u044B%u043B%u043A%u0430%20%u043D%u0430%20%u0441%u0442%u0440%u0430%u043D%u0438%u0446%u0443%20%u0432%u0438%u0434%u0435%u043E%5B/youtube%5D\')					};</script>')
@@ -1243,9 +1248,9 @@
 		});
 		
 	}
-	//---------------------------------------------------------------------------------------------------
+	//#
 	// Fast paging
-	//---------------------------------------------------------------------------------------------------
+	//#
     function FastPaging()
     {
         var first = true;
@@ -1285,9 +1290,13 @@
         $('html, body').animate( { scrollTop: $("#pageheader").offset().top }, 500);
     }
     
-	//---------------------------------------------------------------------------------------------------
+    function FastRefreshIt()
+    {
+    
+    }
+	//#
 	// General Scripts
-	//---------------------------------------------------------------------------------------------------
+	//#
 	function insertAfter(newElement,targetElement) {
 		//target is what you want it to go after. Look for this elements parent.
 		var parent = targetElement.parentNode;
@@ -1307,9 +1316,9 @@
 	div_info.setAttribute('style', 'float:right;');
 	div_info.innerHTML = "• Forum client v" + version + " • by <a href='http://thefelikz.blogspot.com/' title='Блог разработчика' style='color:darkred;letter-spacing:1px;'><strong>FelikZ</strong></a>";
 	datebar.appendChild(div_info);
-	//---------------------------------------------------------------------------------------------------
+	//#
 	// Start scripts
-	//---------------------------------------------------------------------------------------------------
+	//#
 	if(enable_quote_force_hide)
 		enable_quote_hider = true;
 	switch(cur_location)
@@ -1351,8 +1360,75 @@
 	}
 	// bind hotkeys
 	SetHotkeys(cur_location);
-	
+	if(enable_fast_refresh)
+        FastRefreshIt();
 	if(enable_linkyfy)
 		LinkyfyIt();
-	//---------------------------------------------------------------------------------------------------
+    $('head').append("<style type='text/css'>#twitter_update_list {	line-height: 18px;	list-style: none;	}#twitter_update_list li {	padding-bottom: 0;	margin-bottom: 0;	}</style>");
+    var td = $('#logodesc > table tr > td:nth-child(2)');
+    td.removeAttr('align');
+    td.html('<b>FelikZ News</b> (Beta):<br /><ul id="twitter_update_list"><li></li></ul>');
+    
+    
+    
+    $('#wrapfooter').append('<script type="text/javascript" src="http://twitter.com/statuses/user_timeline/thefelikz.json?callback=twitterCallback2&count=3"&include_entities=1></script>');
+    
+	//#
 })();
+
+function twitterCallback2(twitters)
+{
+    var statusHTML = [];
+    for (var i = 0; i < twitters.length; i++)
+    {
+        var username = twitters[i].user.screen_name;
+        var status = twitters[i].text.replace(/((https?|s?ftp|ssh)\:\/\/[^"\s\<\>]*[^.,;'">\:\s\<\>\)\]\!])/g, function (url)
+        {
+            return '<a href="' + url + '">' + url + '</a>';
+        }).replace(/\B@([_a-z0-9]+)/ig, function (reply)
+        {
+            return reply.charAt(0) + '<a href="http://twitter.com/' + reply.substring(1) + '">' + reply.substring(1) + '</a>';
+        });
+        statusHTML.push('<li><span>' + status + '</span> <a style="font-size:85%" href="http://twitter.com/' + username + '/statuses/' + twitters[i].id_str + '">' + relative_time(twitters[i].created_at) + '</a></li>');
+    }
+    document.getElementById('twitter_update_list').innerHTML = statusHTML.join('');
+}
+
+function relative_time(time_value)
+{
+    var values = time_value.split(" ");
+    time_value = values[1] + " " + values[2] + ", " + values[5] + " " + values[3];
+    var parsed_date = Date.parse(time_value);
+    var relative_to = (arguments.length > 1) ? arguments[1] : new Date();
+    var delta = parseInt((relative_to.getTime() - parsed_date) / 1000);
+    delta = delta + (relative_to.getTimezoneOffset() * 60);
+
+    if (delta < 60)
+    {
+        return 'меньше минуты назад';
+    }
+    else if (delta < 120)
+    {
+        return 'около минуты назад';
+    }
+    else if (delta < (60 * 60))
+    {
+        return (parseInt(delta / 60)).toString() + ' минут назад';
+    }
+    else if (delta < (120 * 60))
+    {
+        return 'около часа назад';
+    }
+    else if (delta < (24 * 60 * 60))
+    {
+        return 'около ' + (parseInt(delta / 3600)).toString() + ' часов назад';
+    }
+    else if (delta < (48 * 60 * 60))
+    {
+        return '1 день назад';
+    }
+    else
+    {
+        return (parseInt(delta / 86400)).toString() + ' дней назад';
+    }
+}

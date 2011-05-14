@@ -12,7 +12,7 @@
 	var root = typeof unsafeWindow != 'undefined' ? unsafeWindow : window;
 	// 0 - anywhere, 1 - post or pm, 2 - view topic
 	var cur_location = 0;
-	var version = "2.105";
+	var version = "2.110";
 	var loc = "" + window.location;
 	//----------------------------------
 	if(loc.search(/http:\/\/games.alkar.net\/phpBB/) < 0)
