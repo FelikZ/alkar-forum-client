@@ -1389,12 +1389,14 @@ function tInitTwits()
 //#
 function tSwitchPageToLeft()
 {
-    alert('left');
+    t_cur_page--;
+    $('#twitter_update_list').html(t_pages[t_cur_page-1].join(''));
 }
 //#
 function tSwitchPageToRight()
 {
-    alert('right');
+    t_cur_page++;
+    $('#twitter_update_list').html(t_pages[t_cur_page-1].join(''));
 }
 //#
 function tUpdateControls()
@@ -1410,7 +1412,7 @@ function tUpdateControls()
     {
         $('#twitter_block #controls').html(controls);
         $('#twitter_block #controls a.l_page').click(tSwitchPageToLeft);
-        $('#twitter_block #controls a.t_page').click(tSwitchPageToRight);
+        $('#twitter_block #controls a.r_page').click(tSwitchPageToRight);
     }
 }
 //#
