@@ -1415,7 +1415,7 @@
         }
         else if (delta < (24 * 60 * 60))
         {
-            return 'около ' + (parseInt(delta / 3600)).toString() + ' часов назад';
+            return 'около ' + (parseInt(delta / 3600)).toString() + ' часов назад1';
         }
         else if (delta < (48 * 60 * 60))
         {
