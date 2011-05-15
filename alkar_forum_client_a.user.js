@@ -1314,6 +1314,7 @@ function FastPageRefresh()
             $('#pagecontent').html(content);
             if(enable_auto_topic_sort || enable_topic_hover_links && theme == 0)
                 AutoSort();
+            tLoadTwits();
             $('div#wrapcentre > table.tablebg tr > td.row1 > p.breadcrumbs > span#page_refresh').html('&nbsp;&raquo;&nbsp;Обновлено').fadeOut(1000);
         });
         return false;
@@ -1536,8 +1537,6 @@ function insertAfter(newElement,targetElement) {
 	}
 	// bind hotkeys
 	SetHotkeys(cur_location);
-	if(enable_fast_refresh)
-        FastRefreshIt();
 	if(enable_linkyfy)
 		LinkyfyIt();
     
