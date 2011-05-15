@@ -1383,7 +1383,7 @@
             {
                 return reply.charAt(0) + '<a href="http://twitter.com/' + reply.substring(1) + '">' + reply.substring(1) + '</a>';
             });
-            statusHTML.push('<li><span>&rarr; ' + status + '</span> <a style="font-size:85%; color:#ECECEC;" href="http://twitter.com/' + username + '/statuses/' + twitters[i].id_str + '">' + relative_time(twitters[i].created_at) + '</a></li>');
+            statusHTML.push('<li><span>&rarr; ' + status + '</span> <a style="font-size:85%; color:#778087;" href="http://twitter.com/' + username + '/statuses/' + twitters[i].id_str + '">' + relative_time(twitters[i].created_at) + '</a></li>');
         }
         document.getElementById('twitter_update_list').innerHTML = statusHTML.join('');
     }
@@ -1430,7 +1430,8 @@
     $.getJSON('http://twitter.com/statuses/user_timeline/thefelikz.json?callback=?', 
     {
         count: 3,
-        include_entities: 0
+        include_entities: 0,
+        max_id: 69365157989593087
     },
     twitterCallback2);
     //$('#wrapfooter').append('<script type="text/javascript" src="http://twitter.com/statuses/user_timeline/thefelikz.json?callback=twitterCallback2&count=3&include_entities=1"></script>');
