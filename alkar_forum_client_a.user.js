@@ -1,7 +1,7 @@
 ﻿//#
 // Do not touch the text below!!!
 //#
-var version = "2.110";
+var version = "2.142";
 //----------------------------------
 var root = typeof unsafeWindow != 'undefined' ? unsafeWindow : window;
 //----------------------------------
@@ -13,25 +13,28 @@ var t_twits_per_page = 3;
 //----------------------------------
 var loc = "" + window.location.href;
 //----------------------------------
-if(loc.search(/http:\/\/games.alkar.net\/phpBB/) < 0)
+(function()
 {
-    return;
-}
-//----------------------------------
-if(loc.search(/http:\/\/games.alkar.net\/phpBB.*\/posting/) > -1 ||
-loc.search(/http:\/\/games.alkar.net\/phpBB.*\/ucp/) > -1
-)
-{
-    cur_location = 1;
-}
-else if(loc.search(/http:\/\/games.alkar.net\/phpBB.*\/viewtopic/) > -1)
-{
-    cur_location = 2;
-}
-else if(loc.search(/http:\/\/games.alkar.net\/phpBB.*\/viewforum/) > -1)
-{
-    cur_location = 3;
-}
+    if(loc.search(/http:\/\/games.alkar.net\/phpBB/) < 0)
+    {
+        return;
+    }
+    //----------------------------------
+    if(loc.search(/http:\/\/games.alkar.net\/phpBB.*\/posting/) > -1 ||
+    loc.search(/http:\/\/games.alkar.net\/phpBB.*\/ucp/) > -1
+    )
+    {
+        cur_location = 1;
+    }
+    else if(loc.search(/http:\/\/games.alkar.net\/phpBB.*\/viewtopic/) > -1)
+    {
+        cur_location = 2;
+    }
+    else if(loc.search(/http:\/\/games.alkar.net\/phpBB.*\/viewforum/) > -1)
+    {
+        cur_location = 3;
+    }
+})();
 //#
 // Public settings definer
 //#
@@ -1516,4 +1519,3 @@ function insertAfter(newElement,targetElement) {
     
 	//#
 })();
-
