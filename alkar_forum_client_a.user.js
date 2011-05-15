@@ -1322,7 +1322,7 @@ function t_twitterCallback(twitters)
         var twit = '<li><span>&rarr; ' + status + '</span> <a style="font-size:85%; color:#778087;" href="http://twitter.com/' + username + '/statuses/' + twitters[i].id_str + '">' + t_relativeTime(twitters[i].created_at) + '</a></li>';
         statusHTML.push(twit);
         //----------------------------------
-        if ((i+1) % t_twits_per_page)
+        if (((i+1) % t_twits_per_page) == 0)
         {
             t_pages.push(statusHTML.slice(0));
             statusHTML = new Array();
@@ -1333,7 +1333,7 @@ function t_twitterCallback(twitters)
         t_pages.push(statusHTML);
     //----------------------------------
     $('#twitter_update_list').html(t_pages[0].join(''));
-    $('#twitter_block').removeAttr('display');
+    $('#twitter_block').css('display', 'block');
     //----------------------------------
     tUpdateControls();
 }
