@@ -1313,19 +1313,21 @@ function FastPageRefresh()
 {
     $('div#wrapcentre > table.tablebg tr > td.row1 > p.breadcrumbs > a:nth-child(2)').click(function()
     {
-        PageRefresh();
+        PageRefresh($(this).attr('href'));
         return false;
     });
 }
-function PageRefresh()
+function PageRefresh(href)
 {
     if(refreshing_now)
         return;
+    if(typeof(href) == 'undefined' || href == null)
+        href = $('div#wrapcentre > table.tablebg tr > td.row1 > p.breadcrumbs > a:nth-child(2):first').attr('href');
     //----------------------------------
     refreshing_now = true;
     //----------------------------------
     $('<span id="page_refresh">&nbsp;&raquo;&nbsp;Обновление...</span>').insertAfter(this);
-    $.get($(this).attr('href'), function(data) 
+    $.get(href, function(data) 
     {
 
         var content = $(data).find('#pagecontent').html();
