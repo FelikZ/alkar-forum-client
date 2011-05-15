@@ -1366,12 +1366,14 @@
 		LinkyfyIt();
     $('head').append("<style type='text/css'>#twitter_update_list {	line-height: 18px;	list-style: none;	}#twitter_update_list li {	padding-bottom: 0;	margin-bottom: 0;	}</style>");
     
+    var additional_news = [];
     
     function twitterCallback2(twitters)
     {
         var td = $('#logodesc > table tr > td:nth-child(2)');
         td.removeAttr('align');
-        td.html('<b>FelikZ News</b> (Beta):<br /><ul id="twitter_update_list"><li></li></ul>');
+        td.html('<b>FelikZ News</b> (Beta):<br /><ul id="twitter_update_list"><li></li></ul><a href="javascript:void(0);" onclick="$(\'#twitter_update_list\').append(statusHTML.join(\'\')); $(this).remove();">Еще..</a>');
+        
         var statusHTML = [];
         for (var i = 0; i < twitters.length; i++)
         {
@@ -1383,9 +1385,13 @@
             {
                 return reply.charAt(0) + '<a href="http://twitter.com/' + reply.substring(1) + '">' + reply.substring(1) + '</a>';
             });
-            statusHTML.push('<li><span>&rarr; ' + status + '</span> <a style="font-size:85%; color:#778087;" href="http://twitter.com/' + username + '/statuses/' + twitters[i].id_str + '">' + relative_time(twitters[i].created_at) + '</a></li>');
+            var twit = '<li><span>&rarr; ' + status + '</span> <a style="font-size:85%; color:#778087;" href="http://twitter.com/' + username + '/statuses/' + twitters[i].id_str + '">' + relative_time(twitters[i].created_at) + '</a></li>';
+            if (i < 3)
+                statusHTML.push(twit);
+            else
+                additional_news.push(twit);
         }
-        document.getElementById('twitter_update_list').innerHTML = statusHTML.join('');
+        $('#twitter_update_list').html(statusHTML.join(''));
     }
 
     function relative_time(time_value)
@@ -1429,9 +1435,8 @@
     
     $.getJSON('http://twitter.com/statuses/user_timeline/thefelikz.json?callback=?', 
     {
-        count: 3,
-        include_entities: 0,
-        max_id: 69365157989593087
+        count: 10,
+        include_entities: 0
     },
     twitterCallback2);
     //$('#wrapfooter').append('<script type="text/javascript" src="http://twitter.com/statuses/user_timeline/thefelikz.json?callback=twitterCallback2&count=3&include_entities=1"></script>');
