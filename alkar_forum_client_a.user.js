@@ -1385,11 +1385,11 @@ function t_twitterCallback(twitters)
     var tblock_last_time = $.jStorage.set('tblock_last_time', d.getTime());
     $.jStorage.set('tblock_data', t_pages);
     //----------------------------------
-    t_showPage(0);
+    tShowPage(0);
     //----------------------------------
     tUpdateControls();
 }
-function t_showPage(page)
+function tShowPage(page)
 {
     $('#twitter_update_list').html(t_pages[page].join(''));
     $('#twitter_block').css('display', 'block');
@@ -1500,7 +1500,8 @@ function tLoadTwits(tcount)
             var dat = $.jStorage.get('tblock_data');
             if(dat != null)
                 t_pages = dat;
-            t_showPage(0);
+            tShowPage(0);
+            tUpdateControls();
             is_done = true;
         }
     }
