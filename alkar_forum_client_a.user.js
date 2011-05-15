@@ -4,6 +4,8 @@
 // @description    enjoy it :)
 // @include        http://games.alkar.net/phpBB*
 // ==/UserScript==
+var additional_news = [];
+
 (function() 
 {
 	//#
@@ -1366,7 +1368,7 @@
 		LinkyfyIt();
     $('head').append("<style type='text/css'>#twitter_update_list {	line-height: 18px;	list-style: none;	}#twitter_update_list li {	padding-bottom: 0;	margin-bottom: 0;	}</style>");
     
-    var additional_news = [];
+    
     
     function twitterCallback2(twitters)
     {
