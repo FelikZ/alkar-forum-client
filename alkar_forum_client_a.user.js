@@ -1539,7 +1539,7 @@ function tLoadTwits(tcount)
                 if(enable_fast_refresh)
                     FastPageRefresh();
                 if(enable_auto_page_refresh)
-                    setInterval(PageRefresh(), auto_page_refresh_invterval*1000);
+                    setInterval(PageRefresh, auto_page_refresh_invterval*1000);
             }
             
 			break;
