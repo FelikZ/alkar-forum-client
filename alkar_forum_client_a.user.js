@@ -1495,7 +1495,7 @@ function tLoadTwits(tcount)
         var d=new Date();
         var now = d.getTime();
         var tblock_last_time = $.jStorage.get('tblock_last_time');
-        if(tblock_last_time && tblock_last_time-now < 60000)
+        if(tblock_last_time && now - tblock_last_time < 60000)
         {
             var dat = $.jStorage.get('tblock_data');
             if(dat != null)
