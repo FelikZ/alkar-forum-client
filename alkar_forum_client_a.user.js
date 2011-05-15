@@ -1312,7 +1312,7 @@ function _fpCallbackToTop(data)
 //#
 function FastPageRefresh()
 {
-    $('div#wrapcentre > table.tablebg tr > td.row1 > p.breadcrumbs > a:nth-child(2)').click(function()
+    $('div#wrapcentre > table.tablebg tr > td.row1 > p.breadcrumbs > a:last-child').click(function()
     {
         if(enable_auto_page_refresh)
         {
@@ -1328,7 +1328,7 @@ function PageRefresh()
     if(refreshing_now)
         return;
 
-    links = $('div#wrapcentre > table.tablebg tr > td.row1 > p.breadcrumbs > a:nth-child(2)');
+    links = $('div#wrapcentre > table.tablebg tr > td.row1 > p.breadcrumbs > a:last-child');
     //----------------------------------
     refreshing_now = true;
     //----------------------------------
