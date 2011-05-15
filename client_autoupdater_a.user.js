@@ -61,6 +61,8 @@
 		var enable_fast_reply = true;
         var enable_fast_paging = true;
         var enable_fast_refresh = true;
+        var enable_auto_page_refresh = true;
+        var auto_page_refresh_invterval = 30; //sec
         /***************************************************
 		Twitter settings
 		***************************************************/

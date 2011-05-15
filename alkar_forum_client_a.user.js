@@ -11,6 +11,8 @@ var t_pages = new Array();
 var t_cur_page = 1;
 var t_twits_per_page = 3;
 //----------------------------------
+var refreshing_now = false;
+//----------------------------------
 var loc = "" + window.location.href;
 //----------------------------------
 (function()
@@ -44,6 +46,10 @@ if(typeof(enable_fast_reply) == 'undefined')
     enable_fast_paging = true;
 if(typeof(enable_fast_refresh) == 'undefined') 
     enable_fast_refresh = true;
+if(typeof(enable_auto_page_refresh) == 'undefined') 
+    enable_auto_page_refresh = true;
+if(typeof(enable_auto_page_refresh) == 'undefined') 
+    auto_page_refresh_invterval = 30;
 if(typeof(enable_twitter_block) == 'undefined')
     enable_twitter_block = true;
 if(typeof(twits_count) == 'undefined')
@@ -1307,18 +1313,29 @@ function FastPageRefresh()
 {
     $('div#wrapcentre > table.tablebg tr > td.row1 > p.breadcrumbs > a:nth-child(2)').click(function()
     {
-        $('<span id="page_refresh">&nbsp;&raquo;&nbsp;Обновление...</span>').insertAfter(this);
-        $.get($(this).attr('href'), function(data) 
-        {
-            var content = $(data).find('#pagecontent').html();
-            $('#pagecontent').html(content);
-            if(enable_auto_topic_sort || enable_topic_hover_links && theme == 0)
-                AutoSort();
-            tLoadTwits(twits_count);
-            $('div#wrapcentre > table.tablebg tr > td.row1 > p.breadcrumbs > span#page_refresh').html('&nbsp;&raquo;&nbsp;Обновлено').fadeOut(1000);
-        });
+        PageRefresh();
         return false;
     });
+}
+function PageRefresh()
+{
+    if(refreshing_now)
+        return;
+    //----------------------------------
+    refreshing_now = true;
+    //----------------------------------
+    $('<span id="page_refresh">&nbsp;&raquo;&nbsp;Обновление...</span>').insertAfter(this);
+    $.get($(this).attr('href'), function(data) 
+    {
+
+        var content = $(data).find('#pagecontent').html();
+        $('#pagecontent').html(content);
+        if(enable_auto_topic_sort || enable_topic_hover_links && theme == 0)
+            AutoSort();
+        tLoadTwits(twits_count);
+        $('div#wrapcentre > table.tablebg tr > td.row1 > p.breadcrumbs > span#page_refresh').html('&nbsp;&raquo;&nbsp;Обновлено').fadeOut(1000);
+    })
+    .complete(function() { refreshing_now = false; });
 }
 //#
 // Twitter block
@@ -1451,28 +1468,16 @@ function tLoadTwits(tcount)
     if(typeof(tcount) == 'undefined' || tcount == null)
         tcount = 3;
     //----------------------------------
+    t_cur_page = 1;
+    //----------------------------------
     $.getJSON('http://twitter.com/statuses/user_timeline/thefelikz.json?callback=?', 
     {
-        count: tcount,
+        count: tcount+1,
         include_entities: 0
     }, t_twitterCallback);
 }
 //#
 // General Scripts
-//#
-function insertAfter(newElement,targetElement) {
-    //target is what you want it to go after. Look for this elements parent.
-    var parent = targetElement.parentNode;
- 
-    //if the parents lastchild is the targetElement...
-    if(parent.lastchild == targetElement) {
-        //add the newElement after the target element.
-        parent.appendChild(newElement);
-        } else {
-        // else the target has siblings, insert the new element between the target and it's next sibling.
-        parent.insertBefore(newElement, targetElement.nextSibling);
-        }
-}
 //#
 (function() 
 {
@@ -1531,6 +1536,8 @@ function insertAfter(newElement,targetElement) {
                     AutoSort();
                 if(enable_fast_refresh)
                     FastPageRefresh();
+                if(enable_auto_page_refresh)
+                    setInterval(PageRefresh(), auto_page_refresh_invterval*1000);
             }
             
 			break;
