@@ -1308,7 +1308,7 @@
 	//#
     function t_twitterCallback(twitters)
     {
-        var statusHTML = [];
+        var statusHTML = new Array();
         var i = 0;
         //----------------------------------
         for (; i < twitters.length; i++)
@@ -1328,7 +1328,7 @@
             if ((i+1) % t_twits_per_page)
             {
                 t_pages.push(statusHTML);
-                statusHTML = [];
+                statusHTML = new Array();
             }
         }
         //----------------------------------
