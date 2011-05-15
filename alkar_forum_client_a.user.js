@@ -1507,7 +1507,7 @@ function tLoadTwits(tcount)
             is_done = true;
         }
     }
-    console.log(is_done);
+
     if(!is_done)
     {
         $.ajax({

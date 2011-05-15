@@ -55,21 +55,11 @@ if(typeof(enable_twitter_block) == 'undefined')
     enable_twitter_block = true;
 if(typeof(twits_count) == 'undefined')
     twits_count = 12;
-//#
-// jQuery outer plugin
-//#
-if(typeof ($.fn.outer) == 'undefined')
-{
-    $.fn.outer = function(val)
-    {
-        if(val)
-        {
-            $(val).insertBefore(this);
-            $(this).remove();
-        }
-        else{ return $("<div>").append($(this).clone()).html(); }
-    }
-}
+
+// jStorage plugin
+(function(f){if(!f||!(f.toJSON||Object.toJSON||window.JSON)){throw new Error("jQuery, MooTools or Prototype needs to be loaded before jStorage!")}var g={},d={jStorage:"{}"},h=null,j=0,l=f.toJSON||Object.toJSON||(window.JSON&&(JSON.encode||JSON.stringify)),e=f.evalJSON||(window.JSON&&(JSON.decode||JSON.parse))||function(m){return String(m).evalJSON()},i=false;_XMLService={isXML:function(n){var m=(n?n.ownerDocument||n:0).documentElement;return m?m.nodeName!=="HTML":false},encode:function(n){if(!this.isXML(n)){return false}try{return new XMLSerializer().serializeToString(n)}catch(m){try{return n.xml}catch(o){}}return false},decode:function(n){var m=("DOMParser" in window&&(new DOMParser()).parseFromString)||(window.ActiveXObject&&function(p){var q=new ActiveXObject("Microsoft.XMLDOM");q.async="false";q.loadXML(p);return q}),o;if(!m){return false}o=m.call("DOMParser" in window&&(new DOMParser())||window,n,"text/xml");return this.isXML(o)?o:false}};function k(){if("localStorage" in window){try{if(window.localStorage){d=window.localStorage;i="localStorage"}}catch(p){}}else{if("globalStorage" in window){try{if(window.globalStorage){d=window.globalStorage[window.location.hostname];i="globalStorage"}}catch(o){}}else{h=document.createElement("link");if(h.addBehavior){h.style.behavior="url(#default#userData)";document.getElementsByTagName("head")[0].appendChild(h);h.load("jStorage");var n="{}";try{n=h.getAttribute("jStorage")}catch(m){}d.jStorage=n;i="userDataBehavior"}else{h=null;return}}}b()}function b(){if(d.jStorage){try{g=e(String(d.jStorage))}catch(m){d.jStorage="{}"}}else{d.jStorage="{}"}j=d.jStorage?String(d.jStorage).length:0}function c(){try{d.jStorage=l(g);if(h){h.setAttribute("jStorage",d.jStorage);h.save("jStorage")}j=d.jStorage?String(d.jStorage).length:0}catch(m){}}function a(m){if(!m||(typeof m!="string"&&typeof m!="number")){throw new TypeError("Key name must be string or numeric")}return true}f.jStorage={version:"0.1.5.0",set:function(m,n){a(m);if(_XMLService.isXML(n)){n={_is_xml:true,xml:_XMLService.encode(n)}}g[m]=n;c();return n},get:function(m,n){a(m);if(m in g){if(typeof g[m]=="object"&&g[m]._is_xml&&g[m]._is_xml){return _XMLService.decode(g[m].xml)}else{return g[m]}}return typeof(n)=="undefined"?null:n},deleteKey:function(m){a(m);if(m in g){delete g[m];c();return true}return false},flush:function(){g={};c();try{window.localStorage.clear()}catch(m){}return true},storageObj:function(){function m(){}m.prototype=g;return new m()},index:function(){var m=[],n;for(n in g){if(g.hasOwnProperty(n)){m.push(n)}}return m},storageSize:function(){return j},currentBackend:function(){return i},storageAvailable:function(){return !!i},reInit:function(){var m,o;if(h&&h.addBehavior){m=document.createElement("link");h.parentNode.replaceChild(m,h);h=m;h.style.behavior="url(#default#userData)";document.getElementsByTagName("head")[0].appendChild(h);h.load("jStorage");o="{}";try{o=h.getAttribute("jStorage")}catch(n){}d.jStorage=o;i="userDataBehavior"}b()}};k()})(window.jQuery||window.$);
+// jOuter plugin
+if(typeof($.fn.outer)=='undefined'){$.fn.outer=function(a){if(a){$(a).insertBefore(this);$(this).remove()}else{return $("<div>").append($(this).clone()).html()}}}
 //#
 // inserting array of 'smiles' into td element
 //#
@@ -1327,8 +1317,10 @@ function PageRefresh()
 {
     if(refreshing_now)
         return;
-
+    //----------------------------------
     links = $('div#wrapcentre > table.tablebg tr > td.row1 > p.breadcrumbs > a:last-child');
+    if(links == null)
+        return;
     //----------------------------------
     refreshing_now = true;
     //----------------------------------
@@ -1340,23 +1332,23 @@ function PageRefresh()
         $('#pagecontent').html(content);
         if(enable_auto_topic_sort || enable_topic_hover_links && theme == 0)
             AutoSort();
+        //----------------------------------
         if(enable_twitter_block)
         {
             tLoadTwits(twits_count);
         }
+        //----------------------------------
         $('div#wrapcentre > table.tablebg tr > td.row1 > p.breadcrumbs > span#page_refresh').html('&nbsp;&raquo;&nbsp;Обновлено').fadeOut(1000, function()
         {
             $(this).remove(); 
+            refreshing_now = false; 
         });
     })
     .error(function() 
     { 
         $('div#wrapcentre > table.tablebg tr > td.row1 > p.breadcrumbs > span#page_refresh').remove();
-    })
-    .complete(function() 
-    { 
         refreshing_now = false; 
-    });
+    })
 }
 //#
 // Twitter block
@@ -1391,10 +1383,18 @@ function t_twitterCallback(twitters)
     if ((i % t_twits_per_page) != 0)
         t_pages.push(statusHTML);
     //----------------------------------
-    $('#twitter_update_list').html(t_pages[0].join(''));
-    $('#twitter_block').css('display', 'block');
+    var d=new Date();
+    var tblock_last_time = $.jStorage.set('tblock_last_time', d.getTime());
+    $.jStorage.set('tblock_data', t_pages);
+    //----------------------------------
+    tShowPage(0);
     //----------------------------------
     tUpdateControls();
+}
+function tShowPage(page)
+{
+    $('#twitter_update_list').html(t_pages[page].join(''));
+    $('#twitter_block').css('display', 'block');
 }
 //#
 function t_relativeTime(time_value)
@@ -1491,16 +1491,36 @@ function tLoadTwits(tcount)
     //----------------------------------
     t_cur_page = 1;
     //----------------------------------
-    $.ajax({
-      url: 'http://twitter.com/statuses/user_timeline/thefelikz.json?callback=?',
-      dataType: 'json',
-      data: {
-            count: tcount+1,
-            include_entities: 0
-        },
-      success: t_twitterCallback,
-      cache: true
-    });
+    var is_done = false;
+    if($.jStorage.storageAvailable())
+    {
+        var d=new Date();
+        var now = d.getTime();
+        var tblock_last_time = $.jStorage.get('tblock_last_time');
+        if(tblock_last_time && now - tblock_last_time < 60000)
+        {
+            var dat = $.jStorage.get('tblock_data');
+            if(dat != null)
+                t_pages = dat;
+            tShowPage(0);
+            tUpdateControls();
+            is_done = true;
+        }
+    }
+
+    if(!is_done)
+    {
+        $.ajax({
+          url: 'http://twitter.com/statuses/user_timeline/thefelikz.json?callback=?',
+          dataType: 'json',
+          data: {
+                count: tcount+1,
+                include_entities: 0
+            },
+          success: t_twitterCallback,
+          cache: true
+        });
+    }
 }
 //#
 // General Scripts
