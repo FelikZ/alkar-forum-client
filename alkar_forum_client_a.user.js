@@ -1327,7 +1327,7 @@
             //----------------------------------
             if ((i+1) % t_twits_per_page)
             {
-                t_pages.push(statusHTML);
+                t_pages.push(statusHTML.slice(0));
                 statusHTML = new Array();
             }
         }
