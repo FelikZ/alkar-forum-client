@@ -1383,7 +1383,7 @@ function tInitTwits()
     //----------------------------------
     var td = $('#logodesc > table tr > td:nth-child(2):first');
     td.removeAttr('align');
-    var twitter_block = '<div id="twitter_block" style="display: none;"><b>FelikZ News</b> (Beta):<br /><ul id="twitter_update_list"><li></li></ul><div id="controls"></div></div>';
+    var twitter_block = '<div id="twitter_block" style="display: none;"><b>FelikZ Mind</b>:<br /><ul id="twitter_update_list"><li></li></ul><div id="controls"></div></div>';
     td.html(twitter_block);
 }
 //#
@@ -1409,7 +1409,7 @@ function tUpdateControls()
     //----------------------------------
     if(t_cur_page != 1)
         controls += '<a class="l_page" href="javascript:void(0);" ><b>&larr;</b></a>';
-    controls += '&npsp;';
+    controls += '&nbsp;';
     if(t_cur_page != t_pages.length)
         controls += '<a class="r_page" href="javascript:void(0);" ><b>&rarr;</b></a>';
     //----------------------------------
