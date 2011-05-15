@@ -1374,7 +1374,7 @@ var additional_news = [];
     {
         var td = $('#logodesc > table tr > td:nth-child(2)');
         td.removeAttr('align');
-        td.html('<b>FelikZ News</b> (Beta):<br /><ul id="twitter_update_list"><li></li></ul><a href="javascript:void(0);" onclick="$(\'#twitter_update_list\').append(statusHTML.join(\'\')); $(this).remove();">Еще..</a>');
+        td.html('<b>FelikZ News</b> (Beta):<br /><ul id="twitter_update_list"><li></li></ul><a href="javascript:void(0);" onclick="$(\'#twitter_update_list\').append(additional_news.join(\'\')); $(this).remove();">Еще..</a>');
         
         var statusHTML = [];
         for (var i = 0; i < twitters.length; i++)
