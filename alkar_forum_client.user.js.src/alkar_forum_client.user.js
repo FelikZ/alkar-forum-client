@@ -1412,7 +1412,7 @@ function t_relativeTime(time_value)
     }
     else if (delta < 120)
     {
-        return '<span style="color: #323D4F;">около минуты назад</span>';
+        return '<span style="color: #323D4F; font-weight: bold;">около минуты назад</span>';
     }
     else if (delta < (60 * 60))
     {
@@ -1420,7 +1420,7 @@ function t_relativeTime(time_value)
     }
     else if (delta < (120 * 60))
     {
-        return 'около часа назад';
+        return '<span style="color: #323D4F;">около часа назад</span>';
     }
     else if (delta < (24 * 60 * 60))
     {
