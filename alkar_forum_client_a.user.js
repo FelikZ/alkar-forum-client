@@ -1,21 +1,20 @@
-﻿// ==UserScript==
-// @name           ForumClient 2 [Alkar]
-// @namespace      FelikZ
-// @description    enjoy it :)
-// @include        http://games.alkar.net/phpBB*
-// ==/UserScript==
-var additional_news = [];
+﻿var t_pages = new Array();
 
 (function() 
 {
 	//#
 	// Do not touch the text below!!!
 	//#
+    var version = "2.110";
+    //----------------------------------
 	var root = typeof unsafeWindow != 'undefined' ? unsafeWindow : window;
-	// 0 - anywhere, 1 - post or pm, 2 - view topic
-	var cur_location = 0;
-	var version = "2.110";
-	var loc = "" + window.location;
+	//----------------------------------
+	var cur_location = 0; // 0 - anywhere, 1 - post or pm, 2 - view topic
+    //----------------------------------
+    var t_cur_page = 1;
+    var t_twits_per_page = 3;
+	//----------------------------------
+	var loc = "" + window.location.href;
 	//----------------------------------
 	if(loc.search(/http:\/\/games.alkar.net\/phpBB/) < 0)
 	{
@@ -37,7 +36,7 @@ var additional_news = [];
 		cur_location = 3;
 	}
     //#
-    // Settings definer
+    // Public settings definer
     //#
 	if(typeof(enable_fast_reply) == 'undefined') 
 		enable_fast_reply = true;
@@ -45,6 +44,10 @@ var additional_news = [];
         enable_fast_paging = true;
     if(typeof(enable_fast_refresh) == 'undefined') 
         enable_fast_refresh = true;
+    if(typeof(enable_twitter_block) == 'undefined')
+        enable_twitter_block = true;
+    if(typeof(twits_count) == 'undefined')
+        twits_count = 12;
 	//#
 	// jQuery outer plugin
 	//#
@@ -1234,18 +1237,19 @@ var additional_news = [];
 	{
 		$('head').append('<script type="text/javascript">var form_name = "postform";var text_name = "message";var bbcode = new Array();var bbtags = new Array(\'[b]\',\'[/b]\',\'[i]\',\'[/i]\',\'[u]\',\'[/u]\',\'[quote]\',\'[/quote]\',\'[code]\',\'[/code]\',\'[list]\',\'[/list]\',\'[list=]\',\'[/list]\',\'[img]\',\'[/img]\',\'[url]\',\'[/url]\',\'[flash=]\', \'[/flash]\',\'[size=]\',\'[/size]\', \'[a_center]\', \'[/a_center]\', \'[a_right]\', \'[/a_right]\', \'[frame]\', \'[/frame]\', \'[line]\', \'[/line]\', \'[offtopic]\', \'[/offtopic]\', \'[s]\', \'[/s]\', \'[spoiler2=]\', \'[/spoiler2]\', \'[spoiler=]\', \'[/spoiler]\', \'[youtube]\', \'[/youtube]\');var imageTag = false;var help_line = {			b:unescape(\'%u0416%u0438%u0440%u043D%u044B%u0439%20%u0442%u0435%u043A%u0441%u0442%3A%20%5Bb%5Dtext%5B/b%5D\'),			i:unescape(\'%u041D%u0430%u043A%u043B%u043E%u043D%u043D%u044B%u0439%20%u0442%u0435%u043A%u0441%u0442%3A%20%5Bi%5Dtext%5B/i%5D\'),			u:unescape(\'%u041F%u043E%u0434%u0447%u0435%u0440%u043A%u043D%u0443%u0442%u044B%u0439%20%u0442%u0435%u043A%u0441%u0442%3A%20%5Bu%5Dtext%5B/u%5D\'),			q:unescape(\'%u0426%u0438%u0442%u0430%u0442%u0430%3A%20%5Bquote%5Dtext%5B/quote%5D\'),			c:unescape(\'%u041A%u043E%u0434%3A%20%5Bcode%5Dcode%5B/code%5D\'),			l:unescape(\'%u0421%u043F%u0438%u0441%u043E%u043A%3A%20%5Blist%5Dtext%5B/list%5D\'),			o:unescape(\'%u041D%u0443%u043C%u0435%u0440%u043E%u0432%u0430%u043D%u043D%u044B%u0439%20%u0441%u043F%u0438%u0441%u043E%u043A%3A%20%5Blist%3D%5Dtext%5B/list%5D\'),			p:unescape(\'%u0412%u0441%u0442%u0430%u0432%u0438%u0442%u044C%20%u0438%u0437%u043E%u0431%u0440%u0430%u0436%u0435%u043D%u0438%u0435%3A%20%5Bimg%5Dhttp%3A//image_url%5B/img%5D\'),			w:unescape(\'%u0412%u0441%u0442%u0430%u0432%u0438%u0442%u044C%20%u0441%u0441%u044B%u043B%u043A%u0443%3A%20%5Burl%5Dhttp%3A//url%5B/url%5D%20%u0438%u043B%u0438%20%5Burl%3Dhttp%3A//url%5DURL%20text%5B/url%5D\'),			s:unescape(\'%u0426%u0432%u0435%u0442%20%u0448%u0440%u0438%u0444%u0442%u0430%3A%20%5Bcolor%3Dred%5Dtext%5B/color%5D%20%u0421%u043E%u0432%u0435%u0442%3A%20%u0412%u044B%20%u043C%u043E%u0436%u0435%u0442%u0435%20%u0438%u0441%u043F%u043E%u043B%u044C%u0437%u043E%u0432%u0430%u0442%u044C%20%u0442%u0430%u043A%u0436%u0435%20%u043A%u043E%u043D%u0441%u0442%u0440%u0443%u043A%u0446%u0438%u044E%20color%3D%23FF0000\'),			f:unescape(\'%u0420%u0430%u0437%u043C%u0435%u0440%20%u0448%u0440%u0438%u0444%u0442%u0430%3A%20%5Bsize%3D85%5Dsmall%20text%5B/size%5D\'),			e:unescape(\'%u0421%u043F%u0438%u0441%u043E%u043A%3A%20%u0434%u043E%u0431%u0430%u0432%u0438%u0442%u044C%20%u044D%u043B%u0435%u043C%u0435%u043D%u0442%20%u0441%u043F%u0438%u0441%u043A%u0430\'),			d:unescape(\'%u0424%u043B%u044D%u0448%3A%20%5Bflash%3Dwidth%2Cheight%5Dhttp%3A//url%5B/flash%5D\'),			t:unescape(\'%7B%20BBCODE_T_HELP%20%7D\'),			tip:unescape(\'%u0421%u043E%u0432%u0435%u0442%3A%20%u043C%u043E%u0436%u043D%u043E%20%u0431%u044B%u0441%u0442%u0440%u043E%20%u043F%u0440%u0438%u043C%u0435%u043D%u0438%u0442%u044C%20%u0441%u0442%u0438%u043B%u0438%20%u043A%20%u0432%u044B%u0434%u0435%u043B%u0435%u043D%u043D%u043E%u043C%u0443%20%u0442%u0435%u043A%u0441%u0442%u0443.\')							,cb_22:unescape(\'%u0412%u044B%u0440%u0430%u0432%u043D%u0438%u0432%u0430%u043D%u0438%u0435%20%u043F%u043E%20%u0446%u0435%u043D%u0442%u0440%u0443%3A%20%5Ba_center%5Dtext%5B/a_center%5D\')							,cb_24:unescape(\'%u0412%u044B%u0440%u0430%u0432%u043D%u0438%u0432%u0430%u043D%u0438%u0435%20%u043F%u043E%20%u043F%u0440%u0430%u0432%u043E%u043C%u0443%20%u043A%u0440%u0430%u044E%3A%20%5Ba_right%5Dtext%5B/a_right%5D\')							,cb_26:unescape(\'%u0422%u0435%u043A%u0441%u0442%20%u0432%20%u0440%u0430%u043C%u043A%u0435%3A%20%5Bframe%5Dtext%5B/frame%5D\')							,cb_28:unescape(\'%u0413%u043E%u0440%u0438%u0437%u043E%u043D%u0442%u0430%u043B%u044C%u043D%u0430%u044F%20%u043B%u0438%u043D%u0438%u044F\')							,cb_30:unescape(\'%u041E%u0444%u0444%u0442%u043E%u043F%3A%20%5Bofftopic%5Dtext%5B/offtopic%5D\')							,cb_32:unescape(\'%u0417%u0430%u0447%u0451%u0440%u043A%u043D%u0443%u0442%u044B%u0439%20%u0442%u0435%u043A%u0441%u0442%3A%20%5Bs%5Dtext%5B/s%5D\')							,cb_34:unescape(\'%u0421%u043A%u0440%u044B%u0432%u0430%u0435%u043C%u043E%u0435%20%u0441%u043E%u0434%u0435%u0440%u0436%u0438%u043C%u043E%u0435%3A%20%5Bspoiler2%3D%u043D%u0430%u0437%u0432%u0430%u043D%u0438%u0435%20%u0441%u043F%u043E%u0439%u043B%u0435%u0440%u0430%5Dtext%5B/spoiler2%5D\')							,cb_36:unescape(\'%u0421%u043A%u0440%u044B%u0432%u0430%u0435%u043C%u043E%u0435%20%u0441%u043E%u0434%u0435%u0440%u0436%u0438%u043C%u043E%u0435%3A%20%5Bspoiler%3D%u043D%u0430%u0437%u0432%u0430%u043D%u0438%u0435%20%u0441%u043F%u043E%u0439%u043B%u0435%u0440%u0430%5Dtext%5B/spoiler%5D\')							,cb_38:unescape(\'%u0412%u0441%u0442%u0440%u043E%u0435%u043D%u043D%u044B%u0439%20%u043F%u043B%u0435%u0435%u0440%3A%20%5Byoutube%5D%u0421%u0441%u044B%u043B%u043A%u0430%20%u043D%u0430%20%u0441%u0442%u0440%u0430%u043D%u0438%u0446%u0443%20%u0432%u0438%u0434%u0435%u043E%5B/youtube%5D\')					};</script>')
 				.append('<script type="text/javascript" src="/phpBB/styles/subsilver2/template/editor.js"></script>');
-
+        //----------------------------------
 		var url = $('div#pagecontent table tr td[align="left"][valign="middle"][nowrap="nowrap"]:last a:nth-child(2)').attr('href');
 		$.get(url, null, function(data)
 		{
 			SetPageFooterFormFromData(data);
-
+            //----------------------------------
 			if(enable_smiles)
 				SmileIt();
 			if(enable_style && theme == 0)
 				StyleIt();
 			if(enable_vualizator && theme == 0)
 				VualIt();
+            //----------------------------------
 			BindCtrlEnter();
 		});
 		
@@ -1262,7 +1266,7 @@ var additional_news = [];
             {
                 $(this).find('a[href!="#"]').click(function()
                 {
-                    $.get($(this).attr('href'), null, _FPCallback);
+                    $.get($(this).attr('href'), null, _fpCallback);
                     return false;
                 });
                 first = false;
@@ -1271,30 +1275,159 @@ var additional_news = [];
             {
                 $(this).find('a[href!="#"]').click(function()
                 {
-                    $.get($(this).attr('href'), null, _FPCallbackToTop);
+                    $.get($(this).attr('href'), null, _fpCallbackToTop);
                     return false;
                 });
                 first = true;
             }
         });
     }
-    function _FPCallback(data)
+    function _fpCallback(data)
     {
         var content = $(data).find('#pagecontent');
         $('#pagecontent').replaceWith(content);
+        //----------------------------------
         FastPaging();
+        //----------------------------------
         if(enable_fast_reply)
             FastQuote();
     }
-    function _FPCallbackToTop(data)
+    function _fpCallbackToTop(data)
     {
-        _FPCallback(data);
+        _fpCallback(data);
+        //----------------------------------
         $('html, body').animate( { scrollTop: $("#pageheader").offset().top }, 500);
     }
     
     function FastRefreshIt()
     {
-    
+        
+    }
+    //#
+	// Twitter block
+	//#
+    function t_twitterCallback(twitters)
+    {
+        var statusHTML = [];
+        var i = 0;
+        //----------------------------------
+        for (; i < twitters.length; i++)
+        {
+            var username = twitters[i].user.screen_name;
+            var status = twitters[i].text.replace(/((https?|s?ftp|ssh)\:\/\/[^"\s\<\>]*[^.,;'">\:\s\<\>\)\]\!])/g, function (url)
+            {
+                return '<a href="' + url + '">' + url + '</a>';
+            }).replace(/\B@([_a-z0-9]+)/ig, function (reply)
+            {
+                return reply.charAt(0) + '<a href="http://twitter.com/' + reply.substring(1) + '">' + reply.substring(1) + '</a>';
+            });
+            //----------------------------------
+            var twit = '<li><span>&rarr; ' + status + '</span> <a style="font-size:85%; color:#778087;" href="http://twitter.com/' + username + '/statuses/' + twitters[i].id_str + '">' + t_relativeTime(twitters[i].created_at) + '</a></li>';
+            statusHTML.push(twit);
+            //----------------------------------
+            if ((i+1) % t_twits_per_page)
+            {
+                t_pages.push(statusHTML);
+                statusHTML = [];
+            }
+        }
+        //----------------------------------
+        if ((i % t_twits_per_page) != 0)
+            t_pages.push(statusHTML);
+        //----------------------------------
+        $('#twitter_update_list').html(t_pages[0].join(''));
+        //----------------------------------
+        tUpdateControls();
+    }
+    //#
+    function t_relativeTime(time_value)
+    {
+        var values = time_value.split(" ");
+        time_value = values[1] + " " + values[2] + ", " + values[5] + " " + values[3];
+        var parsed_date = Date.parse(time_value);
+        var relative_to = (arguments.length > 1) ? arguments[1] : new Date();
+        var delta = parseInt((relative_to.getTime() - parsed_date) / 1000);
+        delta = delta + (relative_to.getTimezoneOffset() * 60);
+
+        if (delta < 60)
+        {
+            return 'меньше минуты назад';
+        }
+        else if (delta < 120)
+        {
+            return 'около минуты назад';
+        }
+        else if (delta < (60 * 60))
+        {
+            return (parseInt(delta / 60)).toString() + ' минут назад';
+        }
+        else if (delta < (120 * 60))
+        {
+            return 'около часа назад';
+        }
+        else if (delta < (24 * 60 * 60))
+        {
+            return 'около ' + (parseInt(delta / 3600)).toString() + ' часов назад';
+        }
+        else if (delta < (48 * 60 * 60))
+        {
+            return '1 день назад';
+        }
+        else
+        {
+            return (parseInt(delta / 86400)).toString() + ' дней назад';
+        }
+    }
+    //#
+    function tInitTwits()
+    {
+        $('head').append("<style type='text/css'>#twitter_update_list {	line-height: 18px;	list-style: none;	}#twitter_update_list li {	padding-bottom: 0;	margin-bottom: 0;	}</style>");
+        //----------------------------------
+        var td = $('#logodesc > table tr > td:nth-child(2):first');
+        td.removeAttr('align');
+        var twitter_block = '<div id="twitter_block" style="display: none;"><b>FelikZ News</b> (Beta):<br /><ul id="twitter_update_list"><li></li></ul><div id="controls"></div></div>';
+        td.html(twitter_block);
+    }
+    //#
+    function tSwitchPageToLeft()
+    {
+        alert('left');
+    }
+    //#
+    function tSwitchPageToRight()
+    {
+        alert('right');
+    }
+    //#
+    function tUpdateControls()
+    {
+        var controls = '';
+        //----------------------------------
+        if(t_cur_page != 1)
+            controls += '<a class="l_page" href="javascript:void(0);" ><b>&larr;<b/></a>';
+        if(t_cur_page != twits_pages.length)
+            controls += '<a class="r_page" href="javascript:void(0);" ><b>&rarr;<b/></a>';
+        //----------------------------------
+        if(controls != '')
+        {
+            $('#twitter_block #controls').html(controls);
+            $('#twitter_block #controls #l_page').click(tSwitchPageToLeft);
+            $('#twitter_block #controls #t_page').click(tSwitchPageToRight);
+        }
+    }
+    //#
+    function tLoadTwits(tcount, tmax_id)
+    {
+        if(typeof(tcount) == 'undefined' || tcount == null)
+            tcount = 3;
+        if(typeof(tmax_id) == 'undefined' || tmax_id == null)
+            tmax_id = false;
+        //----------------------------------
+        $.getJSON('http://twitter.com/statuses/user_timeline/thefelikz.json?' + (tmax_id)?('max_id='+tmax_id):('') + 'callback=?', 
+        {
+            count: tcount,
+            include_entities: 0
+        }, t_twitterCallback);
     }
 	//#
 	// General Scripts
@@ -1321,6 +1454,11 @@ var additional_news = [];
 	//#
 	// Start scripts
 	//#
+    if(enable_twitter_block)
+    {
+        tInitTwits();
+        tLoadTwits(twits_count);
+    }
 	if(enable_quote_force_hide)
 		enable_quote_hider = true;
 	switch(cur_location)
@@ -1366,82 +1504,6 @@ var additional_news = [];
         FastRefreshIt();
 	if(enable_linkyfy)
 		LinkyfyIt();
-    $('head').append("<style type='text/css'>#twitter_update_list {	line-height: 18px;	list-style: none;	}#twitter_update_list li {	padding-bottom: 0;	margin-bottom: 0;	}</style>");
-    
-    
-    
-    function twitterCallback2(twitters)
-    {
-        var td = $('#logodesc > table tr > td:nth-child(2)');
-        td.removeAttr('align');
-        td.html('<b>FelikZ News</b> (Beta):<br /><ul id="twitter_update_list"><li></li></ul><a href="javascript:void(0);" onclick="$(\'#twitter_update_list\').append(additional_news.join(\'\')); $(this).remove();">Еще..</a>');
-        
-        var statusHTML = [];
-        for (var i = 0; i < twitters.length; i++)
-        {
-            var username = twitters[i].user.screen_name;
-            var status = twitters[i].text.replace(/((https?|s?ftp|ssh)\:\/\/[^"\s\<\>]*[^.,;'">\:\s\<\>\)\]\!])/g, function (url)
-            {
-                return '<a href="' + url + '">' + url + '</a>';
-            }).replace(/\B@([_a-z0-9]+)/ig, function (reply)
-            {
-                return reply.charAt(0) + '<a href="http://twitter.com/' + reply.substring(1) + '">' + reply.substring(1) + '</a>';
-            });
-            var twit = '<li><span>&rarr; ' + status + '</span> <a style="font-size:85%; color:#778087;" href="http://twitter.com/' + username + '/statuses/' + twitters[i].id_str + '">' + relative_time(twitters[i].created_at) + '</a></li>';
-            if (i < 3)
-                statusHTML.push(twit);
-            else
-                additional_news.push(twit);
-        }
-        $('#twitter_update_list').html(statusHTML.join(''));
-    }
-
-    function relative_time(time_value)
-    {
-        var values = time_value.split(" ");
-        time_value = values[1] + " " + values[2] + ", " + values[5] + " " + values[3];
-        var parsed_date = Date.parse(time_value);
-        var relative_to = (arguments.length > 1) ? arguments[1] : new Date();
-        var delta = parseInt((relative_to.getTime() - parsed_date) / 1000);
-        delta = delta + (relative_to.getTimezoneOffset() * 60);
-
-        if (delta < 60)
-        {
-            return 'меньше минуты назад';
-        }
-        else if (delta < 120)
-        {
-            return 'около минуты назад';
-        }
-        else if (delta < (60 * 60))
-        {
-            return (parseInt(delta / 60)).toString() + ' минут назад';
-        }
-        else if (delta < (120 * 60))
-        {
-            return 'около часа назад';
-        }
-        else if (delta < (24 * 60 * 60))
-        {
-            return 'около ' + (parseInt(delta / 3600)).toString() + ' часов назад';
-        }
-        else if (delta < (48 * 60 * 60))
-        {
-            return '1 день назад';
-        }
-        else
-        {
-            return (parseInt(delta / 86400)).toString() + ' дней назад';
-        }
-    }
-    
-    $.getJSON('http://twitter.com/statuses/user_timeline/thefelikz.json?callback=?', 
-    {
-        count: 10,
-        include_entities: 0
-    },
-    twitterCallback2);
-    //$('#wrapfooter').append('<script type="text/javascript" src="http://twitter.com/statuses/user_timeline/thefelikz.json?callback=twitterCallback2&count=3&include_entities=1"></script>');
     
 	//#
 })();
