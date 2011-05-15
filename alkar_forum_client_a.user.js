@@ -1365,13 +1365,13 @@
 	if(enable_linkyfy)
 		LinkyfyIt();
     $('head').append("<style type='text/css'>#twitter_update_list {	line-height: 18px;	list-style: none;	}#twitter_update_list li {	padding-bottom: 0;	margin-bottom: 0;	}</style>");
-    var td = $('#logodesc > table tr > td:nth-child(2)');
-    td.removeAttr('align');
-    td.html('<b>FelikZ News</b> (Beta):<br /><ul id="twitter_update_list"><li></li></ul>');
+    
     
     function twitterCallback2(twitters)
     {
-        alert(1);
+        var td = $('#logodesc > table tr > td:nth-child(2)');
+        td.removeAttr('align');
+        td.html('<b>FelikZ News</b> (Beta):<br /><ul id="twitter_update_list"><li></li></ul>');
         var statusHTML = [];
         for (var i = 0; i < twitters.length; i++)
         {
@@ -1415,7 +1415,7 @@
         }
         else if (delta < (24 * 60 * 60))
         {
-            return 'около ' + (parseInt(delta / 3600)).toString() + ' часов назад1';
+            return 'около ' + (parseInt(delta / 3600)).toString() + ' часов назад';
         }
         else if (delta < (48 * 60 * 60))
         {
