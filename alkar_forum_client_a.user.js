@@ -1,4 +1,6 @@
 ﻿var t_pages = new Array();
+var t_cur_page = 1;
+var t_twits_per_page = 3;
 
 (function() 
 {
@@ -11,8 +13,7 @@
 	//----------------------------------
 	var cur_location = 0; // 0 - anywhere, 1 - post or pm, 2 - view topic
     //----------------------------------
-    var t_cur_page = 1;
-    var t_twits_per_page = 3;
+    
 	//----------------------------------
 	var loc = "" + window.location.href;
 	//----------------------------------
