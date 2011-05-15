@@ -1344,11 +1344,17 @@ function PageRefresh()
         {
             tLoadTwits(twits_count);
         }
-        $('div#wrapcentre > table.tablebg tr > td.row1 > p.breadcrumbs > span#page_refresh').html('&nbsp;&raquo;&nbsp;Обновлено').fadeOut(1000);
+        $('div#wrapcentre > table.tablebg tr > td.row1 > p.breadcrumbs > span#page_refresh').html('&nbsp;&raquo;&nbsp;Обновлено').fadeOut(1000, function()
+        {
+            $(this).remove(); 
+        });
+    })
+    .error(function() 
+    { 
+        $('div#wrapcentre > table.tablebg tr > td.row1 > p.breadcrumbs > span#page_refresh').remove();
     })
     .complete(function() 
     { 
-        $('div#wrapcentre > table.tablebg tr > td.row1 > p.breadcrumbs > span#page_refresh').remove();
         refreshing_now = false; 
     });
 }
