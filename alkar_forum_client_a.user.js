@@ -48,7 +48,7 @@ if(typeof(enable_fast_refresh) == 'undefined')
     enable_fast_refresh = true;
 if(typeof(enable_auto_page_refresh) == 'undefined') 
     enable_auto_page_refresh = true;
-if(typeof(enable_auto_page_refresh) == 'undefined') 
+if(typeof(auto_page_refresh_invterval) == 'undefined') 
     auto_page_refresh_invterval = 30;
 if(typeof(enable_twitter_block) == 'undefined')
     enable_twitter_block = true;
