@@ -1507,17 +1507,20 @@ function tLoadTwits(tcount)
             is_done = true;
         }
     }
+    alert((int)is_done);
     if(!is_done)
-    $.ajax({
-      url: 'http://twitter.com/statuses/user_timeline/thefelikz.json?callback=?',
-      dataType: 'json',
-      data: {
-            count: tcount+1,
-            include_entities: 0
-        },
-      success: t_twitterCallback,
-      cache: true
-    });
+    {
+        $.ajax({
+          url: 'http://twitter.com/statuses/user_timeline/thefelikz.json?callback=?',
+          dataType: 'json',
+          data: {
+                count: tcount+1,
+                include_entities: 0
+            },
+          success: t_twitterCallback,
+          cache: true
+        });
+    }
 }
 //#
 // General Scripts
