@@ -1317,8 +1317,10 @@ function PageRefresh()
 {
     if(refreshing_now)
         return;
-
+    //----------------------------------
     links = $('div#wrapcentre > table.tablebg tr > td.row1 > p.breadcrumbs > a:last-child');
+    if(links == null)
+        return;
     //----------------------------------
     refreshing_now = true;
     //----------------------------------
@@ -1330,10 +1332,12 @@ function PageRefresh()
         $('#pagecontent').html(content);
         if(enable_auto_topic_sort || enable_topic_hover_links && theme == 0)
             AutoSort();
+        //----------------------------------
         if(enable_twitter_block)
         {
             tLoadTwits(twits_count);
         }
+        //----------------------------------
         $('div#wrapcentre > table.tablebg tr > td.row1 > p.breadcrumbs > span#page_refresh').html('&nbsp;&raquo;&nbsp;Обновлено').fadeOut(1000, function()
         {
             $(this).remove(); 
