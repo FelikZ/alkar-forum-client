@@ -1416,14 +1416,12 @@
         }
     }
     //#
-    function tLoadTwits(tcount, tmax_id)
+    function tLoadTwits(tcount)
     {
         if(typeof(tcount) == 'undefined' || tcount == null)
             tcount = 3;
-        if(typeof(tmax_id) == 'undefined' || tmax_id == null)
-            tmax_id = null;
         //----------------------------------
-        $.getJSON('http://twitter.com/statuses/user_timeline/thefelikz.json?' + ((tmax_id != null)?('max_id='+tmax_id+'&'):('')) + 'callback=?', 
+        $.getJSON('http://twitter.com/statuses/user_timeline/thefelikz.json?callback=?', 
         {
             count: tcount,
             include_entities: 0
