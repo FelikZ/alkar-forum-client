@@ -1408,9 +1408,10 @@ function tUpdateControls()
     var controls = '';
     //----------------------------------
     if(t_cur_page != 1)
-        controls += '<a class="l_page" href="javascript:void(0);" ><b>&larr;<b/></a>';
+        controls += '<a class="l_page" href="javascript:void(0);" ><b>&larr;</b></a>';
+    controls += '&npsp;';
     if(t_cur_page != t_pages.length)
-        controls += '<a class="r_page" href="javascript:void(0);" ><b>&rarr;<b/></a>';
+        controls += '<a class="r_page" href="javascript:void(0);" ><b>&rarr;</b></a>';
     //----------------------------------
     if(controls != '')
     {
