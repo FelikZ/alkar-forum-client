@@ -1333,6 +1333,7 @@ function t_twitterCallback(twitters)
         t_pages.push(statusHTML);
     //----------------------------------
     $('#twitter_update_list').html(t_pages[0].join(''));
+    $('#twitter_block').removeAttr('display');
     //----------------------------------
     tUpdateControls();
 }
