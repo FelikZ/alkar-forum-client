@@ -1390,13 +1390,17 @@ function tInitTwits()
 function tSwitchPageToLeft()
 {
     t_cur_page--;
-    $('#twitter_update_list').html(t_pages[t_cur_page-1].join(''));
+    if(t_cur_page >= 0)
+        $('#twitter_update_list').html(t_pages[t_cur_page-1].join(''));
+    tUpdateControls();
 }
 //#
 function tSwitchPageToRight()
 {
     t_cur_page++;
-    $('#twitter_update_list').html(t_pages[t_cur_page-1].join(''));
+    if(t_cur_page <= t_pages.length)
+        $('#twitter_update_list').html(t_pages[t_cur_page-1].join(''));
+    tUpdateControls();
 }
 //#
 function tUpdateControls()
