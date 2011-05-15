@@ -1337,16 +1337,14 @@ function PageRefresh()
         $('div#wrapcentre > table.tablebg tr > td.row1 > p.breadcrumbs > span#page_refresh').html('&nbsp;&raquo;&nbsp;Обновлено').fadeOut(1000, function()
         {
             $(this).remove(); 
+            refreshing_now = false; 
         });
     })
     .error(function() 
     { 
         $('div#wrapcentre > table.tablebg tr > td.row1 > p.breadcrumbs > span#page_refresh').remove();
-    })
-    .complete(function() 
-    { 
         refreshing_now = false; 
-    });
+    })
 }
 //#
 // Twitter block
