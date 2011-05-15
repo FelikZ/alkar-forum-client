@@ -1371,6 +1371,7 @@
     
     function twitterCallback2(twitters)
     {
+        alert(1);
         var statusHTML = [];
         for (var i = 0; i < twitters.length; i++)
         {
