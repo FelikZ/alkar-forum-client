@@ -1507,7 +1507,13 @@ function tLoadTwits(tcount)
             is_done = true;
         }
     }
-
+    if(typeof(console) != 'undefined')
+    {
+        if(is_done)
+            console.log('loaded from cache');
+        else
+            console.log('loaded from web');
+    }
     if(!is_done)
     {
         $.ajax({
