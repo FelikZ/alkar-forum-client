@@ -1326,6 +1326,7 @@ function t_twitterCallback(twitters)
 {
     var statusHTML = new Array();
     var i = 0;
+    t_pages = new Array();
     //----------------------------------
     for (; i < twitters.length; i++)
     {
