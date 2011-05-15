@@ -1383,7 +1383,7 @@
             {
                 return reply.charAt(0) + '<a href="http://twitter.com/' + reply.substring(1) + '">' + reply.substring(1) + '</a>';
             });
-            statusHTML.push('<li><span>[' + status + ']</span> <a style="font-size:85%" href="http://twitter.com/' + username + '/statuses/' + twitters[i].id_str + '">' + relative_time(twitters[i].created_at) + '</a></li>');
+            statusHTML.push('<li><span>&rarr; ' + status + '</span> <a style="font-size:85%; color:#ECECEC;" href="http://twitter.com/' + username + '/statuses/' + twitters[i].id_str + '">' + relative_time(twitters[i].created_at) + '</a></li>');
         }
         document.getElementById('twitter_update_list').innerHTML = statusHTML.join('');
     }
