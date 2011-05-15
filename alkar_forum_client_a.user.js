@@ -1409,8 +1409,8 @@ function tUpdateControls()
     if(controls != '')
     {
         $('#twitter_block #controls').html(controls);
-        $('#twitter_block #controls #l_page').click(tSwitchPageToLeft);
-        $('#twitter_block #controls #t_page').click(tSwitchPageToRight);
+        $('#twitter_block #controls a.l_page').click(tSwitchPageToLeft);
+        $('#twitter_block #controls a.t_page').click(tSwitchPageToRight);
     }
 }
 //#
