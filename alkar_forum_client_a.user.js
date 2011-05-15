@@ -1349,15 +1349,15 @@ function t_relativeTime(time_value)
 
     if (delta < 60)
     {
-        return 'меньше минуты назад';
+        return '<span style="color: #323D4F; font-weight: bold;">меньше минуты назад</span>';
     }
     else if (delta < 120)
     {
-        return 'около минуты назад';
+        return '<span style="color: #323D4F;">около минуты назад</span>';
     }
     else if (delta < (60 * 60))
     {
-        return (parseInt(delta / 60)).toString() + ' минут назад';
+        return '<span style="color: #323D4F;">'+(parseInt(delta / 60)).toString() + ' минут назад</span>';
     }
     else if (delta < (120 * 60))
     {
