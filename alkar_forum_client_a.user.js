@@ -1405,7 +1405,7 @@
         //----------------------------------
         if(t_cur_page != 1)
             controls += '<a class="l_page" href="javascript:void(0);" ><b>&larr;<b/></a>';
-        if(t_cur_page != twits_pages.length)
+        if(t_cur_page != t_pages.length)
             controls += '<a class="r_page" href="javascript:void(0);" ><b>&rarr;<b/></a>';
         //----------------------------------
         if(controls != '')
