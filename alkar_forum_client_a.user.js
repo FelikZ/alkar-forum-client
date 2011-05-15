@@ -1409,9 +1409,13 @@ function tUpdateControls()
     //----------------------------------
     if(t_cur_page != 1)
         controls += '<a class="l_page" href="javascript:void(0);" ><b>&larr;</b></a>';
+    else
+        controls += '<b>&larr;</b>';
     controls += '&nbsp;';
     if(t_cur_page != t_pages.length)
         controls += '<a class="r_page" href="javascript:void(0);" ><b>&rarr;</b></a>';
+    else
+        controls += '<b>&rarr;</b>';
     //----------------------------------
     if(controls != '')
     {
