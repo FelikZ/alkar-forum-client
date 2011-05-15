@@ -1282,6 +1282,7 @@ function FastPaging()
         }
     });
 }
+//#
 function _fpCallback(data)
 {
     var content = $(data).find('#pagecontent');
@@ -1292,16 +1293,31 @@ function _fpCallback(data)
     if(enable_fast_reply)
         FastQuote();
 }
+//#
 function _fpCallbackToTop(data)
 {
     _fpCallback(data);
     //----------------------------------
     $('html, body').animate( { scrollTop: $("#pageheader").offset().top }, 500);
 }
-
-function FastRefreshIt()
+//#
+// Fast page refresh
+//#
+function FastPageRefresh()
 {
-    
+    $('div#wrapcentre > table.tablebg tr > td.row1 > p.breadcrumbs > a:nth-child(2)').click(function()
+    {
+        $('<span id="page_refresh">&nbsp;&raquo;&nbsp;Обновление...</span>').insertAfter(this);
+        $.get($(this).attr('href'), function(data) 
+        {
+            var content = $(data).find('#pagecontent').html();
+            $('#pagecontent').html(content);
+            if(enable_auto_topic_sort || enable_topic_hover_links && theme == 0)
+                AutoSort();
+            $('div#wrapcentre > table.tablebg tr > td.row1 > p.breadcrumbs > span#page_refresh').html('&nbsp;&raquo;&nbsp;Обновлено').fadeOut(1000);
+        });
+        return false;
+    });
 }
 //#
 // Twitter block
@@ -1386,7 +1402,7 @@ function tInitTwits()
     //----------------------------------
     var td = $('#logodesc > table tr > td:nth-child(2):first');
     td.removeAttr('align');
-    var twitter_block = '<div id="twitter_block" style="display: none;"><b>FelikZ\'s Mind</b>:<br /><ul id="twitter_update_list"><li></li></ul><div id="controls"></div></div>';
+    var twitter_block = '<div id="twitter_block" style="display: none;"><b>FelikZ\'s Mind:</b><br /><ul id="twitter_update_list"><li></li></ul><div id="controls"></div></div>';
     td.html(twitter_block);
 }
 //#
@@ -1455,6 +1471,7 @@ function insertAfter(newElement,targetElement) {
         parent.insertBefore(newElement, targetElement.nextSibling);
         }
 }
+//#
 (function() 
 {
 	root.document.title = root.document.title + ' • ForumClient v' + version + ' • by FelikZ';
@@ -1506,8 +1523,14 @@ function insertAfter(newElement,targetElement) {
 			break;
 		case 3: // viewing a forum
 			AddStyle();
-			if(enable_auto_topic_sort || enable_topic_hover_links && theme == 0)
-				AutoSort();
+			if(theme == 0)
+            {
+                if(enable_auto_topic_sort || enable_topic_hover_links)
+                    AutoSort();
+                if(enable_fast_refresh)
+                    FastPageRefresh();
+            }
+            
 			break;
 	}
 	// bind hotkeys

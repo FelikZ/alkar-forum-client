@@ -1386,7 +1386,7 @@ function tInitTwits()
     //----------------------------------
     var td = $('#logodesc > table tr > td:nth-child(2):first');
     td.removeAttr('align');
-    var twitter_block = '<div id="twitter_block" style="display: none;"><b>FelikZ\'s Mind</b>:<br /><ul id="twitter_update_list"><li></li></ul><div id="controls"></div></div>';
+    var twitter_block = '<div id="twitter_block" style="display: none;"><b>FelikZ\'s Mind:</b><br /><ul id="twitter_update_list"><li></li></ul><div id="controls"></div></div>';
     td.html(twitter_block);
 }
 //#

@@ -60,6 +60,7 @@
 		***************************************************/
 		var enable_fast_reply = true;
         var enable_fast_paging = true;
+        var enable_fast_refresh = true;
         /***************************************************
 		Twitter settings
 		***************************************************/
