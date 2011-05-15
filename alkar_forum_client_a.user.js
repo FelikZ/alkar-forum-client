@@ -1426,7 +1426,7 @@
         }
     }
     
-    $.getJSON('http://twitter.com/statuses/user_timeline/thefelikz.json?count=3&include_entities=1&callback=twitterCallback2', twitterCallback2);
+    $.getJSON('http://twitter.com/statuses/user_timeline/thefelikz.json?count=3&include_entities=1&callback=?', twitterCallback2);
     //$('#wrapfooter').append('<script type="text/javascript" src="http://twitter.com/statuses/user_timeline/thefelikz.json?callback=twitterCallback2&count=3&include_entities=1"></script>');
     
 	//#
