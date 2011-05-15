@@ -1313,21 +1313,21 @@ function FastPageRefresh()
 {
     $('div#wrapcentre > table.tablebg tr > td.row1 > p.breadcrumbs > a:nth-child(2)').click(function()
     {
-        PageRefresh($(this).attr('href'));
+        PageRefresh();
         return false;
     });
 }
-function PageRefresh(href)
+function PageRefresh()
 {
     if(refreshing_now)
         return;
-    if(typeof(href) == 'undefined' || href == null)
-        href = $('div#wrapcentre > table.tablebg tr > td.row1 > p.breadcrumbs > a:nth-child(2):first').attr('href');
+
+    links = $('div#wrapcentre > table.tablebg tr > td.row1 > p.breadcrumbs > a:nth-child(2)');
     //----------------------------------
     refreshing_now = true;
     //----------------------------------
-    $('<span id="page_refresh">&nbsp;&raquo;&nbsp;Обновление...</span>').insertAfter(this);
-    $.get(href, function(data) 
+    $('<span id="page_refresh">&nbsp;&raquo;&nbsp;Обновление...</span>').insertAfter(links);
+    $.get(links[0].href, function(data) 
     {
 
         var content = $(data).find('#pagecontent').html();
