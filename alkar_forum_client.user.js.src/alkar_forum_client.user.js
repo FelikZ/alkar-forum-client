@@ -1491,11 +1491,16 @@ function tLoadTwits(tcount)
     //----------------------------------
     t_cur_page = 1;
     //----------------------------------
-    $.getJSON('http://twitter.com/statuses/user_timeline/thefelikz.json?callback=?', 
-    {
-        count: tcount+1,
-        include_entities: 0
-    }, t_twitterCallback);
+    $.ajax({
+      url: 'http://twitter.com/statuses/user_timeline/thefelikz.json?callback=?',
+      dataType: 'json',
+      data: {
+            count: tcount+1,
+            include_entities: 0
+        },
+      success: t_twitterCallback,
+      cache: true
+    });
 }
 //#
 // General Scripts
