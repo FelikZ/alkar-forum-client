@@ -1,7 +1,7 @@
 ﻿//#
 // Do not touch the text below!!!
 //#
-var version = "2.142";
+var version = "2.154";
 //----------------------------------
 var root = typeof unsafeWindow != 'undefined' ? unsafeWindow : window;
 //----------------------------------
@@ -10,6 +10,9 @@ var cur_location = 0; // 0 - anywhere, 1 - post or pm, 2 - view topic
 var t_pages = new Array();
 var t_cur_page = 1;
 var t_twits_per_page = 3;
+//----------------------------------
+var refreshing_now = false;
+var ref_int = null;
 //----------------------------------
 var loc = "" + window.location.href;
 //----------------------------------
@@ -44,6 +47,10 @@ if(typeof(enable_fast_reply) == 'undefined')
     enable_fast_paging = true;
 if(typeof(enable_fast_refresh) == 'undefined') 
     enable_fast_refresh = true;
+if(typeof(enable_auto_page_refresh) == 'undefined') 
+    enable_auto_page_refresh = true;
+if(typeof(auto_page_refresh_invterval) == 'undefined') 
+    auto_page_refresh_invterval = 30;
 if(typeof(enable_twitter_block) == 'undefined')
     enable_twitter_block = true;
 if(typeof(twits_count) == 'undefined')
@@ -1282,6 +1289,7 @@ function FastPaging()
         }
     });
 }
+//#
 function _fpCallback(data)
 {
     var content = $(data).find('#pagecontent');
@@ -1292,16 +1300,50 @@ function _fpCallback(data)
     if(enable_fast_reply)
         FastQuote();
 }
+//#
 function _fpCallbackToTop(data)
 {
     _fpCallback(data);
     //----------------------------------
     $('html, body').animate( { scrollTop: $("#pageheader").offset().top }, 500);
 }
-
-function FastRefreshIt()
+//#
+// Fast page refresh
+//#
+function FastPageRefresh()
 {
-    
+    $('div#wrapcentre > table.tablebg tr > td.row1 > p.breadcrumbs > a:nth-child(2)').click(function()
+    {
+        if(enable_auto_page_refresh)
+        {
+            clearInterval(ref_int);
+            ref_int = setInterval(PageRefresh, auto_page_refresh_invterval*1000);
+        }
+        PageRefresh();
+        return false;
+    });
+}
+function PageRefresh()
+{
+    if(refreshing_now)
+        return;
+
+    links = $('div#wrapcentre > table.tablebg tr > td.row1 > p.breadcrumbs > a:nth-child(2)');
+    //----------------------------------
+    refreshing_now = true;
+    //----------------------------------
+    $('<span id="page_refresh">&nbsp;&raquo;&nbsp;Обновление...</span>').insertAfter(links);
+    $.get(links[0].href, function(data) 
+    {
+
+        var content = $(data).find('#pagecontent').html();
+        $('#pagecontent').html(content);
+        if(enable_auto_topic_sort || enable_topic_hover_links && theme == 0)
+            AutoSort();
+        tLoadTwits(twits_count);
+        $('div#wrapcentre > table.tablebg tr > td.row1 > p.breadcrumbs > span#page_refresh').html('&nbsp;&raquo;&nbsp;Обновлено').fadeOut(1000);
+    })
+    .complete(function() { refreshing_now = false; });
 }
 //#
 // Twitter block
@@ -1310,6 +1352,7 @@ function t_twitterCallback(twitters)
 {
     var statusHTML = new Array();
     var i = 0;
+    t_pages = new Array();
     //----------------------------------
     for (; i < twitters.length; i++)
     {
@@ -1433,28 +1476,17 @@ function tLoadTwits(tcount)
     if(typeof(tcount) == 'undefined' || tcount == null)
         tcount = 3;
     //----------------------------------
+    t_cur_page = 1;
+    //----------------------------------
     $.getJSON('http://twitter.com/statuses/user_timeline/thefelikz.json?callback=?', 
     {
-        count: tcount,
+        count: tcount+1,
         include_entities: 0
     }, t_twitterCallback);
 }
 //#
 // General Scripts
 //#
-function insertAfter(newElement,targetElement) {
-    //target is what you want it to go after. Look for this elements parent.
-    var parent = targetElement.parentNode;
- 
-    //if the parents lastchild is the targetElement...
-    if(parent.lastchild == targetElement) {
-        //add the newElement after the target element.
-        parent.appendChild(newElement);
-        } else {
-        // else the target has siblings, insert the new element between the target and it's next sibling.
-        parent.insertBefore(newElement, targetElement.nextSibling);
-        }
-}
 (function() 
 {
 	root.document.title = root.document.title + ' • ForumClient v' + version + ' • by FelikZ';
@@ -1506,14 +1538,20 @@ function insertAfter(newElement,targetElement) {
 			break;
 		case 3: // viewing a forum
 			AddStyle();
-			if(enable_auto_topic_sort || enable_topic_hover_links && theme == 0)
-				AutoSort();
+			if(theme == 0)
+            {
+                if(enable_auto_topic_sort || enable_topic_hover_links)
+                    AutoSort();
+                if(enable_fast_refresh)
+                    FastPageRefresh();
+                if(enable_auto_page_refresh)
+                    ref_int = setInterval(PageRefresh, auto_page_refresh_invterval*1000);
+            }
+            
 			break;
 	}
 	// bind hotkeys
 	SetHotkeys(cur_location);
-	if(enable_fast_refresh)
-        FastRefreshIt();
 	if(enable_linkyfy)
 		LinkyfyIt();
     

@@ -1,7 +1,7 @@
 ﻿//#
 // Do not touch the text below!!!
 //#
-var version = "2.142";
+var version = "2.154";
 //----------------------------------
 var root = typeof unsafeWindow != 'undefined' ? unsafeWindow : window;
 //----------------------------------
@@ -12,6 +12,7 @@ var t_cur_page = 1;
 var t_twits_per_page = 3;
 //----------------------------------
 var refreshing_now = false;
+var ref_int = null;
 //----------------------------------
 var loc = "" + window.location.href;
 //----------------------------------
@@ -1313,6 +1314,11 @@ function FastPageRefresh()
 {
     $('div#wrapcentre > table.tablebg tr > td.row1 > p.breadcrumbs > a:nth-child(2)').click(function()
     {
+        if(enable_auto_page_refresh)
+        {
+            clearInterval(ref_int);
+            ref_int = setInterval(PageRefresh, auto_page_refresh_invterval*1000);
+        }
         PageRefresh();
         return false;
     });
@@ -1539,7 +1545,7 @@ function tLoadTwits(tcount)
                 if(enable_fast_refresh)
                     FastPageRefresh();
                 if(enable_auto_page_refresh)
-                    setInterval(PageRefresh, auto_page_refresh_invterval*1000);
+                    ref_int = setInterval(PageRefresh, auto_page_refresh_invterval*1000);
             }
             
 			break;
