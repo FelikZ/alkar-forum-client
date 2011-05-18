@@ -4,7 +4,7 @@
 // @namespace      FelikZ
 // @description    enjoy it :)
 // @include        http://games.alkar.net/phpBB*
-// @version        2.1+
+// @version        2.2
 // @author		   FelikZ ( http://thefelikz.blogspot.com/ )
 // ==/UserScript==
 
