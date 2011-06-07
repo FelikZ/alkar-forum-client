@@ -1284,11 +1284,8 @@ function _fpCallback(data)
 {
     var content = $(data).find('#pagecontent');
     $('#pagecontent').replaceWith(content);
-    //----------------------------------
-    FastPaging();
-    //----------------------------------
-    if(enable_fast_reply)
-        FastQuote();
+    OnViewTopic();
+    PostProcess();
 }
 //#
 function _fpCallbackToTop(data)
@@ -1531,6 +1528,72 @@ function tLoadTwits(tcount)
 //#
 // General Scripts
 //#
+function OnPosting()
+{
+    if(enable_smiles)
+        SmileIt();
+    if(enable_style && theme == 0)
+        StyleIt();
+    if(enable_vualizator && theme == 0)
+        VualIt();
+    if(enable_quote_hider)
+        QuotePass();
+}
+//#
+function OnViewTopic()
+{
+    if(theme == 0)
+        PostPass();
+    if(enable_ignore_remover && theme == 0)
+        IgnoreIt();
+    if(enable_flash_videos)
+        LinksPass();
+    if(enable_quote_hider)
+        QuotePass();
+    if(enable_fast_reply)
+    {
+        FastReply();
+        FastQuote();
+    }
+    if(enable_fast_paging)
+    {
+        FastPaging();
+    }
+}
+//#
+function OnViewForum()
+{
+    AddStyle();
+    if(theme == 0)
+    {
+        if(enable_auto_topic_sort || enable_topic_hover_links)
+            AutoSort();
+        if(enable_fast_refresh)
+            FastPageRefresh();
+        if(enable_auto_page_refresh)
+            ref_int = setInterval(PageRefresh, auto_page_refresh_invterval*1000);
+    }
+}
+//#
+function PreProcess()
+{
+    if(enable_twitter_block)
+    {
+        tInitTwits();
+        tLoadTwits(twits_count);
+    }
+	if(enable_quote_force_hide)
+		enable_quote_hider = true;
+}
+//#
+function PostProcess()
+{
+    // bind hotkeys
+	SetHotkeys(cur_location);
+	if(enable_linkyfy)
+		LinkyfyIt();
+}
+//#
 (function() 
 {
 	root.document.title = root.document.title + ' • ForumClient v' + version + ' • by FelikZ';
@@ -1542,62 +1605,21 @@ function tLoadTwits(tcount)
 	//#
 	// Start scripts
 	//#
-    if(enable_twitter_block)
-    {
-        tInitTwits();
-        tLoadTwits(twits_count);
-    }
-	if(enable_quote_force_hide)
-		enable_quote_hider = true;
+    PreProcess();
+    //#
 	switch(cur_location)
 	{
 		case 1:	// posting
-			if(enable_smiles)
-				SmileIt();
-			if(enable_style && theme == 0)
-				StyleIt();
-			if(enable_vualizator && theme == 0)
-				VualIt();
-			if(enable_quote_hider)
-				QuotePass();
+			OnPosting();
 			break;
 		case 2: // viewing a topic
-			if(theme == 0)
-				PostPass();
-			if(enable_ignore_remover && theme == 0)
-				IgnoreIt();
-			if(enable_flash_videos)
-				LinksPass();
-			if(enable_quote_hider)
-				QuotePass();
-			if(enable_fast_reply)
-			{
-				FastReply();
-				FastQuote();
-			}
-            if(enable_fast_paging)
-            {
-                FastPaging();
-            }
+			OnViewTopic();
 			break;
 		case 3: // viewing a forum
-			AddStyle();
-			if(theme == 0)
-            {
-                if(enable_auto_topic_sort || enable_topic_hover_links)
-                    AutoSort();
-                if(enable_fast_refresh)
-                    FastPageRefresh();
-                if(enable_auto_page_refresh)
-                    ref_int = setInterval(PageRefresh, auto_page_refresh_invterval*1000);
-            }
-            
+            OnViewForum();
 			break;
 	}
-	// bind hotkeys
-	SetHotkeys(cur_location);
-	if(enable_linkyfy)
-		LinkyfyIt();
-    
+    //#
+	PostProcess();
 	//#
 })();
