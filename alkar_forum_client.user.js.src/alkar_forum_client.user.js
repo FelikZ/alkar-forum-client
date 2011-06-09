@@ -1,7 +1,7 @@
 ﻿//#
 // Do not touch the text below!!!
 //#
-var version = "2.172";
+var version = "2.173";
 //----------------------------------
 var root = typeof unsafeWindow != 'undefined' ? unsafeWindow : window;
 //----------------------------------
@@ -1284,7 +1284,23 @@ function _fpCallback(data)
 {
     var content = $(data).find('#pagecontent');
     $('#pagecontent').replaceWith(content);
-    OnViewTopic();
+    if(theme == 0)
+        PostPass();
+    if(enable_ignore_remover && theme == 0)
+        IgnoreIt();
+    if(enable_flash_videos)
+        LinksPass();
+    if(enable_quote_hider)
+        QuotePass();
+    if(enable_fast_reply)
+    {
+        //FastReply();
+        FastQuote();
+    }
+    if(enable_fast_paging)
+    {
+        FastPaging();
+    }
     PostProcess();
 }
 //#
