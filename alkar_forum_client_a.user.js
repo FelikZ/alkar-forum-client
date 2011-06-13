@@ -1,7 +1,7 @@
 ﻿//#
 // Do not touch the text below!!!
 //#
-var version = "2.173";
+var version = "2.174";
 //----------------------------------
 var root = typeof unsafeWindow != 'undefined' ? unsafeWindow : window;
 //----------------------------------
@@ -1455,7 +1455,7 @@ function tInitTwits()
     //----------------------------------
     var td = $('#logodesc > table tr > td:nth-child(2):first');
     td.removeAttr('align');
-    var twitter_block = '<div id="twitter_block" style="display: none;"><b>FelikZ\'s Mind:</b><br /><ul id="twitter_update_list"><li></li></ul><div id="controls"></div></div>';
+    var twitter_block = '<div id="twitter_block" style="display: none;"><b><a href="http://twitter.com/thefelikz" target="_blank">FelikZ\'s Mind</a>:</b><br /><ul id="twitter_update_list"><li></li></ul><div id="controls"></div></div>';
     td.html(twitter_block);
 }
 //#
@@ -1616,7 +1616,7 @@ function PostProcess()
 	var datebar = root.document.getElementById('datebar');
 	var div_info = root.document.createElement('div');
 	div_info.setAttribute('style', 'float:right;');
-	div_info.innerHTML = "• Forum client v" + version + " • by <a href='http://thefelikz.blogspot.com/' title='Блог разработчика' style='color:darkred;letter-spacing:1px;'><strong>FelikZ</strong></a>";
+	div_info.innerHTML = "• Forum client v" + version + " • by <a href='http://thefelikz.blogspot.com/' title='Блог разработчика' target='_blank' style='color:darkred;letter-spacing:1px;'><strong>FelikZ</strong></a>";
 	datebar.appendChild(div_info);
 	//#
 	// Start scripts
