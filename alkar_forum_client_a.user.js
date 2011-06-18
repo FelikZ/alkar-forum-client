@@ -65,7 +65,7 @@ $('#wrapheader a').click(function(e)
 {
     $.get(this.href, function(dz) 
     {
-        var content = $(dz).find('#wrapcantre').html();
+        var content = dz.search('#wrapcantre');
         $('#wrapcentre').html(content);
     });
     e.preventDefault();
