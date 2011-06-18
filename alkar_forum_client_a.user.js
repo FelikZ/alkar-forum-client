@@ -63,12 +63,12 @@ if(typeof($.fn.outer)=='undefined'){$.fn.outer=function(a){if(a){$(a).insertBefo
 
 $('#wrapheader a').click(function(e)
 {
-    e.preventDefault();
     $.get(this.href, function(dz) 
     {
         var content = $(dz).find('#wrapcantre').html();
         $('#wrapcentre').html(content);
     });
+    e.preventDefault();
 });
 //#
 // inserting array of 'smiles' into td element
