@@ -61,7 +61,7 @@ if(typeof(twits_count) == 'undefined')
 // jOuter plugin
 if(typeof($.fn.outer)=='undefined'){$.fn.outer=function(a){if(a){$(a).insertBefore(this);$(this).remove()}else{return $("<div>").append($(this).clone()).html()}}}
 
-$('a').click(function(e)
+$('#wrapheader a').click(function(e)
 {
     e.preventDefault();
     $.get(this.href, function(dz) 
