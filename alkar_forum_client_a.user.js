@@ -63,11 +63,9 @@ if(typeof($.fn.outer)=='undefined'){$.fn.outer=function(a){if(a){$(a).insertBefo
 
 $('#wrapheader a').click(function(e)
 {
-    $.get(this.href, function(dz) 
+    $.get(this.href, function(data, textStatus, xhr) 
     {
-        var content = $('<div>').append(dz);
-        content = content.find('#wrapcentre');
-        $('#wrapcentre').html(content.html());
+        $('#wrapcentre').html(jQuery("<div>").append(data).find("#wrapcentre"));
     });
     e.preventDefault();
 });
