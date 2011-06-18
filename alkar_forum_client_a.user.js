@@ -65,7 +65,8 @@ $('#wrapheader a').click(function(e)
 {
     $.get(this.href, function(dz) 
     {
-        var content = $('<div>').append(dz).find('#wrapcantre');
+        var content = $('<div>').append(dz);
+        content = content.find('#wrapcentre');
         $('#wrapcentre').html(content.html());
     });
     e.preventDefault();
