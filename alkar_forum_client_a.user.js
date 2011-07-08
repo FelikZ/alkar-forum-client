@@ -1549,7 +1549,7 @@ function Eliterization()
 {
     var elite_title = 'Элита Алькара';
     
-    $('div#wrapcentre > table.tablebg tr > td.row1 > p.breadcrumbs > a:last-child[href|="./viewforum.php?f=112"]').html(elite_title);
+    $('div#wrapcentre > table.tablebg tr > td.row1 > p.breadcrumbs > a:last-child[href^="./viewforum.php?f=112"]').html(elite_title);
     switch(cur_location)
 	{
 		case 1:	// posting
@@ -1557,10 +1557,11 @@ function Eliterization()
 		case 2: // viewing a topic
 			break;
 		case 3: // viewing a forum
-            $('div#pageheader h2 a.titles[href|="./viewforum.php?f=112"]').html(elite_title);
+            $('div#pageheader h2 a.titles[href^="./viewforum.php?f=112"]').html(elite_title);
 			break;
-        case 4:
-            $('div#wrapcentre table.tablebg tr td.row1 a.forumlink[href|="./viewforum.php?f=112"]').html(elite_title);
+        case 4: // viewing a forum list
+            $('div#wrapcentre table.tablebg tr td.row1 a.forumlink[href^="./viewforum.php?f=112"]').html(elite_title).css('color','#BF0000');
+            $('div#wrapcentre table.tablebg tr td.row1 a.forumlink[href^="./viewforum.php?f=112"]').parent().parent().find('td.row1:first img').attr('src', 'http://img715.imageshack.us/img715/7088/alkareliteforumlogo.png').attr('width', '50').attr('height', '41');
             break;
 	}
 }
