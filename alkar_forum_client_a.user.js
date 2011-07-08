@@ -38,7 +38,7 @@ alert('test');
     {
         cur_location = 3;
     }
-    else if(loc.search(/http:\/\/games.alkar.net\/phpBB.{1}(\/|\/index\.php)/i) > -1)
+    else if(loc.search(/http:\/\/games.alkar.net\/phpBB.{0,1}(\/|\/index\.php)$/i) > -1)
     {
         cur_location = 0;
     }
