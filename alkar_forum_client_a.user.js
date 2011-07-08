@@ -16,6 +16,7 @@ var ref_int = null;
 //----------------------------------
 var loc = "" + window.location.href;
 //----------------------------------
+alert('test');
 (function()
 {
     if(loc.search(/http:\/\/games.alkar.net\/phpBB/i) < 0)
