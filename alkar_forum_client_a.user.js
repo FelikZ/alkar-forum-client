@@ -40,7 +40,7 @@ alert('test');
     }
     else if(loc.search(/http:\/\/games.alkar.net\/phpBB.{0,1}(\/|\/index\.php)$/i) > -1)
     {
-        cur_location = 0;
+        cur_location = 4;
     }
 })();
 alert(cur_location);
