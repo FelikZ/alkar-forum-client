@@ -1,11 +1,11 @@
 ﻿//#
 // Do not touch the text below!!!
 //#
-var version = "2.174";
+var version = "2.190";
 //----------------------------------
 var root = typeof unsafeWindow != 'undefined' ? unsafeWindow : window;
 //----------------------------------
-var cur_location = 0; // 0 - anywhere, 1 - post or pm, 2 - view topic
+var cur_location = 0; // 0 - anywhere, 1 - post or pm, 2 - view topic, 3 - view forum, 4 - view forum list
 //----------------------------------
 var t_pages = new Array();
 var t_cur_page = 1;
@@ -18,24 +18,28 @@ var loc = "" + window.location.href;
 //----------------------------------
 (function()
 {
-    if(loc.search(/http:\/\/games.alkar.net\/phpBB/) < 0)
+    if(loc.search(/http:\/\/games.alkar.net\/phpBB/i) < 0)
     {
         return;
     }
     //----------------------------------
-    if(loc.search(/http:\/\/games.alkar.net\/phpBB.*\/posting/) > -1 ||
-    loc.search(/http:\/\/games.alkar.net\/phpBB.*\/ucp/) > -1
+    if(loc.search(/http:\/\/games.alkar.net\/phpBB.*\/posting/i) > -1 ||
+    loc.search(/http:\/\/games.alkar.net\/phpBB.*\/ucp/i) > -1
     )
     {
         cur_location = 1;
     }
-    else if(loc.search(/http:\/\/games.alkar.net\/phpBB.*\/viewtopic/) > -1)
+    else if(loc.search(/http:\/\/games.alkar.net\/phpBB.*\/viewtopic/i) > -1)
     {
         cur_location = 2;
     }
-    else if(loc.search(/http:\/\/games.alkar.net\/phpBB.*\/viewforum/) > -1)
+    else if(loc.search(/http:\/\/games.alkar.net\/phpBB.*\/viewforum/i) > -1)
     {
         cur_location = 3;
+    }
+    else if(loc.search(/http:\/\/games.alkar.net\/phpBB.{0,1}(\/|\/index\.php)$/i) > -1)
+    {
+        cur_location = 4;
     }
 })();
 //#
@@ -624,14 +628,14 @@ function AddStyle()
         .row1-hover { background-color: #EFEFEF; padding:4px; }\
         \
     ";
-    //alert(s);
+    
     root.document.getElementsByTagName('head')[0].appendChild(s); 
 }
 function SetButtonsAutoVual_inner(is_true)
 {
     var preview = root.document.getElementsByName('preview');
     var post = root.document.getElementsByName('post');
-    //alert(post);
+
     if(post.length==0 || preview.length==0)
         return;
     preview = preview[0];
@@ -653,7 +657,7 @@ function VualIt()
     var s = document.createElement('script');
     s.setAttribute('type', 'text/javascript');
     s.text = scr;
-    //alert(s);
+
     root.document.getElementsByTagName('head')[0].appendChild(s); 
     SetButtonsAutoVual_inner(auto_vualization);
     
@@ -673,7 +677,6 @@ function VualIt()
                 if(tds[i].childNodes[j].getAttribute('class') == 'btnbbcode')
                 {
                     is_found = true;
-                    //alert(1);
                     break;
                 }
             }
@@ -1542,6 +1545,28 @@ function tLoadTwits(tcount)
     }
 }
 //#
+function Eliterization()
+{
+    var elite_title = 'Элита Алькара';
+    
+    $('div#wrapcentre > table.tablebg tr > td.row1 > p.breadcrumbs > a:last-child[href^="./viewforum.php?f=112"]').html(elite_title);
+    switch(cur_location)
+	{
+		case 1:	// posting
+			break;
+		case 2: // viewing a topic
+			break;
+		case 3: // viewing a forum
+            $('div#pageheader h2 a.titles[href^="./viewforum.php?f=112"]').html(elite_title);
+			break;
+        case 4: // viewing a forum list
+            $('div#wrapcentre table.tablebg tr td.row1 a.forumlink[href^="./viewforum.php?f=112"]').html(elite_title).css('color','#BF0000');
+            $('div#wrapcentre table.tablebg tr td.row1 a.forumlink[href^="./viewforum.php?f=112"]').parent().parent().find('td.row1:first img').attr('src', 'http://img715.imageshack.us/img715/7088/alkareliteforumlogo.png').attr('width', '50').attr('height', '41');
+            break;
+	}
+}
+//#
+//#
 // General Scripts
 //#
 function OnPosting()
@@ -1593,6 +1618,7 @@ function OnViewForum()
 //#
 function PreProcess()
 {
+    Eliterization();
     if(enable_twitter_block)
     {
         tInitTwits();
