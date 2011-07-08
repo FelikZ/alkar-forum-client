@@ -5,7 +5,7 @@ var version = "2.174";
 //----------------------------------
 var root = typeof unsafeWindow != 'undefined' ? unsafeWindow : window;
 //----------------------------------
-var cur_location = 0; // 0 - anywhere, 1 - post or pm, 2 - view topic
+var cur_location = 0; // 0 - anywhere, 1 - post or pm, 2 - view topic, 3 - view forum, 4 - view forum list
 //----------------------------------
 var t_pages = new Array();
 var t_cur_page = 1;
@@ -16,7 +16,6 @@ var ref_int = null;
 //----------------------------------
 var loc = "" + window.location.href;
 //----------------------------------
-alert('test');
 (function()
 {
     if(loc.search(/http:\/\/games.alkar.net\/phpBB/i) < 0)
