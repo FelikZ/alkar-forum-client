@@ -42,7 +42,6 @@ var loc = "" + window.location.href;
         cur_location = 4;
     }
 })();
-alert(cur_location);
 //#
 // Public settings definer
 //#
@@ -629,14 +628,14 @@ function AddStyle()
         .row1-hover { background-color: #EFEFEF; padding:4px; }\
         \
     ";
-    //alert(s);
+    
     root.document.getElementsByTagName('head')[0].appendChild(s); 
 }
 function SetButtonsAutoVual_inner(is_true)
 {
     var preview = root.document.getElementsByName('preview');
     var post = root.document.getElementsByName('post');
-    //alert(post);
+
     if(post.length==0 || preview.length==0)
         return;
     preview = preview[0];
@@ -658,7 +657,7 @@ function VualIt()
     var s = document.createElement('script');
     s.setAttribute('type', 'text/javascript');
     s.text = scr;
-    //alert(s);
+
     root.document.getElementsByTagName('head')[0].appendChild(s); 
     SetButtonsAutoVual_inner(auto_vualization);
     
@@ -678,7 +677,6 @@ function VualIt()
                 if(tds[i].childNodes[j].getAttribute('class') == 'btnbbcode')
                 {
                     is_found = true;
-                    //alert(1);
                     break;
                 }
             }
@@ -1549,14 +1547,9 @@ function tLoadTwits(tcount)
 //#
 function Eliterization()
 {
-    var pop_title = 'Сплетни Алькара';
     var elite_title = 'Элита Алькара';
     
-    var nav_title = $('div#wrapcentre > table.tablebg tr > td.row1 > p.breadcrumbs > a:last-child');
-    if(nav_title.html() == pop_title)
-    {
-        nav_title.html(elite_title);
-    }
+    $('div#wrapcentre > table.tablebg tr > td.row1 > p.breadcrumbs > a:last-child[href|="./viewforum.php?f=112"]').html(elite_title);
     switch(cur_location)
 	{
 		case 1:	// posting
@@ -1564,12 +1557,11 @@ function Eliterization()
 		case 2: // viewing a topic
 			break;
 		case 3: // viewing a forum
-            var page_header_title = $('div#pageheader h2 a.titles');
-            if(page_header_title.html() == pop_title)
-            {
-                page_header_title.html(elite_title);
-            }
+            $('div#pageheader h2 a.titles[href|="./viewforum.php?f=112"]').html(elite_title);
 			break;
+        case 4:
+            $('div#wrapcentre table.tablebg tr td.row1 a.forumlink[href|="./viewforum.php?f=112"]').html(elite_title);
+            break;
 	}
 }
 //#
@@ -1625,6 +1617,7 @@ function OnViewForum()
 //#
 function PreProcess()
 {
+    Eliterization();
     if(enable_twitter_block)
     {
         tInitTwits();
