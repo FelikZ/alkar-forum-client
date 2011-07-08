@@ -18,26 +18,31 @@ var loc = "" + window.location.href;
 //----------------------------------
 (function()
 {
-    if(loc.search(/http:\/\/games.alkar.net\/phpBB/) < 0)
+    if(loc.search(/http:\/\/games.alkar.net\/phpBB/i) < 0)
     {
         return;
     }
     //----------------------------------
-    if(loc.search(/http:\/\/games.alkar.net\/phpBB.*\/posting/) > -1 ||
-    loc.search(/http:\/\/games.alkar.net\/phpBB.*\/ucp/) > -1
+    if(loc.search(/http:\/\/games.alkar.net\/phpBB.*\/posting/i) > -1 ||
+    loc.search(/http:\/\/games.alkar.net\/phpBB.*\/ucp/i) > -1
     )
     {
         cur_location = 1;
     }
-    else if(loc.search(/http:\/\/games.alkar.net\/phpBB.*\/viewtopic/) > -1)
+    else if(loc.search(/http:\/\/games.alkar.net\/phpBB.*\/viewtopic/i) > -1)
     {
         cur_location = 2;
     }
-    else if(loc.search(/http:\/\/games.alkar.net\/phpBB.*\/viewforum/) > -1)
+    else if(loc.search(/http:\/\/games.alkar.net\/phpBB.*\/viewforum/i) > -1)
     {
         cur_location = 3;
     }
+    else if(loc.search(/http:\/\/games.alkar.net\/phpBB.{1}(\/|\/index\.php)/i) > -1)
+    {
+        cur_location = 0;
+    }
 })();
+alert(cur_location);
 //#
 // Public settings definer
 //#
@@ -1541,6 +1546,33 @@ function tLoadTwits(tcount)
         });
     }
 }
+//#
+function Eliterization()
+{
+    var pop_title = 'Сплетни Алькара';
+    var elite_title = 'Элита Алькара';
+    
+    var nav_title = $('div#wrapcentre > table.tablebg tr > td.row1 > p.breadcrumbs > a:last-child');
+    if(nav_title.html() == pop_title)
+    {
+        nav_title.html(elite_title);
+    }
+    switch(cur_location)
+	{
+		case 1:	// posting
+			break;
+		case 2: // viewing a topic
+			break;
+		case 3: // viewing a forum
+            var page_header_title = $('div#pageheader h2 a.titles');
+            if(page_header_title.html() == pop_title)
+            {
+                page_header_title.html(elite_title);
+            }
+			break;
+	}
+}
+//#
 //#
 // General Scripts
 //#
