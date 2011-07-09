@@ -972,7 +972,7 @@ function ProfilePass(table)
             else
             {
                 var b = $(td).find('b.postauthor:first');
-
+alert(1);
                 user_name = b.innerHTML;
                 if(soptions.enable_extended_ignore)
                 {
