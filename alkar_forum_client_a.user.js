@@ -66,7 +66,12 @@ if(typeof($.fn.outer)=='undefined'){$.fn.outer=function(a){if(a){$(a).insertBefo
 $('<link />').appendTo('head').attr({
     rel: 'stylesheet',
     type: 'text/css',
-    href: 'https://sites.google.com/site/thefelikz/colorbox/colorbox.css?attredirects=0'
+    href: 'http://alkar-forum-client.googlecode.com/svn/trunk/settings/colorbox.css?attredirects=0'
+});
+$('<link />').appendTo('head').attr({
+    rel: 'stylesheet',
+    type: 'text/css',
+    href: 'http://alkar-forum-client.googlecode.com/svn/trunk/settings/colorbox.css'
 });
 // Load stored data if its exist
 if($.jStorage.storageAvailable() && $.jStorage.get('is_stored_options') == 1)
@@ -1503,11 +1508,10 @@ function ShowSettingsPopup()
     $.getScript('http://alkar-forum-client.googlecode.com/svn/trunk/settings/settings.js', function()
     {
         $.colorbox({
-            inline:true,
             returnFocus:false,
             innerWidth:525,
             innerHeight:684,
-            href:GetSettingsHtml(),
+            html:GetSettingsHtml(),
             onComplete:OnLoadData,
             onCleanup:OnSaveData
         });
