@@ -103,7 +103,7 @@
         <div style=\"clear:both;\"></div>\
         <div class=\"script_option\"><input type=\"checkbox\" name=\"enable_auto_page_refresh\" />   <label>Включить авто-обновление списка тем</label></div>\
         <div style=\"clear:both;\"></div>\
-        <div class=\"script_option\"><input type=\"text\" name=\"auto_page_refresh_invterval\" value=\"30\" /> <label>Интервал авто-обновления (сек)</label></div>\
+        <div class=\"script_option\"><input type=\"text\" name=\"auto_page_refresh_interval\" value=\"30\" /> <label>Интервал авто-обновления (сек)</label></div>\
         <div style=\"clear:both;\"></div>\
         <!--\
         Twitter settings\
@@ -112,6 +112,40 @@
         <div class=\"script_option\"><input type=\"checkbox\" name=\"enable_twitter_block\" />       <label>Включить FelikZ's Mind</label></div>\
         <div style=\"clear:both;\"></div>\
         <div class=\"script_option\"><input type=\"text\" name=\"twits_count\" value=\"12\" />     <label>Колличество последних твитов</label></div>\
+        <div style=\"clear:both;\"></div>\
+        <!--\
+        Ignore settings\
+        -->\
+        <h2>Настройка игнора</h2>\
+        <div class=\"script_option\"><input type=\"text\" name=\"ignore_authors\" value=\"[]\" />       <label>Пользователи в игноре</label></div>\
+        <div style=\"clear:both;\"></div>\
+        <div class=\"script_option\"><input type=\"text\" name=\"punisher_authors\" value=\"[]\" />       <label>Панишед пользователи</label></div>\
+        <div style=\"clear:both;\"></div>\
+        <div class=\"script_option\"><input type=\"text\" name=\"punisher_avatar\" value=\"\" />       <label>Аватара для панишед пользователей</label></div>\
+        <div style=\"clear:both;\"></div>\
+        <!--\
+        Qip smiles\
+        -->\
+        <h2>QIP смайлы</h2>\
+        <div class=\"script_option\"><textarea name=\"ignore_authors\" /></textarea></div>\
+        <div style=\"clear:both;\"></div>\
+        <!--\
+        Goha smiles\
+        -->\
+        <h2>Goha смайлы</h2>\
+        <div class=\"script_option\"><textarea name=\"goha_smiles\" /></textarea></div>\
+        <div style=\"clear:both;\"></div>\
+        <!--\
+        Anime smiles\
+        -->\
+        <h2>Anime смайлы</h2>\
+        <div class=\"script_option\"><textarea name=\"anime_smiles\" /></textarea></div>\
+        <div style=\"clear:both;\"></div>\
+        <!--\
+        Yap smiles\
+        -->\
+        <h2>ЯП смайлы</h2>\
+        <div class=\"script_option\"><textarea name=\"yap_smiles\" /></textarea></div>\
         <div style=\"clear:both;\"></div>\
     </form>";
     return html;
@@ -131,7 +165,7 @@ function OnCompleteLoad()
     });
     
     $.each(soptions, function(key, val) {
-        var field = $('#settings input[name='+key+']');
+        var field = $('#settings input[name='+key+'], #settings textarea[name='+key+']');
         if(!field.is(':empty'))
         {
             if(typeof(val) == 'boolean')
