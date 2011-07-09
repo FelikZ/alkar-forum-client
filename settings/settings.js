@@ -219,7 +219,7 @@ function OnLoadData()
             case 'goha_smiles':
             case 'anime_smiles':
             case 'yap_smiles':
-                eval('soptions.' + cb.attr('name') + ' = [' + cb.attr('value').split(',\n').toString() + '];');
+                eval('soptions.' + cb.attr('name') + ' = ["' + cb.attr('value').split(',\n').toString().replace(/,(.*?)/gi, '","$1') + '"'];');
                 break;
             default:
                 eval('soptions.' + cb.attr('name') + ' = "' + cb.attr('value') + '";');
