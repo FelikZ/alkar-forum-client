@@ -922,6 +922,36 @@ function ProfilePass()
     var user = null;
     var match = null;
     
+    if(soptions.enable_extended_ignore)
+    {
+        $.each(soptions.ignore_authors.split(','), function(i,pname)
+        {
+            $('div#pagecontent > table.tablebg:has("tr > td > b.postauthor"):contains("'+pname+'")').remove();
+        });
+    }
+    
+    if(soptions.enable_punisher)
+    {
+        $.each(soptions.punisher_authors.split(','), function(i,pname)
+        {
+            var table = $('div#pagecontent > table.tablebg:has("tr > td > b.postauthor"):contains("'+pname+'")');
+            // Update avatar
+            $(table).find('tr:nth-child(2) > td > img')
+            .attr('src', soptions.punisher_avatar)
+            .attr('width', '120')
+            .attr('height', '120');
+            // Update message
+            $(table).find('div.postbody').each(function(t, div)
+            {
+                div.innerHTML = soptions.punisher_inner_html;
+                return false;
+            });
+            $(table).find('span.postbody,span.gensmall').each(function(u, span)
+            {
+                span.innerHTML = '';
+            });
+        });
+    }
     $('div#pagecontent table.tablebg tr > td.profile').each(function(i, td)
     {
         $(td).find('td.postdetails').each(function(j, td2)
@@ -958,36 +988,6 @@ function ProfilePass()
             });
         });
     });
-    if(soptions.enable_extended_ignore)
-    {
-        $.each(soptions.ignore_authors.split(','), function(i,pname)
-        {
-            $('div#pagecontent > table.tablebg:has("tr > td > b.postauthor"):contains("'+pname+'")').remove();
-        });
-    }
-    
-    if(soptions.enable_punisher)
-    {
-        $.each(soptions.punisher_authors.split(','), function(i,pname)
-        {
-            var table = $('div#pagecontent > table.tablebg:has("tr > td > b.postauthor"):contains("'+pname+'")');
-            // Update avatar
-            $(table).find('tr:nth-child(2) > td > img')
-            .attr('src', soptions.punisher_avatar)
-            .attr('width', '120')
-            .attr('height', '120');
-            // Update message
-            $(table).find('div.postbody').each(function(t, div)
-            {
-                div.innerHTML = soptions.punisher_inner_html;
-                return false;
-            });
-            $(table).find('span.postbody,span.gensmall').each(function(u, span)
-            {
-                span.innerHTML = '';
-            });
-        });
-    }
 }
 //#
 // Auto Sort
