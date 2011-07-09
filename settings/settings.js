@@ -23,7 +23,7 @@
                     margin: 2px 0 2px 5px;\
                     padding: 0;\
                 }\
-                div#settings_box div.script_option {\
+                div#settings_box div.script_option, div#settings_box div.script_option label {\
                     cursor: pointer;\
                 }\
                 div#settings_box textarea {\

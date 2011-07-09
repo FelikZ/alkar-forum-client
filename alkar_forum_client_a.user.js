@@ -1240,7 +1240,7 @@ function FastPageRefresh()
         if(soptions.enable_auto_page_refresh)
         {
             clearInterval(ref_int);
-            ref_int = setInterval(PageRefresh, soptions.auto_page_refresh_interval*1000);
+            ref_int = setInterval(PageRefresh, parseInt(soptions.auto_page_refresh_interval, 10)*1000);
         }
         PageRefresh();
         return false;
@@ -1268,7 +1268,7 @@ function PageRefresh()
         //----------------------------------
         if(soptions.enable_twitter_block)
         {
-            tLoadTwits(soptions.twits_count);
+            tLoadTwits(parseInt(soptions.twits_count, 10));
         }
         //----------------------------------
         $('div#wrapcentre > table.tablebg tr > td.row1 > p.breadcrumbs > span#page_refresh').html('&nbsp;&raquo;&nbsp;Обновлено').fadeOut(1000, function()
@@ -1453,7 +1453,7 @@ function tLoadTwits(tcount)
           url: 'http://twitter.com/statuses/user_timeline/thefelikz.json?callback=?',
           dataType: 'json',
           data: {
-                count: tcount+1,
+                count: parseInt(tcount, 10)+1,
                 include_entities: 0
             },
           success: t_twitterCallback,
@@ -1555,7 +1555,7 @@ function OnViewForum()
         if(soptions.enable_fast_refresh)
             FastPageRefresh();
         if(soptions.enable_auto_page_refresh)
-            ref_int = setInterval(PageRefresh, soptions.auto_page_refresh_interval*1000);
+            ref_int = setInterval(PageRefresh, parseInt(soptions.auto_page_refresh_interval, 10)*1000);
     }
 }
 //#
@@ -1566,7 +1566,7 @@ function PreProcess()
     if(soptions.enable_twitter_block)
     {
         tInitTwits();
-        tLoadTwits(soptions.twits_count);
+        tLoadTwits(parseInt(soptions.twits_count, 10));
     }
     if(soptions.enable_quote_force_hide)
         soptions.enable_quote_hider = true;
