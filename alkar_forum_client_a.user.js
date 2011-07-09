@@ -977,6 +977,8 @@ function ProfilePass(table)
                 if(soptions.enable_extended_ignore)
                 {
                     ignore_authors = soptions.ignore_authors.split(',');
+                    alert(soptions.ignore_authors);
+                    alert(ignore_authors);
                     for(var u=0; u<ignore_authors.length; u++)
                     {
                         if(user_name == ignore_authors[u])
