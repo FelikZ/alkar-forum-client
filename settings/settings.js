@@ -201,7 +201,7 @@ function OnLoadData()
         }
     });
     // Handle text options
-    $('#settings_box form#settings .script_option:has("input[type=text]"), #settings_box form#settings .script_option:has("textarea")').click(function(e) {
+    $('#settings_box form#settings .script_option:has("input[type=text]"), #settings_box form#settings .script_option:has("textarea")').change(function(e) {
         var cb = $(this).find('input[type=text], textarea');
         switch(cb.attr('name'))
         {
@@ -220,5 +220,5 @@ function OnLoadData()
 function OnSaveData()
 {
     $.jStorage.set('is_stored_options', 1);
-    $.jStorage.set('soptions', 1);
+    $.jStorage.set('soptions', soptions);
 }
