@@ -170,7 +170,7 @@ function ObjToString(obj)
 {
     var rez = "{";
     var once = false;
-    $.each(soptions, function(key, val) {
+    $.each(obj, function(key, val) {
         once = true;
         rez += key +':';
         switch(typeof(val))
