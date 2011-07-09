@@ -807,7 +807,8 @@ function PostPass()
     {
         if(ProfilePass(table) == -1)
         {
-            table.parentNode.removeChild(table);
+            alert($(table).html());
+            $(table).remove();
             return;
         }
     });
@@ -981,7 +982,6 @@ function ProfilePass(table)
                     {
                         if(user_name == ignore_authors[u])
                         {
-                            alert(1);
                             return -1;
                         }
                     }
