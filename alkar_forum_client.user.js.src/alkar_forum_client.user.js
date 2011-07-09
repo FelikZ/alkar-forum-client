@@ -149,7 +149,7 @@ function InsertSmileContainers(parent)
     //----------------------------------
     parent.appendChild(document.createElement("br"));
     var b = document.createElement("b");
-    b.appendChild(document.createTextNode(unescape("%u0421%u043C%u0430%u0439%u043B%u0438%u043A%u0438")+" by FelikZ:"));
+    b.appendChild(document.createTextNode("Смайлики by FelikZ:"));
     parent.appendChild(b);
     parent.appendChild(document.createElement("br"));
     //----------------------------------
@@ -802,15 +802,7 @@ function LinkyfyIt()
 //#
 function PostPass()
 {
-    var tables = document.getElementsByTagName('table');
-    $('table.tablebg').each(function(i, table)
-    {
-        if(ProfilePass(table) == -1)
-        {
-            table.parentNode.removeChild(table);
-            return;
-        }
-    });
+    ProfilePass();
 }
 //#
 // Ignore remover 
@@ -842,7 +834,7 @@ function IgnoreIt()
                 {
                     if(tds[j].getAttribute('class') == "gensmall")
                     {
-                        if(tds[j].innerHTML.search(unescape("%u043D%u0430%u0445%u043E%u0434%u044F%u0449%u0438%u0439%u0441%u044F%20%u0432%20%u0432%u0430%u0448%u0435%u043C%20%u0447%u0451%u0440%u043D%u043E%u043C%20%u0441%u043F%u0438%u0441%u043A%u0435.")) != -1)
+                        if(tds[j].innerHTML.search("находящийся в вашем чёрном списке.") != -1)
                         {
                             tds[j].parentNode.removeChild(tds[j]);
                             is_true = true;
@@ -858,40 +850,40 @@ function IgnoreIt()
 //#
 function GetStatusName(month, year)
 {
-    if(unescape('%u044F%u043D%u0432') == month){
+    if("янв" == month){
         month = 1;
     }
-    else if(unescape('%u0444%u0435%u0432') == month){
+    else if("фев" == month){
         month = 2;
     }
-    else if(unescape('%u043C%u0430%u0440') == month){
+    else if("мар" == month){
         month = 3;
     }
-    else if(unescape('%u0430%u043F%u0440') == month){
+    else if("апр" == month){
         month = 4;
     }
-    else if(unescape('%u043C%u0430%u0439') == month){
+    else if("май" == month){
         month = 5;
     }
-    else if(unescape('%u0438%u044E%u043D') == month){
+    else if("июн" == month){
         month = 6;
     }
-    else if(unescape('%u0438%u044E%u043B') == month){
+    else if("июл" == month){
         month = 7;
     }
-    else if(unescape('%u0430%u0432%u0433') == month){
+    else if("авг" == month){
         month = 8;
     }
-    else if(unescape('%u0441%u0435%u043D') == month){
+    else if("сен" == month){
         month = 9;
     }
-    else if(unescape('%u043E%u043A%u0442') == month){
+    else if("окт" == month){
         month = 10;
     }
-    else if(unescape('%u043D%u043E%u044F') == month){
+    else if("ноя" == month){
         month = 11;
     }
-    else if(unescape('%u0434%u0435%u043A') == month){
+    else if("дек" == month){
         month = 12;
     }
     year = parseInt(year);
@@ -900,127 +892,110 @@ function GetStatusName(month, year)
     var i_today = today.getFullYear() * 12 + (today.getMonth()+1);
     var dif = i_today - i_date;
     if(dif >= -1 && dif < 6){
-        return unescape("%u0422%u0432%u0438%u043D%u043A");
+        return "Твинк";
     }
     else if(dif >= 6 && dif < 12){
-        return unescape("%u0421%u0442%u0443%u0434%u0435%u043D%u0442");
+        return "Студент";
     }
     else if(dif >= 12 && dif < 24){
-        return unescape("%u0410%u0441%u043F%u0438%u0440%u0430%u043D%u0442");
+        return "Аспирант";
     }
     else if(dif >= 24 && dif < 36){
-        return unescape("%u0414%u043E%u0446%u0435%u043D%u0442");
+        return "Доцент";
     }
     else if(dif >= 36 && dif < 48){
-        return unescape("%u0410%u043A%u0430%u0434%u0435%u043C%u0438%u043A");
+        return "Академик";
     }
     else if(dif >= 48 && dif < 60){
-        return unescape("%u041F%u0440%u043E%u0444%u0435%u0441%u0441%u043E%u0440");
+        return "Профессор";
     }
     else if(dif >= 60 && dif < 72){
-        return unescape("%u0414%u0435%u043C%u0430%u0433%u043E%u0433");
+        return "Демагог";
     }
     else if(dif >= 72){
-        return unescape("%u0421%u0442%u0430%u0440%u044B%u0439 %20%u041C%u0430%u0440%u0430%u0437%u043C%u0430%u0442%u0438%u043A");
+        return "Старый Маразматик";
     }
 }
-function ProfilePass(table)
+function ProfilePass()
 {
-        var profile = null;
-        var user = null;
-        var user_name = null;
-        var match = null;
-        var is_punisher_target = false;
-        $(table).find('td').each(function(i, td)
+    var profile = null;
+    var user = null;
+    var match = null;
+    
+    if(soptions.enable_extended_ignore)
+    {
+        $.each(soptions.ignore_authors.split(','), function(i,pname)
         {
-            if(td.getAttribute('class') == "profile")
+            if(String(pname).length < 1)
             {
-                $(td).find('td.postdetails').each(function(j, td2)
-                {
-                    user = td2;
-                    profile = td;
-                    $(profile).find('span.postdetails').each(function(x, span)
-                    {
-                        if(soptions.enable_status && user.innerHTML == unescape('%u041F%u043E%u043B%u044C%u0437%u043E%u0432%u0430%u0442%u0435%u043B%u044C'))
-                        {
-                            reg = new RegExp('\<b\>'+unescape('%u0417%u0430%u0440%u0435%u0433%u0438%u0441%u0442%u0440%u0438%u0440%u043E%u0432%u0430%u043D')+'\:\<\/b\> (['+unescape('%u0430-%u044F%u0410-%u042F')+']{2}) (['+unescape('%u0430-%u044F%u0410-%u042F')+']{3}) ([0-9]{2})\, ([0-9]{4}) ([0-9]{1,2})\:([0-9]{2})','i');
-
-                            match = span.innerHTML.match(reg);
-                            if(match != null)
-                            {
-                                user.innerHTML = GetStatusName(match[2], match[4]);
-                            }
-                            else
-                            {
-                                reg = new RegExp('\<b\>'+unescape('%u0417%u0430%u0440%u0435%u0433%u0438%u0441%u0442%u0440%u0438%u0440%u043E%u0432%u0430%u043D')+'\:\<\/b\> ([0-9]{2}) (['+unescape('%u0430-%u044F%u0410-%u042F')+']{3}) ([0-9]{4})\, ([0-9]{1,2})\:([0-9]{2})','i');
-                                match = span.innerHTML.match(reg);
-                                if(match != null)
-                                {
-                                    user.innerHTML = GetStatusName(match[2], match[3]);
-                                }
-                            }
-                        }
-                        if(soptions.enable_uncounter)
-                        {
-                            reg = new RegExp('\<br.{0,2}\>\<b\>'+unescape('%u0421%u043E%u043E%u0431%u0449%u0435%u043D%u0438%u044F')+'\:\<\/b\> [0-9]*','i');
-                            span.innerHTML = span.innerHTML.replace(reg, '');
-                        }
-                        return false;
-                    });
-                });
+                return true;
             }
-            else
-            {
-                var b = $(td).find('b.postauthor:first');
-
-                user_name = b.innerHTML;
-                if(soptions.enable_extended_ignore)
-                {
-                    ignore_authors = soptions.ignore_authors.split(',');
-                    for(var u=0; u<ignore_authors.length; u++)
-                    {
-                        if(user_name == ignore_authors[u])
-                        {
-                            return -1;
-                        }
-                    }
-                }
-                
-                if(soptions.enable_punisher)
-                {
-                    $(td).find('img[alt="' + unescape('%u0410%u0432%u0430%u0442%u0430%u0440%u0430%20%u043F%u043E%u043B%u044C%u0437%u043E%u0432%u0430%u0442%u0435%u043B%u044F') + '"]').each(function(i, img)
-                    {
-                        punisher_authors = soptions.punisher_authors.split(',');
-                        for(var y=0; y<punisher_authors.length; y++)
-                        {
-                            if(punisher_authors[y] == user_name)
-                            {
-                                img.setAttribute('src', soptions.punisher_avatar);
-                                img.setAttribute('width', "120");
-                                img.setAttribute('height', "120");
-                                is_punisher_target = true;
-                                break;
-                            }
-                        }
-                    });
-                    
-                    if(is_punisher_target)
-                    {
-                        $(td).find('div.postbody').each(function(t, div)
-                        {
-                            div.innerHTML = soptions.punisher_inner_html;
-                        
-                            $(td).find('span.postbody,span.gensmall').each(function(u, span)
-                            {
-                                span.innerHTML = '';
-                            });
-                            return false;
-                        });
-                    }
-                }
-            }
+            $('div#pagecontent > table.tablebg:has("tr > td > b.postauthor"):contains("'+pname+'")').remove();
         });
-        return 0;
+    }
+    
+    if(soptions.enable_punisher)
+    {
+        $.each(soptions.punisher_authors.split(','), function(i,pname)
+        {
+            if(String(pname).length < 1)
+            {
+                return true;
+            }
+            var table = $('div#pagecontent > table.tablebg:has("tr > td > b.postauthor"):contains("'+pname+'")');
+            // Update avatar
+            $(table).find('tr:nth-child(2) > td > img')
+            .attr('src', soptions.punisher_avatar)
+            .attr('width', '120')
+            .attr('height', '120');
+            // Update message
+            $(table).find('div.postbody').each(function(t, div)
+            {
+                div.innerHTML = soptions.punisher_inner_html;
+                return false;
+            });
+            $(table).find('span.postbody,span.gensmall').each(function(u, span)
+            {
+                span.innerHTML = '';
+            });
+        });
+    }
+    $('div#pagecontent table.tablebg tr > td.profile').each(function(i, td)
+    {
+        $(td).find('td.postdetails').each(function(j, td2)
+        {
+            user = td2;
+            profile = td;
+            $(profile).find('span.postdetails').each(function(x, span)
+            {
+                if(soptions.enable_status && user.innerHTML == "Пользователь")
+                {
+                    reg = new RegExp('\<b\>"Зарегистрирован\:\<\/b\> (['+unescape('%u0430-%u044F%u0410-%u042F')+']{2}) (['+unescape('%u0430-%u044F%u0410-%u042F')+']{3}) ([0-9]{2})\, ([0-9]{4}) ([0-9]{1,2})\:([0-9]{2})','i');
+                    
+                    match = span.innerHTML.match(reg);
+                    if(match != null)
+                    {
+                        user.innerHTML = GetStatusName(match[2], match[4]);
+                    }
+                    else
+                    {
+                        reg = new RegExp('\<b\>Зарегистрирован\:\<\/b\> ([0-9]{2}) (['+unescape('%u0430-%u044F%u0410-%u042F')+']{3}) ([0-9]{4})\, ([0-9]{1,2})\:([0-9]{2})','i');
+                        match = span.innerHTML.match(reg);
+                        if(match != null)
+                        {
+                            user.innerHTML = GetStatusName(match[2], match[3]);
+                        }
+                    }
+                }
+                if(soptions.enable_uncounter)
+                {
+                    reg = new RegExp('\<br.{0,2}\>\<b\>Сообщения\:\<\/b\> [0-9]*','i');
+                    span.innerHTML = span.innerHTML.replace(reg, '');
+                }
+                return false;
+            });
+        });
+    });
 }
 //#
 // Auto Sort
@@ -1119,7 +1094,7 @@ function AutoSort()
 //#
 function QuotePass()
 {
-    var reg = new RegExp("(\<object.*\>)|(\<img.*alt\=\""+unescape('%u0418%u0437%u043E%u0431%u0440%u0430%u0436%u0435%u043D%u0438%u0435')+"\")",'i');
+    var reg = new RegExp("(\<object.*\>)|(\<img.*alt\=\"Изображение\")",'i');
     $('div.quotecontent').each(function(i, div)
     {
         if(!soptions.enable_quote_force_hide && div.innerHTML.length < 1000 && div.innerHTML.match(reg) == null)
@@ -1141,7 +1116,7 @@ function BindCtrlEnter()
         if (e.ctrlKey && e.keyCode == 13) 
         {
             e.preventDefault();
-            $('form[name="postform"] input[type="submit"][value="'+unescape("%u041E%u0442%u043F%u0440%u0430%u0432%u0438%u0442%u044C")+'"]').click();
+            $('form[name="postform"] input[type="submit"][value="Отправить"]').click();
         }
     });
 }
@@ -1187,7 +1162,7 @@ function FastQuote()
 //#
 function FastReply()
 {
-    $('head').append('<script type="text/javascript">var form_name = "postform";var text_name = "message";var bbcode = new Array();var bbtags = new Array(\'[b]\',\'[/b]\',\'[i]\',\'[/i]\',\'[u]\',\'[/u]\',\'[quote]\',\'[/quote]\',\'[code]\',\'[/code]\',\'[list]\',\'[/list]\',\'[list=]\',\'[/list]\',\'[img]\',\'[/img]\',\'[url]\',\'[/url]\',\'[flash=]\', \'[/flash]\',\'[size=]\',\'[/size]\', \'[a_center]\', \'[/a_center]\', \'[a_right]\', \'[/a_right]\', \'[frame]\', \'[/frame]\', \'[line]\', \'[/line]\', \'[offtopic]\', \'[/offtopic]\', \'[s]\', \'[/s]\', \'[spoiler2=]\', \'[/spoiler2]\', \'[spoiler=]\', \'[/spoiler]\', \'[youtube]\', \'[/youtube]\');var imageTag = false;var help_line = {            b:unescape(\'%u0416%u0438%u0440%u043D%u044B%u0439%20%u0442%u0435%u043A%u0441%u0442%3A%20%5Bb%5Dtext%5B/b%5D\'),            i:unescape(\'%u041D%u0430%u043A%u043B%u043E%u043D%u043D%u044B%u0439%20%u0442%u0435%u043A%u0441%u0442%3A%20%5Bi%5Dtext%5B/i%5D\'),            u:unescape(\'%u041F%u043E%u0434%u0447%u0435%u0440%u043A%u043D%u0443%u0442%u044B%u0439%20%u0442%u0435%u043A%u0441%u0442%3A%20%5Bu%5Dtext%5B/u%5D\'),            q:unescape(\'%u0426%u0438%u0442%u0430%u0442%u0430%3A%20%5Bquote%5Dtext%5B/quote%5D\'),            c:unescape(\'%u041A%u043E%u0434%3A%20%5Bcode%5Dcode%5B/code%5D\'),            l:unescape(\'%u0421%u043F%u0438%u0441%u043E%u043A%3A%20%5Blist%5Dtext%5B/list%5D\'),            o:unescape(\'%u041D%u0443%u043C%u0435%u0440%u043E%u0432%u0430%u043D%u043D%u044B%u0439%20%u0441%u043F%u0438%u0441%u043E%u043A%3A%20%5Blist%3D%5Dtext%5B/list%5D\'),            p:unescape(\'%u0412%u0441%u0442%u0430%u0432%u0438%u0442%u044C%20%u0438%u0437%u043E%u0431%u0440%u0430%u0436%u0435%u043D%u0438%u0435%3A%20%5Bimg%5Dhttp%3A//image_url%5B/img%5D\'),            w:unescape(\'%u0412%u0441%u0442%u0430%u0432%u0438%u0442%u044C%20%u0441%u0441%u044B%u043B%u043A%u0443%3A%20%5Burl%5Dhttp%3A//url%5B/url%5D%20%u0438%u043B%u0438%20%5Burl%3Dhttp%3A//url%5DURL%20text%5B/url%5D\'),            s:unescape(\'%u0426%u0432%u0435%u0442%20%u0448%u0440%u0438%u0444%u0442%u0430%3A%20%5Bcolor%3Dred%5Dtext%5B/color%5D%20%u0421%u043E%u0432%u0435%u0442%3A%20%u0412%u044B%20%u043C%u043E%u0436%u0435%u0442%u0435%20%u0438%u0441%u043F%u043E%u043B%u044C%u0437%u043E%u0432%u0430%u0442%u044C%20%u0442%u0430%u043A%u0436%u0435%20%u043A%u043E%u043D%u0441%u0442%u0440%u0443%u043A%u0446%u0438%u044E%20color%3D%23FF0000\'),            f:unescape(\'%u0420%u0430%u0437%u043C%u0435%u0440%20%u0448%u0440%u0438%u0444%u0442%u0430%3A%20%5Bsize%3D85%5Dsmall%20text%5B/size%5D\'),            e:unescape(\'%u0421%u043F%u0438%u0441%u043E%u043A%3A%20%u0434%u043E%u0431%u0430%u0432%u0438%u0442%u044C%20%u044D%u043B%u0435%u043C%u0435%u043D%u0442%20%u0441%u043F%u0438%u0441%u043A%u0430\'),            d:unescape(\'%u0424%u043B%u044D%u0448%3A%20%5Bflash%3Dwidth%2Cheight%5Dhttp%3A//url%5B/flash%5D\'),            t:unescape(\'%7B%20BBCODE_T_HELP%20%7D\'),            tip:unescape(\'%u0421%u043E%u0432%u0435%u0442%3A%20%u043C%u043E%u0436%u043D%u043E%20%u0431%u044B%u0441%u0442%u0440%u043E%20%u043F%u0440%u0438%u043C%u0435%u043D%u0438%u0442%u044C%20%u0441%u0442%u0438%u043B%u0438%20%u043A%20%u0432%u044B%u0434%u0435%u043B%u0435%u043D%u043D%u043E%u043C%u0443%20%u0442%u0435%u043A%u0441%u0442%u0443.\')                            ,cb_22:unescape(\'%u0412%u044B%u0440%u0430%u0432%u043D%u0438%u0432%u0430%u043D%u0438%u0435%20%u043F%u043E%20%u0446%u0435%u043D%u0442%u0440%u0443%3A%20%5Ba_center%5Dtext%5B/a_center%5D\')                            ,cb_24:unescape(\'%u0412%u044B%u0440%u0430%u0432%u043D%u0438%u0432%u0430%u043D%u0438%u0435%20%u043F%u043E%20%u043F%u0440%u0430%u0432%u043E%u043C%u0443%20%u043A%u0440%u0430%u044E%3A%20%5Ba_right%5Dtext%5B/a_right%5D\')                            ,cb_26:unescape(\'%u0422%u0435%u043A%u0441%u0442%20%u0432%20%u0440%u0430%u043C%u043A%u0435%3A%20%5Bframe%5Dtext%5B/frame%5D\')                            ,cb_28:unescape(\'%u0413%u043E%u0440%u0438%u0437%u043E%u043D%u0442%u0430%u043B%u044C%u043D%u0430%u044F%20%u043B%u0438%u043D%u0438%u044F\')                            ,cb_30:unescape(\'%u041E%u0444%u0444%u0442%u043E%u043F%3A%20%5Bofftopic%5Dtext%5B/offtopic%5D\')                            ,cb_32:unescape(\'%u0417%u0430%u0447%u0451%u0440%u043A%u043D%u0443%u0442%u044B%u0439%20%u0442%u0435%u043A%u0441%u0442%3A%20%5Bs%5Dtext%5B/s%5D\')                            ,cb_34:unescape(\'%u0421%u043A%u0440%u044B%u0432%u0430%u0435%u043C%u043E%u0435%20%u0441%u043E%u0434%u0435%u0440%u0436%u0438%u043C%u043E%u0435%3A%20%5Bspoiler2%3D%u043D%u0430%u0437%u0432%u0430%u043D%u0438%u0435%20%u0441%u043F%u043E%u0439%u043B%u0435%u0440%u0430%5Dtext%5B/spoiler2%5D\')                            ,cb_36:unescape(\'%u0421%u043A%u0440%u044B%u0432%u0430%u0435%u043C%u043E%u0435%20%u0441%u043E%u0434%u0435%u0440%u0436%u0438%u043C%u043E%u0435%3A%20%5Bspoiler%3D%u043D%u0430%u0437%u0432%u0430%u043D%u0438%u0435%20%u0441%u043F%u043E%u0439%u043B%u0435%u0440%u0430%5Dtext%5B/spoiler%5D\')                            ,cb_38:unescape(\'%u0412%u0441%u0442%u0440%u043E%u0435%u043D%u043D%u044B%u0439%20%u043F%u043B%u0435%u0435%u0440%3A%20%5Byoutube%5D%u0421%u0441%u044B%u043B%u043A%u0430%20%u043D%u0430%20%u0441%u0442%u0440%u0430%u043D%u0438%u0446%u0443%20%u0432%u0438%u0434%u0435%u043E%5B/youtube%5D\')                    };</script>')
+    $('head').append('<script type="text/javascript">var form_name = "postform";var text_name = "message";var bbcode = new Array();var bbtags = new Array(\'[b]\',\'[/b]\',\'[i]\',\'[/i]\',\'[u]\',\'[/u]\',\'[quote]\',\'[/quote]\',\'[code]\',\'[/code]\',\'[list]\',\'[/list]\',\'[list=]\',\'[/list]\',\'[img]\',\'[/img]\',\'[url]\',\'[/url]\',\'[flash=]\', \'[/flash]\',\'[size=]\',\'[/size]\', \'[a_center]\', \'[/a_center]\', \'[a_right]\', \'[/a_right]\', \'[frame]\', \'[/frame]\', \'[line]\', \'[/line]\', \'[offtopic]\', \'[/offtopic]\', \'[s]\', \'[/s]\', \'[spoiler2=]\', \'[/spoiler2]\', \'[spoiler=]\', \'[/spoiler]\', \'[youtube]\', \'[/youtube]\');var imageTag = false;var help_line = {b:    \'Жирный текст: [b]text[/b]\',c:    \'Код: [code]code[/code]\',cb_22:    \'Выравнивание по центру: [a_center]text[/a_center]\',cb_24:    \'Выравнивание по правому краю: [a_right]text[/a_right]\',cb_26:    \'Текст в рамке: [frame]text[/frame]\',cb_28:    \'Горизонтальная линия\',cb_30:    \'Оффтоп: [offtopic]text[/offtopic]\',cb_32:    \'Зачёркнутый текст: [s]text[/s]\',cb_34:    \'Скрываемое содержимое: [spoiler2=название спойлера]text[/spoiler2]\',cb_36:    \'Скрываемое содержимое: [spoiler=название спойлера]text[/spoiler]\',cb_38:    \'Встроенный плеер: [youtube]Ссылка на страницу видео[/youtube]\',d:    \'Флэш: [flash=width,height]http://url[/flash]\',e:    \'Список: добавить элемент списка\',f:    \'Размер шрифта: [size=85]small text[/size]\',i:    \'Наклонный текст: [i]text[/i]\',l:    \'Список: [list]text[/list]\',o:    \'Нумерованный список: [list=]text[/list]\',p:    \'Вставить изображение: [img]http://image_url[/img]\',q:    \'Цитата: [quote]text[/quote]\',s:    \'Цвет шрифта: [color=red]text[/color] Совет: Вы можете использовать также конструкцию color=#FF0000\',t:    \'{ BBCODE_T_HELP }\',tip:    \'Совет: можно быстро применить стили к выделенному тексту.\',u:    \'Подчеркнутый текст: [u]text[/u]\',w:    \'Вставить ссылку: [url]http://url[/url] или [url=http://url]URL text[/url]\' };</script>')
             .append('<script type="text/javascript" src="/phpBB/styles/subsilver2/template/editor.js"></script>');
     //----------------------------------
     var url = $('div#pagecontent table tr td[align="left"][valign="middle"][nowrap="nowrap"]:last a:nth-child(2)').attr('href');
