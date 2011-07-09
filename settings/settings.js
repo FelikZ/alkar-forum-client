@@ -2,7 +2,7 @@
 {
     var html = "<style type=\"text/css\">\
                 div#settings_box {\
-                    background-color:white;\
+                    background-color:#ebebeb;\
                     font-family: verdana,helvetica,arial,sans-serif;\
                     font-size: 12px;\
                     text-align: left;\
