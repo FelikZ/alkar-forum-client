@@ -646,7 +646,7 @@ function VualIt()
     var s = document.createElement('script');
     s.setAttribute('type', 'text/javascript');
     s.text = scr;
-    $('head:first').appendChild(s); 
+    $(s).appendTo('head:first');
     
     SetButtonsAutoVual_inner(soptions.auto_vualization);
     
