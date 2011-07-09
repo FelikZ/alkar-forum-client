@@ -187,13 +187,13 @@ function ObjToString(obj)
                 break;
             case 'object':
             case 'array':
-                rez += '["' + val.toString().replace(/,(.*?)/gi, '","$1') + '"],';
+                rez += '["' + $.trim(val.toString().replace(/,(.*?)/gi, '","$1')) + '"],';
                 break;
             case 'number':
                 rez += String(val) + ',';
                 break;
             default:
-                rez += '"' + String(val) + '",';
+                rez += '"' + $.trim(String(val)) + '",';
                 break;
         }
     });
@@ -273,6 +273,9 @@ function OnLoadData()
             case 'anime_smiles':
             case 'yap_smiles':
                 eval('soptions.' + cb.attr('name') + ' = ["' + $.trim(cb.attr('value').split(',\n').toString()).replace(/,(.*?)/gi, '","$1') + '"];');
+                break;
+            case 'null':
+            case 'undefined':
                 break;
             default:
                 eval('soptions.' + cb.attr('name') + ' = "' + $.trim(cb.attr('value')) + '";');
