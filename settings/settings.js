@@ -187,8 +187,16 @@ function OnLoadData()
         }
     });
     // Handle check options
-    $('#settings_box form#settings .script_option:has("input[type=checkbox]")').click(function(e) {
-        var cb = $(this).find('input[type=checkbox]');
+    $('#settings_box form#settings .script_option:has("input[type=checkbox]") label, #settings_box form#settings .script_option input[type=checkbox]').click(function(e) {
+        var cb = null;
+        if(String($(this).get(0).tagName).toLowerCase() == 'checkbox')
+        {
+            cb = $(this);
+        }
+        else
+        {
+            cb = $(this).parent().find('input[type=checkbox]');
+        }
         if(cb.is(':checked'))
         {
             cb.attr('checked', false);
@@ -200,6 +208,7 @@ function OnLoadData()
             eval('soptions.'+cb.attr('name')+' = true;');
         }
     });
+    
     // Handle text options
     $('#settings_box form#settings .script_option:has("input[type=text]"), #settings_box form#settings .script_option:has("textarea")').change(function(e) {
         var cb = $(this).find('input[type=text], textarea');
