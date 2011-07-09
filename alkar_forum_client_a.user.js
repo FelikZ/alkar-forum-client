@@ -68,7 +68,7 @@ if(typeof($.fn.outer)=='undefined'){$.fn.outer=function(a){if(a){$(a).insertBefo
 $('<link />').appendTo('head').attr({
     rel: 'stylesheet',
     type: 'text/css',
-    href: 'http://alkar-forum-client.googlecode.com/svn/trunk/settings/colorbox.css'
+    href: 'https://sites.google.com/site/thefelikz/colorbox/colorbox.css'
 });
 //#
 // inserting array of 'smiles' into td element
@@ -1580,7 +1580,7 @@ function _ShowSettingsPopup()
 //#
 function ShowSettingsPopup()
 {
-    var script_url = 'http://alkar-forum-client.googlecode.com/svn/trunk/settings/jquery.colorbox-min.js';
+    var script_url = 'https://sites.google.com/site/thefelikz/colorbox/jquery.colorbox-min.js';
     if($('head script[src="'+script_url+'"]').length == 0)
     {
         $.getScript(script_url, function() {
