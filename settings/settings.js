@@ -29,10 +29,12 @@
                 div#settings_box textarea {\
                     width: 500px;\
                     height: 300px;\
+                    font-family: verdana,helvetica,arial,sans-serif;\
+                    font-size: 12px !important;\
                 }\
                 </style>";
     html += "<div id=\"settings_box\">\
-    <form id=\"settings\" method=\"post\" action=\".\">\
+    <form id=\"settings\" name=\"settings\" method=\"post\" action=\".\">\
         <h2 class=\"first\">Обычные настройки</h2>\
         <div class=\"script_option\"><input type=\"checkbox\" name=\"enable_smiles\" />                <label>Показывать новые смайлы</label></div>\
         <div style=\"clear:both;\"></div>\
@@ -154,7 +156,7 @@
     </form>";
     return html;
 }
-function OnCompleteLoad()
+function OnLoadData()
 {
     $('#settings .script_option:has(\"input[type=checkbox]\")').click(function(e) {
         var cb = $(this).find('input[type=checkbox]');
@@ -193,4 +195,8 @@ function OnCompleteLoad()
             }
         }
     });
+}
+function OnSaveData()
+{
+    
 }
