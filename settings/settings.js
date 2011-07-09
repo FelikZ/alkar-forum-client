@@ -160,7 +160,7 @@
         <h2>Управление настройками</h2>\
         <a href=\"javascript:void(0);\" onclick=\"if(confirm('Точно хотите сбросить все настройки на заводские?')){$.jStorage.set('is_stored_options', 0); window.location=window.location;}\">Сброс</a>\
         <a href=\"javascript:void(0);\" onclick=\"$('form#settings #export_import').attr('value', ObjToString(soptions))\" >Экспорт</a>\
-        <a href=\"javascript:void(0);\" onclick=\"soptions = StringToObj($('form#settings #export_import').attr('value'));\" >Импорт</a>\
+        <a href=\"javascript:void(0);\" onclick=\"if(confirm('Точно хотите сделать импорт? Все текущие настройки будут перезаписаны.')){StringToObj($('form#settings #export_import').attr('value'))};\" >Импорт</a>\
         <div class=\"script_option\"><textarea id=\"export_import\" /></textarea></div>\
         <div style=\"clear:both;\"></div>\
     </form>";
