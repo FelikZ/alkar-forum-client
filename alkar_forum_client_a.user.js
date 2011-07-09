@@ -51,7 +51,7 @@ if(typeof($.fn.outer)=='undefined'){$.fn.outer=function(a){if(a){$(a).insertBefo
 $('<link />').appendTo('head').attr({
     rel: 'stylesheet',
     type: 'text/css',
-    href: 'https://sites.google.com/site/thefelikz/colorbox/colorbox.css'
+    href: 'https://sites.google.com/site/thefelikz/colorbox/colorbox.css?attredirects=0&d=1'
 });
 //#
 // inserting array of 'smiles' into td element
@@ -1479,7 +1479,7 @@ function _ShowSettingsPopup()
 //#
 function ShowSettingsPopup()
 {
-    var script_url = 'https://sites.google.com/site/thefelikz/colorbox/jquery.colorbox-min.js';
+    var script_url = 'https://sites.google.com/site/thefelikz/colorbox/jquery.colorbox-min.js?attredirects=0&d=1';
     if($('head script[src="'+script_url+'"]').length == 0)
     {
         $.getScript(script_url, function() {
