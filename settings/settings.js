@@ -172,7 +172,7 @@ function ObjToString(obj)
     var once = false;
     $.each(obj, function(key, val) {
         once = true;
-        rez += key +':';
+        rez += '"' + key +'":';
         switch(typeof(val))
         {
             case 'boolean':
