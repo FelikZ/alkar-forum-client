@@ -187,7 +187,7 @@ function ObjToString(obj)
                 break;
             case 'object':
             case 'array':
-                rez += '[' + val.toString().replace(/,(.*?)/gi, '","$1') + '],';
+                rez += '["' + val.toString().replace(/,(.*?)/gi, '","$1') + '"],';
                 break;
             case 'number':
                 rez += String(val) + ',';
