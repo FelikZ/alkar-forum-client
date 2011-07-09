@@ -918,78 +918,76 @@ function GetStatusName(month, year)
 }
 function ProfilePass()
 {
-        var profile = null;
-        var user = null;
-        var match = null;
-        var rez = 0;
-        
-        $('div#pagecontent table.tablebg tr > td.profile').each(function(i, td)
+    var profile = null;
+    var user = null;
+    var match = null;
+    
+    $('div#pagecontent table.tablebg tr > td.profile').each(function(i, td)
+    {
+        $(td).find('td.postdetails').each(function(j, td2)
         {
-            $(td).find('td.postdetails').each(function(j, td2)
+            user = td2;
+            profile = td;
+            $(profile).find('span.postdetails').each(function(x, span)
             {
-                user = td2;
-                profile = td;
-                $(profile).find('span.postdetails').each(function(x, span)
+                if(soptions.enable_status && user.innerHTML == unescape('%u041F%u043E%u043B%u044C%u0437%u043E%u0432%u0430%u0442%u0435%u043B%u044C'))
                 {
-                    if(soptions.enable_status && user.innerHTML == unescape('%u041F%u043E%u043B%u044C%u0437%u043E%u0432%u0430%u0442%u0435%u043B%u044C'))
+                    reg = new RegExp('\<b\>'+unescape('%u0417%u0430%u0440%u0435%u0433%u0438%u0441%u0442%u0440%u0438%u0440%u043E%u0432%u0430%u043D')+'\:\<\/b\> (['+unescape('%u0430-%u044F%u0410-%u042F')+']{2}) (['+unescape('%u0430-%u044F%u0410-%u042F')+']{3}) ([0-9]{2})\, ([0-9]{4}) ([0-9]{1,2})\:([0-9]{2})','i');
+                    
+                    match = span.innerHTML.match(reg);
+                    if(match != null)
                     {
-                        reg = new RegExp('\<b\>'+unescape('%u0417%u0430%u0440%u0435%u0433%u0438%u0441%u0442%u0440%u0438%u0440%u043E%u0432%u0430%u043D')+'\:\<\/b\> (['+unescape('%u0430-%u044F%u0410-%u042F')+']{2}) (['+unescape('%u0430-%u044F%u0410-%u042F')+']{3}) ([0-9]{2})\, ([0-9]{4}) ([0-9]{1,2})\:([0-9]{2})','i');
-
+                        user.innerHTML = GetStatusName(match[2], match[4]);
+                    }
+                    else
+                    {
+                        reg = new RegExp('\<b\>'+unescape('%u0417%u0430%u0440%u0435%u0433%u0438%u0441%u0442%u0440%u0438%u0440%u043E%u0432%u0430%u043D')+'\:\<\/b\> ([0-9]{2}) (['+unescape('%u0430-%u044F%u0410-%u042F')+']{3}) ([0-9]{4})\, ([0-9]{1,2})\:([0-9]{2})','i');
                         match = span.innerHTML.match(reg);
                         if(match != null)
                         {
-                            user.innerHTML = GetStatusName(match[2], match[4]);
-                        }
-                        else
-                        {
-                            reg = new RegExp('\<b\>'+unescape('%u0417%u0430%u0440%u0435%u0433%u0438%u0441%u0442%u0440%u0438%u0440%u043E%u0432%u0430%u043D')+'\:\<\/b\> ([0-9]{2}) (['+unescape('%u0430-%u044F%u0410-%u042F')+']{3}) ([0-9]{4})\, ([0-9]{1,2})\:([0-9]{2})','i');
-                            match = span.innerHTML.match(reg);
-                            if(match != null)
-                            {
-                                user.innerHTML = GetStatusName(match[2], match[3]);
-                            }
+                            user.innerHTML = GetStatusName(match[2], match[3]);
                         }
                     }
-                    if(soptions.enable_uncounter)
-                    {
-                        reg = new RegExp('\<br.{0,2}\>\<b\>'+unescape('%u0421%u043E%u043E%u0431%u0449%u0435%u043D%u0438%u044F')+'\:\<\/b\> [0-9]*','i');
-                        span.innerHTML = span.innerHTML.replace(reg, '');
-                    }
-                    return false;
-                });
+                }
+                if(soptions.enable_uncounter)
+                {
+                    reg = new RegExp('\<br.{0,2}\>\<b\>'+unescape('%u0421%u043E%u043E%u0431%u0449%u0435%u043D%u0438%u044F')+'\:\<\/b\> [0-9]*','i');
+                    span.innerHTML = span.innerHTML.replace(reg, '');
+                }
+                return false;
             });
         });
-        if(soptions.enable_extended_ignore)
+    });
+    if(soptions.enable_extended_ignore)
+    {
+        $.each(soptions.ignore_authors.split(','), function(i,pname)
         {
-            $.each(soptions.ignore_authors.split(','), function(i,pname)
-            {
-                $('div#pagecontent > table.tablebg:has("tr > td > b.postauthor"):contains("'+pname+'")').remove();
-            });
-        }
-        
-        if(soptions.enable_punisher)
+            $('div#pagecontent > table.tablebg:has("tr > td > b.postauthor"):contains("'+pname+'")').remove();
+        });
+    }
+    
+    if(soptions.enable_punisher)
+    {
+        $.each(soptions.punisher_authors.split(','), function(i,pname)
         {
-            $.each(soptions.punisher_authors.split(','), function(i,pname)
+            var table = $('div#pagecontent > table.tablebg:has("tr > td > b.postauthor"):contains("'+pname+'")');
+            // Update avatar
+            $(table).find('tr:nth-child(2) > td > img')
+            .attr('src', soptions.punisher_avatar)
+            .attr('width', '120')
+            .attr('height', '120');
+            // Update message
+            $(table).find('div.postbody').each(function(t, div)
             {
-                var table = $('div#pagecontent > table.tablebg:has("tr > td > b.postauthor"):contains("'+pname+'")');
-                // Update avatar
-                $(table).find('tr:nth-child(2) > td > img')
-                .attr('src', soptions.punisher_avatar)
-                .attr('width', '120')
-                .attr('height', '120');
-                // Update message
-                $(table).find('div.postbody').each(function(t, div)
-                {
-                    div.innerHTML = soptions.punisher_inner_html;
-                    return false;
-                });
-                $(table).find('span.postbody,span.gensmall').each(function(u, span)
-                {
-                    span.innerHTML = '';
-                });
+                div.innerHTML = soptions.punisher_inner_html;
+                return false;
             });
-        }
-        return rez;
+            $(table).find('span.postbody,span.gensmall').each(function(u, span)
+            {
+                span.innerHTML = '';
+            });
+        });
+    }
 }
 //#
 // Auto Sort
