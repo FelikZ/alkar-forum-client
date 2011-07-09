@@ -154,10 +154,62 @@
         <h2>ЯП смайлы</h2>\
         <div class=\"script_option\"><textarea name=\"yap_smiles\" /></textarea></div>\
         <div style=\"clear:both;\"></div>\
-        <br />\
-        <a href=\"javascript:void(0);\" onclick=\"if(confirm('Точно хотите сбросить все настройки на заводские?')){$.jStorage.set('is_stored_options', 0); window.location=window.location;}\">Сбросить все на стройки</a>\
+        <!--\
+        Export/Import\
+        -->\
+        <h2>Управление настройками</h2>\
+        <a href=\"javascript:void(0);\" onclick=\"if(confirm('Точно хотите сбросить все настройки на заводские?')){$.jStorage.set('is_stored_options', 0); window.location=window.location;}\">Сброс</a>\
+        <a href=\"javascript:void(0);\" onclick=\"$('form#settings #export_import').attr('value', ObjToString(soptions))\" >Экспорт</a>\
+        <a href=\"javascript:void(0);\" onclick=\"soptions = StringToObj($('form#settings #export_import').attr('value'));\" >Импорт</a>\
+        <div class=\"script_option\"><textarea id=\"export_import\" /></textarea></div>\
+        <div style=\"clear:both;\"></div>\
     </form>";
     return html;
+}
+function ObjToString(obj)
+{
+    var rez = "{";
+    var once = false;
+    $.each(soptions, function(key, val) {
+        once = true;
+        rez += key +':';
+        switch(typeof(val))
+        {
+            case 'boolean':
+                if(val)
+                {
+                    rez += 'true,';
+                }
+                else
+                {
+                    rez += 'false,';
+                }
+                break;
+            case 'object':
+            case 'array':
+                rez += '[' + val.toString().replace(/,(.*?)/gi, '","$1') + '],';
+                break;
+            case 'number':
+                rez += String(val) + ',';
+                break;
+            default:
+                rez += '"' + String(val) + '",';
+                break;
+        }
+    }
+    if(once)
+    {
+        rez = rez.substring(0, rez.length-1);
+    }
+    return rez+"}";
+}
+function StringToObj(str)
+{
+    eval('var opt = ' + str + ';');
+    if(typeof(opt) == 'object')
+    {
+        soptions = opt;
+    }
 }
 function OnLoadData()
 {
