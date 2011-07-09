@@ -1,10 +1,20 @@
 ﻿//#
 // Do not touch the text below!!!
 //#
+//----------------------------------
 var version = "2.190";
 var required_updater_version = 3;
 //----------------------------------
-
+// Check version of updater
+if(typeof(updater_version) == 'undefined' || updater_version < required_updater_version)
+{
+    var msg = '<h1>Скрипт устарел! Чтобы продолжить использовать скрипт, вы должны <a href="http://alkar-forum-client.googlecode.com/svn/trunk/client_autoupdater.user.js">обновить updater</a> © <b>FelikZ</b></h1>';
+    var td = $('#logodesc > table tr > td:nth-child(2):first');
+    td.removeAttr('align');
+    var msg_block = '<div>'+msg+'</div>';
+    td.html(msg_block);
+    throw msg;
+}
 //----------------------------------
 var cur_location = 0; // 0 - anywhere, 1 - post or pm, 2 - view topic, 3 - view forum, 4 - view forum list
 //----------------------------------
@@ -58,16 +68,6 @@ $('<link />').appendTo('head').attr({
     type: 'text/css',
     href: 'https://sites.google.com/site/thefelikz/colorbox/colorbox.css?attredirects=0&d=1'
 });
-// Check version of updater
-if(typeof(updater_version) == 'undefined' || updater_version < required_updater_version)
-{
-    var msg = '<h1>Скрипт устарел! Чтобы продолжить использовать скрипт, вы должны <a href="http://alkar-forum-client.googlecode.com/svn/trunk/client_autoupdater.user.js">обновить updater</a> © <b>FelikZ</b></h1>';
-    var td = $('#logodesc > table tr > td:nth-child(2):first');
-    td.removeAttr('align');
-    var msg_block = '<div>'+msg+'</div>';
-    td.html(msg_block);
-    throw msg;
-}
 // Load stored data if its exist
 if($.jStorage.storageAvailable() && $.jStorage.get('is_stored_options') == 1)
 {
@@ -1518,7 +1518,7 @@ function ShowSettingsPopup()
 //#
 function AddSettingsButton()
 {
-    $('<a id="settings_pop_button" href="javascript:void(0);" onclick="ShowSettingsPopup();" style="margin-right: 12px;"><img src="http://img849.imageshack.us/img849/796/settingsicong.png" width="12" alt="*"> Настройки скрипта</a>').insertBefore('div#wrapheader div#menubar td.genmed[align=right] a:first');
+    $('<a title="Настройки клиента для форума" id="settings_pop_button" href="javascript:void(0);" onclick="ShowSettingsPopup();" style="margin-right: 12px;"><img src="http://img823.imageshack.us/img823/4684/settingsicon.png" width="12" height="13" alt="*"> Настройки скрипта</a>').insertBefore('div#wrapheader div#menubar td.genmed[align=right] a:first');
 }
 //#
 // General Scripts
