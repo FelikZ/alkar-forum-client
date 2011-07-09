@@ -802,12 +802,10 @@ function LinkyfyIt()
 //#
 function PostPass()
 {
-    var tables = document.getElementsByTagName('table');
     $('table.tablebg').each(function(i, table)
     {
         if(ProfilePass(table) == -1)
         {
-            alert($(table).html());
             $(table).remove();
             return;
         }
@@ -932,6 +930,7 @@ function ProfilePass(table)
         var user_name = null;
         var match = null;
         var is_punisher_target = false;
+        var rez = 0;
         $(table).find('td').each(function(i, td)
         {
             if(td.getAttribute('class') == "profile")
@@ -982,7 +981,7 @@ function ProfilePass(table)
                     {
                         if(user_name == ignore_authors[u])
                         {
-                            return -1;
+                            return rez=-1;
                         }
                     }
                 }
@@ -1021,7 +1020,7 @@ function ProfilePass(table)
                 }
             }
         });
-        return 0;
+        return rez;
 }
 //#
 // Auto Sort
