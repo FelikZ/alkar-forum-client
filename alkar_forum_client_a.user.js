@@ -631,7 +631,6 @@ function VualIt()
     $(document.createTextNode(' Вуализатор')).appendTo(span);
     
     span.appendTo(td);
-    break;
 }
 //#
 // Style
