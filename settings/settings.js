@@ -268,7 +268,7 @@ function OnLoadData()
         var cb = $(this).find('input[type=text], textarea');
         var nm = cb.attr('name');
         var vl = cb.attr('value');
-        if(typeof(nm) == 'undefined' || nm == null || typeof(vl) == 'undefined' || vl == null)
+        if(typeof(nm) == 'undefined' || nm == null || nm == '' || typeof(vl) == 'undefined' || vl == null)
         {
             return true;
         }
@@ -281,7 +281,6 @@ function OnLoadData()
                 eval('soptions.' + nm + ' = ["' + $.trim(vl.split(',\n').toString()).replace(/,(.*?)/gi, '","$1') + '"];');
                 break;
             default:
-                console.log(typeof(nm)); 
                 eval('soptions.' + nm + ' = "' + $.trim(vl) + '";');
                 break;
         }
