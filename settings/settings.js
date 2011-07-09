@@ -8,7 +8,7 @@
                     text-align: left;\
                     margin: 0 0 30px 0;\
                     padding: 0;\
-                    width:510px;\
+                    width:508px;\
                 }\
                 div#settings_box h2 {\
                     font-size: 16px;\
