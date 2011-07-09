@@ -212,9 +212,6 @@
                 "http://yaplakal.com/html/emoticons/faceoff.gif"
             ]
         };
-        /*$.each(soptions, function(i, val) {
-          console.log(i+ " => " + val);
-        });*/
     }
     //---------------------------------------------------------------------------------------------------
     // /End of Settings

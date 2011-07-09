@@ -153,25 +153,46 @@
         <h2>ЯП смайлы</h2>\
         <div class=\"script_option\"><textarea name=\"yap_smiles\" /></textarea></div>\
         <div style=\"clear:both;\"></div>\
+        <br />\
+        <a href=\"javascript:void(0);\" onclick=\"if(confirm('Точно хотите сбросить все настройки на заводские?')){$.jStorage.set('is_stored_options', 0); window.location=window.location;}\">Сбросить все на стройки</a>\
     </form>";
     return html;
 }
 function OnLoadData()
 {
-    $('#settings .script_option:has(\"input[type=checkbox]\")').click(function(e) {
+    // Handle check options
+    $('#settings_box form#settings .script_option:has("input[type=checkbox]")').click(function(e) {
         var cb = $(this).find('input[type=checkbox]');
         if(cb.is(':checked'))
         {
             cb.attr('checked', false);
+            eval('soptions.'+cb.attr('name')+' = false;');
         }
         else
         {
             cb.attr('checked', true);
+            eval('soptions.'+cb.attr('name')+' = true;');
         }
     });
-    
+    // Handle text options
+    $('#settings_box form#settings .script_option:has("input[type=text]"), #settings_box form#settings .script_option:has("textarea")').click(function(e) {
+        var cb = $(this).find('input[type=text], textarea');
+        switch(cb.attr('name'))
+        {
+            case 'qip_smiles':
+            case 'goha_smiles':
+            case 'anime_smiles':
+            case 'yap_smiles':
+                eval('soptions.'+cb.attr('name')+' = '+cb.attr('value').split(',\n'));
+                break;
+            default:
+                eval('soptions.'+cb.attr('name')+' = '+cb.attr('value'));
+                break;
+        }
+    });
+    // Load data to window
     $.each(soptions, function(key, val) {
-        var field = $('#settings input[name='+key+'], #settings textarea[name='+key+']');
+        var field = $('#settings_box form#settings input[name='+key+'], #settings_box form#settings textarea[name='+key+']');
         if(field.length)
         {
             if(typeof(val) == 'boolean')
@@ -198,5 +219,6 @@ function OnLoadData()
 }
 function OnSaveData()
 {
-    
+    $.jStorage.set('is_stored_options', 1);
+    $.jStorage.set('soptions', 1);
 }
