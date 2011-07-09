@@ -2,7 +2,7 @@
 // Do not touch the text below!!!
 //#
 //----------------------------------
-var version = "2.232";
+var version = "2.249";
 var required_updater_version = 3;
 //----------------------------------
 // Check version of updater
@@ -67,8 +67,8 @@ $('<style>').html("\
     #colorbox, #cboxOverlay, #cboxWrapper{position:absolute; top:0; left:0; z-index:9999; overflow:hidden;}\
     #cboxOverlay{position:fixed; width:100%; height:100%;}\
     #cboxMiddleLeft, #cboxBottomLeft{clear:left;}\
-    #cboxContent{position:relative;}\
-    #cboxLoadedContent{overflow:auto;}\
+    #cboxContent{position:relative;-webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;}\
+    #cboxLoadedContent{overflow:auto;-webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;}\
     #cboxTitle{margin:0;}\
     #cboxLoadingOverlay, #cboxLoadingGraphic{position:absolute; top:0; left:0; width:100%;}\
     #cboxPrevious, #cboxNext, #cboxClose, #cboxSlideshow{cursor:pointer;}\
@@ -1522,7 +1522,8 @@ function ShowSettingsPopup()
         open:true,
         returnFocus:false,
         initialWidth: 200,
-        initialHeight: 200
+        initialHeight: 200,
+        opacity: 0.4
     });
     $.getScript('http://alkar-forum-client.googlecode.com/svn/trunk/settings/settings.js', function()
     {
@@ -1530,6 +1531,7 @@ function ShowSettingsPopup()
             returnFocus:false,
             innerWidth:525,
             innerHeight:684,
+            opacity: 0.4,
             html:GetSettingsHtml(),
             onComplete:OnLoadData,
             onCleanup:OnSaveData
