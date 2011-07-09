@@ -66,7 +66,7 @@ if(typeof($.fn.outer)=='undefined'){$.fn.outer=function(a){if(a){$(a).insertBefo
 $('<link />').appendTo('head').attr({
     rel: 'stylesheet',
     type: 'text/css',
-    href: 'https://sites.google.com/site/thefelikz/colorbox/colorbox.css?attredirects=0&d=1'
+    href: 'https://sites.google.com/site/thefelikz/colorbox/colorbox.css?attredirects=0'
 });
 // Load stored data if its exist
 if($.jStorage.storageAvailable() && $.jStorage.get('is_stored_options') == 1)
