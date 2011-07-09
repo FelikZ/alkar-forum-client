@@ -3,7 +3,7 @@
 //#
 var version = "2.190";
 //----------------------------------
-var root = typeof unsafeWindow != 'undefined' ? unsafeWindow : window;
+
 //----------------------------------
 var cur_location = 0; // 0 - anywhere, 1 - post or pm, 2 - view topic, 3 - view forum, 4 - view forum list
 //----------------------------------
@@ -67,13 +67,13 @@ function InsertSmiles(smiles, td)
     //----------------------------------
     for(var i=0; i<smiles.length; i++)
     {
-        a = root.document.createElement("a");
+        a = document.createElement("a");
         a.setAttribute("href", "javascript:void(0)");
         a.setAttribute("style", "line-height: 20px;");
         var text = "insert_text('[img]"+smiles[i]+"[/img]', true); return false;";
         a.setAttribute("onclick", text);
         //----------------------------------
-        img = root.document.createElement("img");
+        img = document.createElement("img");
         img.setAttribute("hspace", "2");
         img.setAttribute("vspace", "2");
         img.setAttribute("title", "smile");
@@ -89,11 +89,11 @@ function CreateSpoiler(parent, id, title)
     if(parent == null)
         return null;
     //----------------------------------
-    var spoiler = root.document.createElement('div');
+    var spoiler = document.createElement('div');
         spoiler.innerHTML = "<div style=\"border-width: 2px 2px 1px; border-style: solid; border-color: rgb(185, 203, 220); font-size: 1em;\"><div style=\"border-bottom: 1px solid rgb(185, 203, 220); background-color: rgb(202, 220, 235); padding: 3px; font-size: 0.9em; font-weight: bold; display: block;\"><span style=\"cursor: pointer;\" onclick=\"if (this.parentNode.parentNode.getElementsByTagName('div')[1].getElementsByTagName('div')[0].style.display != '') {  this.parentNode.parentNode.getElementsByTagName('div')[1].getElementsByTagName('div')[0].style.display = ''; this.innerHTML = '<b><a href=\\\'javascript: void(0);\\\' onClick=\\\'return false;\\\'><img src=\\\'images/icon_minus_1.gif\\\' width=\\\'9\\\' height=\\\'9\\\' border=\\\'0\\\'></a> "+ title +"</b>'; } else { this.parentNode.parentNode.getElementsByTagName('div')[1].getElementsByTagName('div')[0].style.display = 'none'; this.innerHTML = '<b><a href=\\\'javascript: void(0);\\\' onClick=\\\'return false;\\\'><img src=\\\'images/icon_plus_1.gif\\\' width=\\\'9\\\' height=\\\'9\\\' border=\\\'0\\\'></a> "+ title +"</b>'; }\"><b><a href=\"javascript: void(0);\" onclick=\"return false;\"><img src=\"images/icon_plus_1.gif\" alt=\"\" border=\"0\" height=\"9\" width=\"9\"></a>&nbsp;"+ title +"</b></span></div><div><div id=\""+id+"\" style=\"display: none; border-bottom: 1px solid rgb(185, 203, 220); padding: 3px;\">&nbsp;</div></div></div>";
     parent.appendChild(spoiler);
     //----------------------------------
-    return root.document.getElementById(id);
+    return document.getElementById(id);
 }
 
 function InsertSmileContainers(parent)
@@ -103,11 +103,11 @@ function InsertSmileContainers(parent)
     var anime_container = parent;
     var yap_container = parent;
     //----------------------------------
-    parent.appendChild(root.document.createElement("br"));
-    var b = root.document.createElement("b");
-    b.appendChild(root.document.createTextNode(unescape("%u0421%u043C%u0430%u0439%u043B%u0438%u043A%u0438")+" by FelikZ:"));
+    parent.appendChild(document.createElement("br"));
+    var b = document.createElement("b");
+    b.appendChild(document.createTextNode(unescape("%u0421%u043C%u0430%u0439%u043B%u0438%u043A%u0438")+" by FelikZ:"));
     parent.appendChild(b);
-    parent.appendChild(root.document.createElement("br"));
+    parent.appendChild(document.createElement("br"));
     //----------------------------------
     if(soptions.enable_spoiler)
     {
@@ -159,17 +159,17 @@ function SmileIt()
             });
             break;
         case 1:
-            var div = root.document.getElementById("smiley-box");
+            var div = document.getElementById("smiley-box");
             //----------------------------------
             if(div != null)
             {
                 div.setAttribute('style','width:300px;');
                 //----------------------------------
-                var div2 = root.document.getElementById("message-box");
+                var div2 = document.getElementById("message-box");
                 if(div2 != null)
                 {
                     div2.setAttribute('style','width:870px;');
-                    var div3 = root.document.getElementById("message");
+                    var div3 = document.getElementById("message");
                     if(div3 != null)
                     {	
                         div3.setAttribute('style','height:500px;');
@@ -179,7 +179,7 @@ function SmileIt()
                 var hrs = div.getElementsByTagName('hr');
                 if(hrs != null && hrs.length > 0)
                 {
-                    var n_div = root.document.createElement("div");
+                    var n_div = document.createElement("div");
                     div.insertBefore(n_div,hrs[0]);
                     n_div.setAttribute('style','');
                     //----------------------------------
@@ -192,424 +192,391 @@ function SmileIt()
 //#
 // Vualizator
 //#
-var scr = "var soptions.auto_vualization=";
-if(soptions.auto_vualization)
-    scr += "true;";
-else
-    scr += "false;";
-scr += "\
-var vual = new Array('далбаёп',\
-'далбаеб',\
-'далбоёп',\
-'долбоёп',\
-'долбаёп',\
-'долпойоп',\
-'далпайоп',\
-'долбоё',\
-'ебаньк',\
-'ебанут',\
-'ебанит',\
-'ебанём',\
-'песд',\
-'писд',\
-'ебу ',\
+var vual = new Array('далбаёп',
+'далбаеб',
+'далбоёп',
+'долбоёп',
+'долбаёп',
+'долпойоп',
+'далпайоп',
+'долбоё',
+'ебаньк',
+'ебанут',
+'ебанит',
+'ебанём',
+'песд',
+'писд',
+'ебу ',
 'ебу\
-',\
-'хуит',\
-'заеб',\
-'заёб',\
-'ёбар',\
-'ебар',\
-'ёбан',\
-'ебат',\
-'бляд',\
-'бля',\
-'хуя',\
-'хую',\
-'хуй',\
-'хуё',\
-'хуйо',\
-'пизд',\
-'пезд',\
-'поебать',\
-'поебень',\
-'приебаться',\
-'проебать',\
-'проебаться',\
-'разёбанный',\
-'разъебай',\
-'разъебаться',\
-'еби ',\
+',
+'хуит',
+'заеб',
+'заёб',
+'ёбар',
+'ебар',
+'ёбан',
+'ебат',
+'бляд',
+'бля',
+'хуя',
+'хую',
+'хуй',
+'хуё',
+'хуйо',
+'пизд',
+'пезд',
+'поебать',
+'поебень',
+'приебаться',
+'проебать',
+'проебаться',
+'разёбанный',
+'разъебай',
+'разъебаться',
+'еби ',
 'еби\
-',\
-'уебать',\
-'уёбывать',\
-'сука',\
-'суке',\
-'суку',\
-'пидар',\
-'пидор',\
-'пидр',\
-'педар',\
-'педор',\
-'педр',\
-'педик',\
-'мудила',\
-'мудак',\
-'мудазвон',\
-'кретин',\
-'критин',\
-'далбаёб',\
-'долбаёб',\
-'долбоёб',\
-'далбайоп',\
-'долбайоп',\
-'долбойоп',\
-'далбойоп',\
-'дебил',\
-'дибил',\
-'дыбил',\
-'сучара',\
-'мразь',\
-'уебок',\
-'ебать',\
-'ебанько',\
-'уебан',\
-'уйобок',\
-'уйобак',\
-'уебак',\
-'уёбак',\
-'ебаный',\
-'ёбаный',\
-'йобаный',\
-'дура',\
-'далпайоп',\
-'долпойоп',\
-'далбаёб',\
-'долбоёб',\
-'долбаёб',\
-'долбаёп',\
-'долбоёп',\
-'далбоёп',\
-'далбаёп',\
-'блят',\
-'безпизды',\
-'безпезды',\
-'безпесды',\
-'беспесды',\
-'блядки',\
-'блядовать',\
-'блядство',\
-'блядь',\
-'взъёбка',\
-'впиздячить',\
-'всего нихуя',\
-'вхуярить',\
-'выебать',\
-'выёбываться',\
-'выпиздеться',\
-'выпиздить',\
-'дохуя',\
-'доебаться',\
-'долбоёб',\
-'допиздеться',\
-'допизды',\
-'дуроёб',\
-'ебало',\
-'ебальник',\
-'ебанатик',\
-'ебанн',\
-'ёбанн',\
-'ебанутый',\
-'ебануть',\
-'ёбаный',\
-'ебаришка',\
-'ёбарь',\
-'ебать',\
-'ебическ',\
-'еблив',\
-'ебло',\
-'еблом',\
-'еблысь',\
-'ёбля',\
-'ебля',\
-'ебукент',\
-'запиздет',\
-'захуярит',\
-'ебуч',\
-'испиздит',\
-'исхуячит',\
-'коноёбит',\
-'мозгоёб',\
-'мудоёб',\
-'нахуй',\
-'наебнут',\
-'напиздит',\
-'настоебат',\
-'нахуярит',\
-'нехуй',\
-'нихуя',\
-'отпиздит',\
-'отъебат',\
-'охуен',\
-'охуит',\
-'хуяч',\
-'перехуярить',\
-'хуёв',\
-'хуяк',\
-'хуями',\
-'ахуен',\
-'хуев',\
-'еблан',\
-'ебонат'\
-);\
-var vual_new = new Array('д*лб**п',\
-'д*лб**б',\
-'д*лб**п',\
-'д*лб**п',\
-'д*лб**п',\
-'д*лпо**п',\
-'д*лпа**п',\
-'д*лбо*',\
-'еб**ьк',\
-'еб**ут',\
-'еб**ит',\
-'еб**ём',\
-'п**д',\
-'п**д',\
-'*бу ',\
+',
+'уебать',
+'уёбывать',
+'сука',
+'суке',
+'суку',
+'пидар',
+'пидор',
+'пидр',
+'педар',
+'педор',
+'педр',
+'педик',
+'мудила',
+'мудак',
+'мудазвон',
+'кретин',
+'критин',
+'далбаёб',
+'долбаёб',
+'долбоёб',
+'далбайоп',
+'долбайоп',
+'долбойоп',
+'далбойоп',
+'дебил',
+'дибил',
+'дыбил',
+'сучара',
+'мразь',
+'уебок',
+'ебать',
+'ебанько',
+'уебан',
+'уйобок',
+'уйобак',
+'уебак',
+'уёбак',
+'ебаный',
+'ёбаный',
+'йобаный',
+'дура',
+'далпайоп',
+'долпойоп',
+'далбаёб',
+'долбоёб',
+'долбаёб',
+'долбаёп',
+'долбоёп',
+'далбоёп',
+'далбаёп',
+'блят',
+'безпизды',
+'безпезды',
+'безпесды',
+'беспесды',
+'блядки',
+'блядовать',
+'блядство',
+'блядь',
+'взъёбка',
+'впиздячить',
+'всего нихуя',
+'вхуярить',
+'выебать',
+'выёбываться',
+'выпиздеться',
+'выпиздить',
+'дохуя',
+'доебаться',
+'долбоёб',
+'допиздеться',
+'допизды',
+'дуроёб',
+'ебало',
+'ебальник',
+'ебанатик',
+'ебанн',
+'ёбанн',
+'ебанутый',
+'ебануть',
+'ёбаный',
+'ебаришка',
+'ёбарь',
+'ебать',
+'ебическ',
+'еблив',
+'ебло',
+'еблом',
+'еблысь',
+'ёбля',
+'ебля',
+'ебукент',
+'запиздет',
+'захуярит',
+'ебуч',
+'испиздит',
+'исхуячит',
+'коноёбит',
+'мозгоёб',
+'мудоёб',
+'нахуй',
+'наебнут',
+'напиздит',
+'настоебат',
+'нахуярит',
+'нехуй',
+'нихуя',
+'отпиздит',
+'отъебат',
+'охуен',
+'охуит',
+'хуяч',
+'перехуярить',
+'хуёв',
+'хуяк',
+'хуями',
+'ахуен',
+'хуев',
+'еблан',
+'ебонат'
+);
+var vual_new = new Array('д*лб**п',
+'д*лб**б',
+'д*лб**п',
+'д*лб**п',
+'д*лб**п',
+'д*лпо**п',
+'д*лпа**п',
+'д*лбо*',
+'еб**ьк',
+'еб**ут',
+'еб**ит',
+'еб**ём',
+'п**д',
+'п**д',
+'*бу ',
 '*бу\
-',\
-'х**т',\
-'з**б',\
-'з**б',\
-'ё**р',\
-'е**р',\
-'ё**н',\
-'е**т',\
-'б**д',\
-'бл*',\
-'ху*',\
-'ху*',\
-'ху*',\
-'ху*',\
-'ху**',\
-'п**д',\
-'п**д',\
-'по**ать',\
-'по**ень',\
-'при**аться',\
-'про**ать',\
-'про**аться',\
-'раз**анный',\
-'раз**бай',\
-'раз**баться',\
-'еб* ',\
+',
+'х**т',
+'з**б',
+'з**б',
+'ё**р',
+'е**р',
+'ё**н',
+'е**т',
+'б**д',
+'бл*',
+'ху*',
+'ху*',
+'ху*',
+'ху*',
+'ху**',
+'п**д',
+'п**д',
+'по**ать',
+'по**ень',
+'при**аться',
+'про**ать',
+'про**аться',
+'раз**анный',
+'раз**бай',
+'раз**баться',
+'еб* ',
 'еб*\
-',\
-'уе**ть',\
-'уё**вать',\
-'с*ка',\
-'с*ке',\
-'с*ку',\
-'п**ар',\
-'п**ор',\
-'п**р',\
-'п**ар',\
-'п**ор',\
-'п**р',\
-'п*д*к',\
-'му**ла',\
-'му**к',\
-'му**звон',\
-'кр*т*н',\
-'кр*т*н',\
-'д*лб**б',\
-'д*лб**б',\
-'д*лб**б',\
-'д*лб**оп',\
-'д*лб**оп',\
-'д*лб**оп',\
-'д*лб**оп',\
-'д*б*л',\
-'д*б*л',\
-'д*б*л',\
-'с*чара',\
-'мр*зь',\
-'у*б*к',\
-'е**ть',\
-'е**нько',\
-'у**ан',\
-'у**бок',\
-'у**бак',\
-'у**ак',\
-'у**ак',\
-'е**ный',\
-'ё**ный',\
-'йо**ный',\
-'д*р*',\
-'д*лп**оп',\
-'д*лп**оп',\
-'д*лб**б',\
-'д*лб**б',\
-'д*лб**б',\
-'д*лб**п',\
-'д*лб**п',\
-'д*лб**п',\
-'д*лб**п',\
-'бл*т',\
-'безп**ды',\
-'безп**ды',\
-'безп**ды',\
-'бесп**ды',\
-'бл*дки',\
-'бл*довать',\
-'бл*дство',\
-'бл*дь',\
-'взъ**ка',\
-'впи**ячить',\
-'всего н**уя',\
-'вх**рить',\
-'вы**ать',\
-'вы**ываться',\
-'выпи**еться',\
-'выпи**ить',\
-'до**я',\
-'до**аться',\
-'д*лб**б',\
-'допи**еться',\
-'допи**ы',\
-'д*ро*б',\
-'е**ло',\
-'е**льник',\
-'е**натик',\
-'е**нн',\
-'ё**нн',\
-'е**нутый',\
-'е**нуть',\
-'ё**ный',\
-'е**ришка',\
-'ё**рь',\
-'е**ть',\
-'е**ческ',\
-'*бл*в',\
-'*бл*',\
-'*бл*м',\
-'*блысь',\
-'ё**я',\
-'е**я',\
-'е*укент',\
-'запи**ет',\
-'зах**рит',\
-'е*уч',\
-'испи**ит',\
-'исх**чит',\
-'коно*б*т',\
-'мозго**',\
-'мудо**',\
-'на**й',\
-'на**нут',\
-'напи**ит',\
-'настое*ат',\
-'на**ярит',\
-'не**й',\
-'ни**я',\
-'отпи**ит',\
-'отъе**т',\
-'ох**н',\
-'ох**т',\
-'х**ч',\
-'перех**рить',\
-'х**в',\
-'х**к',\
-'х**ми',\
-'ах**н',\
-'х*ев',\
-'е*лан',\
-'е*онат'\
-);\
-var root = typeof unsafeWindow != 'undefined' ? unsafeWindow : window;\
-var form_name = 'postform';\
-var text_name = 'message';\
-function VualText(text)\
-{\
-    text = ' ' + text;\
-    var start = 0, end = 0;\
-    for(var i=0; i<vual.length; i++)\
-    {\
-        text = text.replace(new RegExp(vual[i],'g'),vual_new[i]);\
-    }\
-    text = text.substring(0,text.length);\
-    return text;\
-}\
-function VualAll()\
-{\
-if(root.document.forms[form_name] == 'undefined')\
-    return;\
-    var txtarea = root.document.forms[form_name].elements[text_name];\
-    txtarea.focus();\
-    var selEnd = txtarea.textLength;\
-    var selStart = 0;\
-    var scrollTop = txtarea.scrollTop;\
-    txtarea.value = VualText(txtarea.value);\
-    txtarea.selectionStart = selEnd;\
-    txtarea.selectionEnd = txtarea.selectionStart;\
-    txtarea.focus();\
-    txtarea.scrollTop = scrollTop;\
-}\
-function VualPart()\
-{\
-if(root.document.forms[form_name] == 'undefined')\
-    return;\
-var txtarea = root.document.forms[form_name].elements[text_name];\
-    txtarea.focus();\
-\
-\
-var selLength = txtarea.textLength;\
-var selStart = txtarea.selectionStart;\
-var selEnd = txtarea.selectionEnd;\
-var scrollTop = txtarea.scrollTop;\
-\
-if (selEnd == 1 || selEnd == 2) \
-{\
-    selEnd = selLength;\
-}\
-\
-var s1 = (txtarea.value).substring(0,selStart);\
-var s2 = VualText((txtarea.value).substring(selStart, selEnd));\
-var s3 = (txtarea.value).substring(selEnd, selLength);\
-txtarea.value = s1 + s2 + s3;\
-txtarea.selectionStart = selEnd;\
-txtarea.selectionEnd = txtarea.selectionStart;\
-txtarea.focus();\
-txtarea.scrollTop = scrollTop;\
-}\
-\
-function SetButtonsAutoVual(is_true)\
-{\
-    var preview = root.document.getElementsByName('preview');\
-    var post = root.document.getElementsByName('post');\
-    if(post.length==0 || preview.length==0)\
-        return;\
-    preview = preview[0];\
-    post = post[0];\
-    if(is_true)\
-    {\
-        preview.setAttribute('onclick','VualAll(); return true;');\
-        post.setAttribute('onclick','VualAll(); return true;');\
-    }\
-    else\
-    {\
-        preview.setAttribute('onclick','return true;');\
-        post.setAttribute('onclick','return true;');\
-    }\
-    soptions.auto_vualization = is_true;\
-}\
-function OnAutoVualorClick(its)\
-{\
-    SetButtonsAutoVual(!soptions.auto_vualization);\
-}\
-";
+',
+'уе**ть',
+'уё**вать',
+'с*ка',
+'с*ке',
+'с*ку',
+'п**ар',
+'п**ор',
+'п**р',
+'п**ар',
+'п**ор',
+'п**р',
+'п*д*к',
+'му**ла',
+'му**к',
+'му**звон',
+'кр*т*н',
+'кр*т*н',
+'д*лб**б',
+'д*лб**б',
+'д*лб**б',
+'д*лб**оп',
+'д*лб**оп',
+'д*лб**оп',
+'д*лб**оп',
+'д*б*л',
+'д*б*л',
+'д*б*л',
+'с*чара',
+'мр*зь',
+'у*б*к',
+'е**ть',
+'е**нько',
+'у**ан',
+'у**бок',
+'у**бак',
+'у**ак',
+'у**ак',
+'е**ный',
+'ё**ный',
+'йо**ный',
+'д*р*',
+'д*лп**оп',
+'д*лп**оп',
+'д*лб**б',
+'д*лб**б',
+'д*лб**б',
+'д*лб**п',
+'д*лб**п',
+'д*лб**п',
+'д*лб**п',
+'бл*т',
+'безп**ды',
+'безп**ды',
+'безп**ды',
+'бесп**ды',
+'бл*дки',
+'бл*довать',
+'бл*дство',
+'бл*дь',
+'взъ**ка',
+'впи**ячить',
+'всего н**уя',
+'вх**рить',
+'вы**ать',
+'вы**ываться',
+'выпи**еться',
+'выпи**ить',
+'до**я',
+'до**аться',
+'д*лб**б',
+'допи**еться',
+'допи**ы',
+'д*ро*б',
+'е**ло',
+'е**льник',
+'е**натик',
+'е**нн',
+'ё**нн',
+'е**нутый',
+'е**нуть',
+'ё**ный',
+'е**ришка',
+'ё**рь',
+'е**ть',
+'е**ческ',
+'*бл*в',
+'*бл*',
+'*бл*м',
+'*блысь',
+'ё**я',
+'е**я',
+'е*укент',
+'запи**ет',
+'зах**рит',
+'е*уч',
+'испи**ит',
+'исх**чит',
+'коно*б*т',
+'мозго**',
+'мудо**',
+'на**й',
+'на**нут',
+'напи**ит',
+'настое*ат',
+'на**ярит',
+'не**й',
+'ни**я',
+'отпи**ит',
+'отъе**т',
+'ох**н',
+'ох**т',
+'х**ч',
+'перех**рить',
+'х**в',
+'х**к',
+'х**ми',
+'ах**н',
+'х*ев',
+'е*лан',
+'е*онат'
+);
+
+var form_name = 'postform';
+var text_name = 'message';
+function VualText(text)
+{
+    text = ' ' + text;
+    var start = 0, end = 0;
+    for(var i=0; i<vual.length; i++)
+    {
+        text = text.replace(new RegExp(vual[i],'g'),vual_new[i]);
+    }
+    text = text.substring(0,text.length);
+    return text;
+}
+function VualAll()
+{
+    if(document.forms[form_name] == 'undefined')
+        return;
+    var txtarea = document.forms[form_name].elements[text_name];
+    txtarea.focus();
+    var selEnd = txtarea.textLength;
+    var selStart = 0;
+    var scrollTop = txtarea.scrollTop;
+    txtarea.value = VualText(txtarea.value);
+    txtarea.selectionStart = selEnd;
+    txtarea.selectionEnd = txtarea.selectionStart;
+    txtarea.focus();
+    txtarea.scrollTop = scrollTop;
+}
+
+function SetButtonsAutoVual(is_true)
+{
+    var preview = document.getElementsByName('preview');
+    var post = document.getElementsByName('post');
+    if(post.length==0 || preview.length==0)
+        return;
+    preview = preview[0];
+    post = post[0];
+    if(is_true)
+    {
+        preview.setAttribute('onclick','VualAll(); return true;');
+        post.setAttribute('onclick','VualAll(); return true;');
+    }
+    else
+    {
+        preview.setAttribute('onclick','return true;');
+        post.setAttribute('onclick','return true;');
+    }
+    soptions.enable_auto_vualization = is_true;
+}
+function OnAutoVualorClick(its)
+{
+    SetButtonsAutoVual(!soptions.enable_auto_vualization);
+}
+
 function AddStyle()
 {
     var s = document.createElement('style');
@@ -618,12 +585,12 @@ function AddStyle()
         \
     ";
     
-    root.document.getElementsByTagName('head')[0].appendChild(s); 
+    document.getElementsByTagName('head')[0].appendChild(s); 
 }
 function SetButtonsAutoVual_inner(is_true)
 {
-    var preview = root.document.getElementsByName('preview');
-    var post = root.document.getElementsByName('post');
+    var preview = document.getElementsByName('preview');
+    var post = document.getElementsByName('post');
 
     if(post.length==0 || preview.length==0)
         return;
@@ -639,82 +606,32 @@ function SetButtonsAutoVual_inner(is_true)
         preview.setAttribute('onclick','return true;');
         post.setAttribute('onclick','return true;');
     }
-    soptions.auto_vualization = is_true;
+    soptions.enable_auto_vualization = is_true;
 }
 function VualIt()
 {
-    var s = $('<script>');
-    s.attr('type', 'text/javascript');
-    s.html(scr);
-    s.appendTo('head:first');
+    SetButtonsAutoVual_inner(soptions.enable_auto_vualization);
     
-    SetButtonsAutoVual_inner(soptions.auto_vualization);
+    var td = $('div#wrapcentre form table.tablebg tr td.row2 table tr:nth-child(1) span.genmed.nowrap:first').parent();
+    var auto_vual = $("<input>")
+    .attr('class','radio')
+    .attr('type','checkbox')
+    .attr('name','auto_vualor')
+    .attr('onclick','OnAutoVualorClick(this); return true;');
     
-    var tds = root.document.getElementsByTagName("td");
+    if(soptions.enable_auto_vualization)
+        auto_vual.attr('checked','checked');
+    else
+        auto_vual.attr('checked','unchecked');
     
-    if(!tds)
-        return;
-    var is_found = false;
+    var span = $("<span>")
+    .attr('class','genmed nowrap');
     
-    for(var i=0; i<tds.length; i++)
-    {
-        for(var j=0; j<tds[i].childNodes.length; j++)
-        {
-            
-            if(tds[i].childNodes[j].attributes)
-            {
-                if(tds[i].childNodes[j].getAttribute('class') == 'btnbbcode')
-                {
-                    is_found = true;
-                    break;
-                }
-            }
-        }
-        if(is_found)
-        {
-            var auto_vual = root.document.createElement("input");
-            auto_vual.setAttribute('class','radio');
-            auto_vual.setAttribute('type','checkbox');
-            auto_vual.setAttribute('name','auto_vualor');
-            auto_vual.setAttribute('onclick','OnAutoVualorClick(this); return true;');
-            
-            if(soptions.auto_vualization)
-                auto_vual.setAttribute('checked','checked');
-            else
-                auto_vual.setAttribute('checked','unchecked');
-            
-            var span = root.document.createElement("span");
-            span.setAttribute('class','genmed nowrap');
-            span.appendChild(auto_vual);
-            span.appendChild(root.document.createTextNode(' Вуализатор'));
-            
-            var in1 = root.document.createElement("input");
-            in1.setAttribute('class','btnbbcode');
-            in1.setAttribute('type','button');
-            in1.setAttribute('style','width: 52px;');
-            in1.setAttribute('value','VualAll');
-            in1.setAttribute('name','vual_all');
-            in1.setAttribute('onclick','VualAll();');
-            
-            var in2 = root.document.createElement("input");
-            in2.setAttribute('class','btnbbcode');
-            in2.setAttribute('type','button');
-            in2.setAttribute('style','width: 40px;');
-            in2.setAttribute('value','Vual');
-            in2.setAttribute('name','vual_one');
-            in2.setAttribute('onclick','VualPart();');
-            
-            if(soptions.enable_vual_part_button)
-            tds[i].appendChild(in2);
-            
-            if(soptions.enable_vual_all_button)
-            tds[i].appendChild(in1);
-            
-            tds[i].appendChild(span);
-            break;
-        }
-    }
+    auto_vual.appendTo(span);
+    $(document.createTextNode(' Вуализатор')).appendTo(span);
     
+    span.appendTo(td);
+    break;
 }
 //#
 // Style
@@ -727,7 +644,7 @@ function StyleIt()
         
     td.html('');
     td.attr('bgcolor', soptions.color);
-    var a = root.document.createElement('a');
+    var a = document.createElement('a');
     a.setAttribute('href', '#');
     a.setAttribute('style', 'text-decoration: none;style="color:'+soptions.color+';');
     a.setAttribute('onclick', "bbfontstyle('"+soptions.tags_before+"[color="+soptions.color+"]', '[/color]"+soptions.tags_after+"'); return false;");
@@ -751,7 +668,7 @@ function LinksPass()
         match = href.match(reg_youtube);
         if(match != null)
         {
-            var obj = root.document.createElement('iframe');
+            var obj = document.createElement('iframe');
             obj.setAttribute('width','640');
             obj.setAttribute('height', '385');
             obj.setAttribute('type', 'text/html');
@@ -768,7 +685,7 @@ function LinksPass()
 
             if(match != null)
             {
-                var obj = root.document.createElement('object');
+                var obj = document.createElement('object');
                 obj.setAttribute('width','640');
                 obj.setAttribute('height', '385');
                 obj.innerHTML = "<param name=\"movie\" value=\"http://video.rutube.ru/"+match[1]+"\"></param><param name=\"allowFullScreen\" value=\"true\"></param><param name=\"allowscriptaccess\" value=\"always\"></param><embed src=\"http://video.rutube.ru/"+match[1]+"\" type=\"application/x-shockwave-flash\" allowscriptaccess=\"always\" wmode=\"window\" allowfullscreen=\"true\" width=\"640\" height=\"385\"></embed>";
@@ -782,7 +699,7 @@ function LinksPass()
 
                 if(match != null)
                 {
-                    var obj = root.document.createElement('object');
+                    var obj = document.createElement('object');
                     obj.setAttribute('width','640');
                     obj.setAttribute('height', '385');
                     obj.innerHTML = "<param name=\"movie\" value=\"http://video.bigmir.net/extplayer/"+match[1]+"/\"></param><param name=\"allowFullScreen\" value=\"true\"></param><param name=\"allowscriptaccess\" value=\"always\"></param><embed src=\"http://video.bigmir.net/extplayer/"+match[1]+"/\" type=\"application/x-shockwave-flash\" allowscriptaccess=\"always\" wmode=\"window\" allowfullscreen=\"true\" width=\"640\" height=\"385\"></embed>";
@@ -842,7 +759,7 @@ function LinkyfyIt()
 //#
 function PostPass()
 {
-    var tables = root.document.getElementsByTagName('table');
+    var tables = document.getElementsByTagName('table');
     $('table.tablebg').each(function(i, table)
     {
         if(ProfilePass(table) == -1)
@@ -857,7 +774,7 @@ function PostPass()
 //#
 function IgnoreIt()
 {
-        var trs = root.document.getElementsByTagName('tr');
+        var trs = document.getElementsByTagName('tr');
         var is_true = false;
         for(var i=0; i<trs.length; i++)
         {
@@ -1162,7 +1079,7 @@ function QuotePass()
     {
         if(!soptions.enable_quote_force_hide && div.innerHTML.length < 1000 && div.innerHTML.match(reg) == null)
             return true;
-        var sub_div = root.document.createElement("div");
+        var sub_div = document.createElement("div");
         sub_div.style.display = 'none';
         sub_div.innerHTML = div.innerHTML;
         div.innerHTML = "<a href=\"javascript: void(0);\" onclick=\"this.parentNode.getElementsByTagName('div')[0].style.display=null; this.parentNode.removeChild(this); return false;\"> [раскрыть цитату] </a>";
@@ -1653,8 +1570,8 @@ function PostProcess()
 //#
 (function() 
 {
-	root.document.title = root.document.title + ' • ForumClient v' + version + ' • by FelikZ';
-	var div_info = $(root.document.createElement('div'));
+	document.title = document.title + ' • ForumClient v' + version + ' • by FelikZ';
+	var div_info = $(document.createElement('div'));
 	div_info.css('float', 'right');
 	div_info.html("• Forum client v" + version + " • by <a href='http://thefelikz.blogspot.com/' title='Блог разработчика' target='_blank' style='color:darkred;letter-spacing:1px;'><strong>FelikZ</strong></a>");
 	$(div_info).appendTo('#datebar');
