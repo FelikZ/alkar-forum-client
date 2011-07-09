@@ -1,4 +1,5 @@
-﻿// ==UserScript==
+﻿
+// ==UserScript==
 // @name           ForumClient 2 [Alkar]
 // @namespace      FelikZ
 // @description    enjoy it :)
