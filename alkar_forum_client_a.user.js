@@ -1677,7 +1677,7 @@ function PostProcess()
 	var div_info = $(root.document.createElement('div'));
 	div_info.css('float', 'right;');
 	div_info.html("• Forum client v" + version + " • by <a href='http://thefelikz.blogspot.com/' title='Блог разработчика' target='_blank' style='color:darkred;letter-spacing:1px;'><strong>FelikZ</strong></a>");
-	datebar.appendChild(div_info);
+	$(div_info).appendTo(datebar);
 	//#
 	// Start scripts
 	//#
