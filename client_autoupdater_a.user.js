@@ -1,9 +1,9 @@
 ﻿// ==UserScript==
-// @name           ForumClient 2 [Alkar]
+// @name           ForumClient [Alkar]
 // @namespace      FelikZ
 // @description    enjoy it :)
 // @include        http://games.alkar.net/phpBB*
-// @version        2.2
+// @version        3
 // @author         FelikZ ( http://thefelikz.blogspot.com/ )
 // ==/UserScript==
 
@@ -17,6 +17,7 @@
     ***************************************************/
     function Script()
     {
+        var updater_version = 3;
         var soptions = {
             "enable_smiles": true,                //Показывать новые смайлы
             "enable_style": true,                //Показывать стильную кнопку

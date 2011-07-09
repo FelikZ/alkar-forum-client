@@ -2,6 +2,7 @@
 // Do not touch the text below!!!
 //#
 var version = "2.190";
+var required_updater_version = 3;
 //----------------------------------
 
 //----------------------------------
@@ -57,6 +58,16 @@ $('<link />').appendTo('head').attr({
     type: 'text/css',
     href: 'https://sites.google.com/site/thefelikz/colorbox/colorbox.css?attredirects=0&d=1'
 });
+// Check version of updater
+if(typeof(updater_version) == 'undefined' || updater_version < required_updater_version)
+{
+    var msg = '<h1>Скрипт устарел! Чтобы продолжить использовать скрипт, вы должны <a href="http://alkar-forum-client.googlecode.com/svn/trunk/client_autoupdater.user.js">обновить updater</a> © <b>FelikZ</b></h1>';
+    var td = $('#logodesc > table tr > td:nth-child(2):first');
+    td.removeAttr('align');
+    var msg_block = '<div>'+msg+'</div>';
+    td.html(msg_block);
+    throw msg;
+}
 // Load stored data if its exist
 if($.jStorage.storageAvailable() && $.jStorage.get('is_stored_options') == 1)
 {
