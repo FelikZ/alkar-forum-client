@@ -58,11 +58,8 @@
         <div style=\"clear:both;\"></div>\
         <div class=\"script_option\"><input type=\"checkbox\" name=\"enable_punisher\" />            <label>FFFFFFFFFFFFFFFUUUUUUUUUUUU mode</label></div>\
         <div style=\"clear:both;\"></div>\
-        <div class=\"script_option\"><select name=\"theme\">\
-            <option value=\"0\">Стандартная</option>\
-            <option value=\"1\">Prosilver</option>\
-        </select>\
-        <label>тема на форуме</label></div>\
+        <div class=\"script_option\"><input type=\"text\" name=\"theme\" value=\"0\" maxlength=\"1\" size=\"1\" />\
+        <label>тема на форуме (0-стандартная, 1-prosilver)</label></div>\
         <div style=\"clear:both;\"></div>\
         <!--\
         Smile settings\
@@ -82,11 +79,11 @@
         Style settings\
         -->\
         <h2>Настройка стиля</h2>\
-        <div class=\"script_option\"><input type=\"input\" name=\"tags_before\" value=\"\" />        <label>Теги перед текстом</label></div>\
+        <div class=\"script_option\"><input type=\"text\" name=\"tags_before\" value=\"\" />        <label>Теги перед текстом</label></div>\
         <div style=\"clear:both;\"></div>\
-        <div class=\"script_option\"><input type=\"input\" name=\"color\" value=\"#220000\" onfocus=\"$('#text_color').css('color', this.value);\" onchange=\"$('#text_color').css('color', this.value);\" maxlength=\"14\" />        <label id=\"text_color\">Цвет текста</label></div> <span style='float:left;'>(<a href=\"http://www.colorpicker.com/\" target=\"_blank\">выбрать цвет</a>)</span>\
+        <div class=\"script_option\"><input type=\"text\" name=\"color\" value=\"#220000\" onfocus=\"$('#text_color').css('color', this.value);\" onchange=\"$('#text_color').css('color', this.value);\" maxlength=\"14\" />        <label id=\"text_color\">Цвет текста</label></div> <span style='float:left;'>(<a href=\"http://www.colorpicker.com/\" target=\"_blank\">выбрать цвет</a>)</span>\
         <div style=\"clear:both;\"></div>\
-        <div class=\"script_option\"><input type=\"input\" name=\"tags_after\" value=\"\" />        <label>Теги после текста</label></div>\
+        <div class=\"script_option\"><input type=\"text\" name=\"tags_after\" value=\"\" />        <label>Теги после текста</label></div>\
         <div style=\"clear:both;\"></div>\
         <!--\
         Vualizator settings\
@@ -106,7 +103,7 @@
         <div style=\"clear:both;\"></div>\
         <div class=\"script_option\"><input type=\"checkbox\" name=\"enable_auto_page_refresh\" />   <label>Включить авто-обновление списка тем</label></div>\
         <div style=\"clear:both;\"></div>\
-        <div class=\"script_option\"><input type=\"input\" name=\"auto_page_refresh_invterval\" value=\"30\" /> <label>Интервал авто-обновления (сек)</label></div>\
+        <div class=\"script_option\"><input type=\"text\" name=\"auto_page_refresh_invterval\" value=\"30\" /> <label>Интервал авто-обновления (сек)</label></div>\
         <div style=\"clear:both;\"></div>\
         <!--\
         Twitter settings\
@@ -114,14 +111,14 @@
         <h2>Настройка twitter'а</h2>\
         <div class=\"script_option\"><input type=\"checkbox\" name=\"enable_twitter_block\" />       <label>Включить FelikZ's Mind</label></div>\
         <div style=\"clear:both;\"></div>\
-        <div class=\"script_option\"><input type=\"input\" name=\"twits_count\" value=\"12\" />     <label>Колличество последних твитов</label></div>\
+        <div class=\"script_option\"><input type=\"text\" name=\"twits_count\" value=\"12\" />     <label>Колличество последних твитов</label></div>\
         <div style=\"clear:both;\"></div>\
     </form>";
     return html;
 }
 function OnCompleteLoad()
 {
-    $('.script_option:has(\"input[type=checkbox]\")').click(function(e) {
+    $('#settings .script_option:has(\"input[type=checkbox]\")').click(function(e) {
         var cb = $(this).find('input[type=checkbox]');
         if(cb.is(':checked'))
         {
@@ -130,6 +127,28 @@ function OnCompleteLoad()
         else
         {
             cb.attr('checked', true);
+        }
+    });
+    
+    $.each(soptions, function(key, val) {
+        var field = $('#settings input[name='+key+']');
+        if(!field.is(':empty'))
+        {
+            if(typeof(val) == 'boolean')
+            {
+                if(val)
+                {
+                    field.attr('checked', true);
+                }
+                else
+                {
+                    field.attr('checked', false);
+                }
+            }
+            else
+            {
+                field.value = val;
+            }
         }
     });
 }
