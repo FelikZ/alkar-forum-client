@@ -972,13 +972,11 @@ function ProfilePass(table)
             else
             {
                 var b = $(td).find('b.postauthor:first');
-alert(1);
-                user_name = b.innerHTML;
+
+                user_name = b.html();
                 if(soptions.enable_extended_ignore)
                 {
                     ignore_authors = soptions.ignore_authors.split(',');
-                    alert(soptions.ignore_authors);
-                    alert(ignore_authors);
                     for(var u=0; u<ignore_authors.length; u++)
                     {
                         if(user_name == ignore_authors[u])
