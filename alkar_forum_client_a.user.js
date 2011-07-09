@@ -1576,7 +1576,7 @@ function ShowSettingsPopup()
 {
     var css_url = 'http://alkar-forum-client.googlecode.com/svn/trunk/settings/colorbox.css';
     var script_url = 'http://alkar-forum-client.googlecode.com/svn/trunk/settings/jquery.colorbox-min.js';
-    if(!$('head link[href="'+css_url+'"]').is(':empty'))
+    if($('head link[href="'+css_url+'"]').is(':empty'))
     {
         $('<link>').appendTo('head').attr({
             rel: 'stylesheet',
@@ -1584,7 +1584,7 @@ function ShowSettingsPopup()
             href: css_url
         });
     }
-    if(!$('head script[src="'+script_url+'"]').is(':empty'))
+    if($('head script[src="'+script_url+'"]').is(':empty'))
     {
         $.getScript(script_url, function() {
             _ShowSettingsPopup();
