@@ -281,6 +281,7 @@ function OnLoadData()
                 eval('soptions.' + nm + ' = ["' + $.trim(vl.split(',\n').toString()).replace(/,(.*?)/gi, '","$1') + '"];');
                 break;
             default:
+                console.log(typeof(nm)); 
                 eval('soptions.' + nm + ' = "' + $.trim(vl) + '";');
                 break;
         }
