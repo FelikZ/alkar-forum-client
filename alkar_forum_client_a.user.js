@@ -834,7 +834,7 @@ function IgnoreIt()
                 {
                     if(tds[j].getAttribute('class') == "gensmall")
                     {
-                        if(tds[j].innerHTML.search(unescape("%u043D%u0430%u0445%u043E%u0434%u044F%u0449%u0438%u0439%u0441%u044F%20%u0432%20%u0432%u0430%u0448%u0435%u043C%20%u0447%u0451%u0440%u043D%u043E%u043C%20%u0441%u043F%u0438%u0441%u043A%u0435.")) != -1)
+                        if(tds[j].innerHTML.search("находящийся в вашем чёрном списке.") != -1)
                         {
                             tds[j].parentNode.removeChild(tds[j]);
                             is_true = true;
@@ -850,40 +850,40 @@ function IgnoreIt()
 //#
 function GetStatusName(month, year)
 {
-    if(unescape('%u044F%u043D%u0432') == month){
+    if("янв" == month){
         month = 1;
     }
-    else if(unescape('%u0444%u0435%u0432') == month){
+    else if("фев" == month){
         month = 2;
     }
-    else if(unescape('%u043C%u0430%u0440') == month){
+    else if("мар" == month){
         month = 3;
     }
-    else if(unescape('%u0430%u043F%u0440') == month){
+    else if("апр" == month){
         month = 4;
     }
-    else if(unescape('%u043C%u0430%u0439') == month){
+    else if("май" == month){
         month = 5;
     }
-    else if(unescape('%u0438%u044E%u043D') == month){
+    else if("июн" == month){
         month = 6;
     }
-    else if(unescape('%u0438%u044E%u043B') == month){
+    else if("июл" == month){
         month = 7;
     }
-    else if(unescape('%u0430%u0432%u0433') == month){
+    else if("авг" == month){
         month = 8;
     }
-    else if(unescape('%u0441%u0435%u043D') == month){
+    else if("сен" == month){
         month = 9;
     }
-    else if(unescape('%u043E%u043A%u0442') == month){
+    else if("окт" == month){
         month = 10;
     }
-    else if(unescape('%u043D%u043E%u044F') == month){
+    else if("ноя" == month){
         month = 11;
     }
-    else if(unescape('%u0434%u0435%u043A') == month){
+    else if("дек" == month){
         month = 12;
     }
     year = parseInt(year);
@@ -892,28 +892,28 @@ function GetStatusName(month, year)
     var i_today = today.getFullYear() * 12 + (today.getMonth()+1);
     var dif = i_today - i_date;
     if(dif >= -1 && dif < 6){
-        return unescape("%u0422%u0432%u0438%u043D%u043A");
+        return "Твинк";
     }
     else if(dif >= 6 && dif < 12){
-        return unescape("%u0421%u0442%u0443%u0434%u0435%u043D%u0442");
+        return "Студент";
     }
     else if(dif >= 12 && dif < 24){
-        return unescape("%u0410%u0441%u043F%u0438%u0440%u0430%u043D%u0442");
+        return "Аспирант";
     }
     else if(dif >= 24 && dif < 36){
-        return unescape("%u0414%u043E%u0446%u0435%u043D%u0442");
+        return "Доцент";
     }
     else if(dif >= 36 && dif < 48){
-        return unescape("%u0410%u043A%u0430%u0434%u0435%u043C%u0438%u043A");
+        return "Академик";
     }
     else if(dif >= 48 && dif < 60){
-        return unescape("%u041F%u0440%u043E%u0444%u0435%u0441%u0441%u043E%u0440");
+        return "Профессор";
     }
     else if(dif >= 60 && dif < 72){
-        return unescape("%u0414%u0435%u043C%u0430%u0433%u043E%u0433");
+        return "Демагог";
     }
     else if(dif >= 72){
-        return unescape("%u0421%u0442%u0430%u0440%u044B%u0439 %20%u041C%u0430%u0440%u0430%u0437%u043C%u0430%u0442%u0438%u043A");
+        return "Старый Маразматик";
     }
 }
 function ProfilePass()
@@ -960,9 +960,9 @@ function ProfilePass()
             profile = td;
             $(profile).find('span.postdetails').each(function(x, span)
             {
-                if(soptions.enable_status && user.innerHTML == unescape('%u041F%u043E%u043B%u044C%u0437%u043E%u0432%u0430%u0442%u0435%u043B%u044C'))
+                if(soptions.enable_status && user.innerHTML == "Пользователь")
                 {
-                    reg = new RegExp('\<b\>'+unescape('%u0417%u0430%u0440%u0435%u0433%u0438%u0441%u0442%u0440%u0438%u0440%u043E%u0432%u0430%u043D')+'\:\<\/b\> (['+unescape('%u0430-%u044F%u0410-%u042F')+']{2}) (['+unescape('%u0430-%u044F%u0410-%u042F')+']{3}) ([0-9]{2})\, ([0-9]{4}) ([0-9]{1,2})\:([0-9]{2})','i');
+                    reg = new RegExp('\<b\>"Зарегистрирован\:\<\/b\> (['+unescape('%u0430-%u044F%u0410-%u042F')+']{2}) (['+unescape('%u0430-%u044F%u0410-%u042F')+']{3}) ([0-9]{2})\, ([0-9]{4}) ([0-9]{1,2})\:([0-9]{2})','i');
                     
                     match = span.innerHTML.match(reg);
                     if(match != null)
@@ -971,7 +971,7 @@ function ProfilePass()
                     }
                     else
                     {
-                        reg = new RegExp('\<b\>'+unescape('%u0417%u0430%u0440%u0435%u0433%u0438%u0441%u0442%u0440%u0438%u0440%u043E%u0432%u0430%u043D')+'\:\<\/b\> ([0-9]{2}) (['+unescape('%u0430-%u044F%u0410-%u042F')+']{3}) ([0-9]{4})\, ([0-9]{1,2})\:([0-9]{2})','i');
+                        reg = new RegExp('\<b\>Зарегистрирован\:\<\/b\> ([0-9]{2}) (['+unescape('%u0430-%u044F%u0410-%u042F')+']{3}) ([0-9]{4})\, ([0-9]{1,2})\:([0-9]{2})','i');
                         match = span.innerHTML.match(reg);
                         if(match != null)
                         {
@@ -981,7 +981,7 @@ function ProfilePass()
                 }
                 if(soptions.enable_uncounter)
                 {
-                    reg = new RegExp('\<br.{0,2}\>\<b\>'+unescape('%u0421%u043E%u043E%u0431%u0449%u0435%u043D%u0438%u044F')+'\:\<\/b\> [0-9]*','i');
+                    reg = new RegExp('\<br.{0,2}\>\<b\>Сообщения\:\<\/b\> [0-9]*','i');
                     span.innerHTML = span.innerHTML.replace(reg, '');
                 }
                 return false;
