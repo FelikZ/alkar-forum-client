@@ -646,8 +646,8 @@ function VualIt()
     var s = document.createElement('script');
     s.setAttribute('type', 'text/javascript');
     s.text = scr;
-
-    root.document.getElementsByTagName('head')[0].appendChild(s); 
+    $('head:first').appendChild(s); 
+    
     SetButtonsAutoVual_inner(soptions.auto_vualization);
     
     var tds = root.document.getElementsByTagName("td");
