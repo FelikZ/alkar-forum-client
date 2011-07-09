@@ -1576,7 +1576,7 @@ function ShowSettingsPopup()
 {
     var css_url = 'http://alkar-forum-client.googlecode.com/svn/trunk/settings/colorbox.css';
     var script_url = 'http://alkar-forum-client.googlecode.com/svn/trunk/settings/jquery.colorbox-min.js';
-    if($('head link[href="'+css_url+'"]').is(':empty'))
+    if($('head link[href="'+css_url+'"]').length == 0)
     {
         $('<link>').appendTo('head').attr({
             rel: 'stylesheet',
@@ -1584,7 +1584,7 @@ function ShowSettingsPopup()
             href: css_url
         });
     }
-    if($('head script[src="'+script_url+'"]').is(':empty'))
+    if($('head script[src="'+script_url+'"]').length == 0)
     {
         $.getScript(script_url, function() {
             _ShowSettingsPopup();
@@ -1598,7 +1598,7 @@ function ShowSettingsPopup()
 //#
 function AddSettingsButton()
 {
-    $('<a id="settings_pop_button" href="javascript:void(0);" onlick="ShowSettingsPopup();" style="margin-right: 12px;"><img src="http://img849.imageshack.us/img849/796/settingsicong.png" width="12" alt="*"> Настройки скрипта</a>').insertBefore('div#wrapheader div#menubar td.genmed[align=right] a:first');
+    $('<a id="settings_pop_button" href="javascript:void(0);" onclick="ShowSettingsPopup();" style="margin-right: 12px;"><img src="http://img849.imageshack.us/img849/796/settingsicong.png" width="12" alt="*"> Настройки скрипта</a>').insertBefore('div#wrapheader div#menubar td.genmed[align=right] a:first');
 }
 //#
 // General Scripts
@@ -1653,6 +1653,7 @@ function OnViewForum()
 function PreProcess()
 {
     Eliterization();
+    AddSettingsButton();
     if(enable_twitter_block)
     {
         tInitTwits();
