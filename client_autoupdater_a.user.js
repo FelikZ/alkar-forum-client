@@ -1,59 +1,58 @@
-﻿
-// ==UserScript==
+﻿// ==UserScript==
 // @name           ForumClient 2 [Alkar]
 // @namespace      FelikZ
 // @description    enjoy it :)
 // @include        http://games.alkar.net/phpBB*
 // @version        2.2
-// @author		   FelikZ ( http://thefelikz.blogspot.com/ )
+// @author         FelikZ ( http://thefelikz.blogspot.com/ )
 // ==/UserScript==
 
 (function() 
 {
-	//---------------------------------------------------------------------------------------------------
-	// Settings
-	//---------------------------------------------------------------------------------------------------
-	/***************************************************
-	General settings
-	***************************************************/
-	function Script()
-	{
+    //---------------------------------------------------------------------------------------------------
+    // Settings
+    //---------------------------------------------------------------------------------------------------
+    /***************************************************
+    General settings
+    ***************************************************/
+    function Script()
+    {
         var soptions = {
-            "enable_smiles": true,				//Показывать новые смайлы
-            "enable_style": true,				//Показывать стильную кнопку
-            "enable_vualizator": true,			//Включить вуализатор
-            "enable_linkyfy": true,				//Делать текстовые ссылки кликабельными
-            "enable_flash_videos": true,			//Менять ссылки видео на флеш
+            "enable_smiles": true,                //Показывать новые смайлы
+            "enable_style": true,                //Показывать стильную кнопку
+            "enable_vualizator": true,            //Включить вуализатор
+            "enable_linkyfy": true,                //Делать текстовые ссылки кликабельными
+            "enable_flash_videos": true,            //Менять ссылки видео на флеш
 
-            "enable_quote_hider": true,			//Прятать цитаты. Прячет длинные цитаты (1000+ символов) / цитаты с картинками, видео
-            "enable_quote_force_hide": false,	//Прятать все цитаты без разбору
+            "enable_quote_hider": true,            //Прятать цитаты. Прячет длинные цитаты (1000+ символов) / цитаты с картинками, видео
+            "enable_quote_force_hide": false,    //Прятать все цитаты без разбору
 
-            "enable_ignore_remover": true,		//Удалять сообщения игнорируемого пользоватедя, целиком
-            "enable_uncounter": false,			//Удалять ПК
-            "enable_status": true,				//Показывать статус в зависимости от даты регистрации
-            "enable_auto_topic_sort": true,		//Авто сортировка тем по "отвечено" / "не"
-            "enable_topic_hover_links": true,	//Подсветка тем + ссылки
-            "enable_extended_ignore": false,		//Удалять сообщения описанных ниже пользователей*
-            "enable_punisher": false,			//FFFFFFFFFFFFFFFUUUUUUUUUUUU mode
-            "theme": 0,							//Тема на форуме: 0 - стандартная, 1 - prosilver
+            "enable_ignore_remover": true,        //Удалять сообщения игнорируемого пользоватедя, целиком
+            "enable_uncounter": false,            //Удалять ПК
+            "enable_status": true,                //Показывать статус в зависимости от даты регистрации
+            "enable_auto_topic_sort": true,        //Авто сортировка тем по "отвечено" / "не"
+            "enable_topic_hover_links": true,    //Подсветка тем + ссылки
+            "enable_extended_ignore": false,        //Удалять сообщения описанных ниже пользователей*
+            "enable_punisher": false,            //FFFFFFFFFFFFFFFUUUUUUUUUUUU mode
+            "theme": 0,                            //Тема на форуме: 0 - стандартная, 1 - prosilver
             /***************************************************
             Smile settings
             ***************************************************/
-            "enable_qip_smiles": true,			//Показывать смайлы qip
-            "enable_goha_smiles": true,			//Показывать смайлы гохи
-            "enable_anime_smiles": true,			//Показывать смайлы анимэ
-            "enable_yap_smiles": true,			//Показывать смайлы ЯПлакал.com
+            "enable_qip_smiles": true,            //Показывать смайлы qip
+            "enable_goha_smiles": true,            //Показывать смайлы гохи
+            "enable_anime_smiles": true,            //Показывать смайлы анимэ
+            "enable_yap_smiles": true,            //Показывать смайлы ЯПлакал.com
             "enable_spoiler": true,
             /***************************************************
             Style settings
             ***************************************************/
-            "tags_before": "",					//Теги перед текстом
-            "color": "#220000",					//Цвет текста
-            "tags_after": "",					//Теги после текста
+            "tags_before": "",                    //Теги перед текстом
+            "color": "#220000",                    //Цвет текста
+            "tags_after": "",                    //Теги после текста
             /***************************************************
             Vualizator settings
             ***************************************************/
-            "enable_auto_vualization": true,			//Включить авто-вуализацию
+            "enable_auto_vualization": true,            //Включить авто-вуализацию
             /***************************************************
             Fast settings
             ***************************************************/
@@ -70,8 +69,8 @@
             //---------------------------------------------------------------------------------------------------
             // Ignore arrays
             //---------------------------------------------------------------------------------------------------
-            "ignore_authors": [],			
-            "punisher_authors": [],			
+            "ignore_authors": [],            
+            "punisher_authors": [],            
             "punisher_avatar": "http://img405.imageshack.us/img405/994/ffffuuuu.gif",
             "punisher_inner_html": "<span style='font-weight: bold,'><span style='font-size: 150%; line-height: normal;'>Я нубъ и апазорился.ок</span></span>",
             // Smile arrays
@@ -216,34 +215,34 @@
         /*$.each(soptions, function(i, val) {
           console.log(i+ " => " + val);
         });*/
-	}
-	//---------------------------------------------------------------------------------------------------
-	// /End of Settings
-	//---------------------------------------------------------------------------------------------------
-	
-	var root = typeof unsafeWindow != 'undefined' ? unsafeWindow : window;
-	// load jQuery
-	//----------------------------------
-	var jq = document.createElement('script');
-	jq.setAttribute('src', 'https://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js');
-	jq.setAttribute('charset', 'utf-8');
-	jq.setAttribute('type', 'text/javascript');
-	var head = document.getElementsByTagName('head')[0];
-	head.appendChild(jq);
-	//----------------------------------
-	var scr = root.document.createElement('script');
-	var fstring = Script.toString(); 
-	var code   = /\{([\S\s]*)\}$/i.exec(fstring)[1]; 
-	
-	scr.setAttribute('type', 'text/javascript');
-	scr.setAttribute('charset', 'utf-8');
-	scr.innerHTML = "eval(unescape('" +escape(code)+ "'));"; 
-	//----------------------------------
-	head.appendChild(scr);
-	
-	var scr2 = root.document.createElement('script');
-	scr2.setAttribute('type', 'text/javascript');
-	scr2.setAttribute('charset', 'utf-8');
-	scr2.setAttribute('src', 'http://alkar-forum-client.googlecode.com/svn/trunk/alkar_forum_client_a.user.js');
-	head.appendChild(scr2);
+    }
+    //---------------------------------------------------------------------------------------------------
+    // /End of Settings
+    //---------------------------------------------------------------------------------------------------
+    
+    var root = typeof unsafeWindow != 'undefined' ? unsafeWindow : window;
+    // load jQuery
+    //----------------------------------
+    var jq = document.createElement('script');
+    jq.setAttribute('src', 'https://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js');
+    jq.setAttribute('charset', 'utf-8');
+    jq.setAttribute('type', 'text/javascript');
+    var head = document.getElementsByTagName('head')[0];
+    head.appendChild(jq);
+    //----------------------------------
+    var scr = root.document.createElement('script');
+    var fstring = Script.toString(); 
+    var code   = /\{([\S\s]*)\}$/i.exec(fstring)[1]; 
+    
+    scr.setAttribute('type', 'text/javascript');
+    scr.setAttribute('charset', 'utf-8');
+    scr.innerHTML = "eval(unescape('" +escape(code)+ "'));"; 
+    //----------------------------------
+    head.appendChild(scr);
+    
+    var scr2 = root.document.createElement('script');
+    scr2.setAttribute('type', 'text/javascript');
+    scr2.setAttribute('charset', 'utf-8');
+    scr2.setAttribute('src', 'http://alkar-forum-client.googlecode.com/svn/trunk/alkar_forum_client_a.user.js');
+    head.appendChild(scr2);
 })();
