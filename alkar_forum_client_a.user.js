@@ -643,10 +643,10 @@ function SetButtonsAutoVual_inner(is_true)
 }
 function VualIt()
 {
-    var s = document.createElement('script');
-    s.setAttribute('type', 'text/javascript');
-    s.text = scr;
-    $(s).appendTo('head:first');
+    var s = $('<script>');
+    s.attr('type', 'text/javascript');
+    s.html(scr);
+    s.appendTo('head:first');
     
     SetButtonsAutoVual_inner(soptions.auto_vualization);
     
