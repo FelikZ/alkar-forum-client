@@ -66,7 +66,7 @@ if(typeof($.fn.outer)=='undefined'){$.fn.outer=function(a){if(a){$(a).insertBefo
 $('<link />').appendTo('head').attr({
     rel: 'stylesheet',
     type: 'text/css',
-    href: 'http://alkar-forum-client.googlecode.com/svn/trunk/settings/colorbox.css?attredirects=0'
+    href: 'http://alkar-forum-client.googlecode.com/svn/trunk/settings/colorbox.css?attredirects=0&d=1'
 });
 $('<link />').appendTo('head').attr({
     rel: 'stylesheet',
