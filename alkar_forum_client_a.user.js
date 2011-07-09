@@ -2,7 +2,7 @@
 // Do not touch the text below!!!
 //#
 //----------------------------------
-var version = "2.190";
+var version = "2.232";
 var required_updater_version = 3;
 //----------------------------------
 // Check version of updater
