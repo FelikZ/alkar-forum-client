@@ -981,6 +981,7 @@ function ProfilePass(table)
                     {
                         if(user_name == ignore_authors[u])
                         {
+                            alert(1);
                             return -1;
                         }
                     }
