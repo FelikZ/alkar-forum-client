@@ -988,6 +988,7 @@ function ProfilePass(table)
                 
                 if(soptions.enable_punisher)
                 {
+                    alert($(td).find('img[alt="' + unescape('%u0410%u0432%u0430%u0442%u0430%u0440%u0430%20%u043F%u043E%u043B%u044C%u0437%u043E%u0432%u0430%u0442%u0435%u043B%u044F') + '"]').length);
                     $(td).find('img[alt="' + unescape('%u0410%u0432%u0430%u0442%u0430%u0440%u0430%20%u043F%u043E%u043B%u044C%u0437%u043E%u0432%u0430%u0442%u0435%u043B%u044F') + '"]').each(function(i, img)
                     {
                         punisher_authors = soptions.punisher_authors.split(',');
