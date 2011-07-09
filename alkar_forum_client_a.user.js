@@ -923,7 +923,7 @@ function ProfilePass()
         var match = null;
         var rez = 0;
         
-        $(table).find('div#pagecontent table.tablebg tr > td.profile').each(function(i, td)
+        $('div#pagecontent table.tablebg tr > td.profile').each(function(i, td)
         {
             $(td).find('td.postdetails').each(function(j, td2)
             {
