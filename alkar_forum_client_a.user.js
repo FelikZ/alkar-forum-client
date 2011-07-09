@@ -1480,10 +1480,8 @@ function Eliterization()
     $('div#wrapcentre > table.tablebg tr > td.row1 > p.breadcrumbs > a:last-child[href^="./viewforum.php?f=112"]').html(elite_title);
     switch(cur_location)
     {
-        case 1:    // posting
-            break;
+        case 1: // posting
         case 2: // viewing a topic
-            break;
         case 3: // viewing a forum
             $('div#pageheader h2 a.titles[href^="./viewforum.php?f=112"]').html(elite_title);
             break;
