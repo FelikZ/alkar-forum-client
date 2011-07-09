@@ -6,8 +6,9 @@
                     font-family: verdana,helvetica,arial,sans-serif;\
                     font-size: 12px;\
                     text-align: left;\
-                    margin: 0;\
+                    margin: 0 0 30px 0;\
                     padding: 0;\
+                    width:510px;\
                 }\
                 div#settings_box h2 {\
                     font-size: 16px;\
