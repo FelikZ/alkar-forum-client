@@ -1478,19 +1478,23 @@ function Eliterization()
 //#
 function ShowSettingsPopup()
 {
-    $.colorbox({open:true, returnFocus:false});
+    $.colorbox({
+        open:true,
+        returnFocus:false,
+        initialWidth: 200,
+        initialHeight: 200
+    });
     $.getScript('http://alkar-forum-client.googlecode.com/svn/trunk/settings/settings.js', function()
     {
         $.colorbox({
             inline:true,
             returnFocus:false,
-            innerWidth:425,
-            innerHeight:344,
-            href:GetSettingsHtml()
+            innerWidth:525,
+            innerHeight:684,
+            href:GetSettingsHtml(),
+            onComplete:OnCompleteLoad
         });
-       
     });
-   
 }
 //#
 function AddSettingsButton()

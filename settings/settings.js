@@ -84,7 +84,7 @@
         <h2>Настройка стиля</h2>\
         <div class=\"script_option\"><input type=\"input\" name=\"tags_before\" value=\"\" />        <label>Теги перед текстом</label></div>\
         <div style=\"clear:both;\"></div>\
-        <div class=\"script_option\"><input type=\"input\" name=\"color\" value=\"#220000\" onfocus=\"$('#text_color').css('color', this.value);\" onchange=\"$('#text_color').css('color', this.value);\" maxlength=\"14\" />        <label id=\"text_color\">Цвет текста</label></div> (<a href=\"http://www.colorpicker.com/\" target=\"_blank\">выбрать цвет</a>)\
+        <div class=\"script_option\"><input type=\"input\" name=\"color\" value=\"#220000\" onfocus=\"$('#text_color').css('color', this.value);\" onchange=\"$('#text_color').css('color', this.value);\" maxlength=\"14\" />        <label id=\"text_color\">Цвет текста</label></div> <span style='float:left;'>(<a href=\"http://www.colorpicker.com/\" target=\"_blank\">выбрать цвет</a>)</span>\
         <div style=\"clear:both;\"></div>\
         <div class=\"script_option\"><input type=\"input\" name=\"tags_after\" value=\"\" />        <label>Теги после текста</label></div>\
         <div style=\"clear:both;\"></div>\
@@ -116,19 +116,20 @@
         <div style=\"clear:both;\"></div>\
         <div class=\"script_option\"><input type=\"input\" name=\"twits_count\" value=\"12\" />     <label>Колличество последних твитов</label></div>\
         <div style=\"clear:both;\"></div>\
-    </form>\
-    <script type=\"text/javascript\">\
-        $('.script_option:has(\"input[type=checkbox]\")').click(function(e) {\
-            var cb = $(this).find('input[type=checkbox]');\
-            if(cb.is(':checked'))\
-            {\
-                cb.attr('checked', false);\
-            }\
-            else\
-            {\
-                cb.attr('checked', true);\
-            }\
-        });\
-    </script>";
+    </form>";
     return html;
+}
+function OnCompleteLoad()
+{
+    $('.script_option:has(\"input[type=checkbox]\")').click(function(e) {
+        var cb = $(this).find('input[type=checkbox]');
+        if(cb.is(':checked'))
+        {
+            cb.attr('checked', false);
+        }
+        else
+        {
+            cb.attr('checked', true);
+        }
+    });
 }
