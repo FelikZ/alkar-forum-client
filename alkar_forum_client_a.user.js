@@ -1478,7 +1478,12 @@ function Eliterization()
 //#
 function ShowSettingsPopup()
 {
-    $.colorbox({href: 'http://alkar-forum-client.googlecode.com/svn/trunk/settings/settings.html'});
+    $.colorbox({
+        href: 'http://alkar-forum-client.googlecode.com/svn/trunk/settings/settings.html',
+        onLoad: function() { 
+            alert('onLoad: colorbox has started to load the targeted content'); 
+        }
+    });
 }
 //#
 function AddSettingsButton()
