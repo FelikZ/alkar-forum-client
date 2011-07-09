@@ -132,9 +132,9 @@ function InsertSmileContainers(parent)
         InsertSmiles(soptions.anime_smiles, anime_container);
     }
     //----------------------------------
-    if(soptions.soptions.yap_smiles)
+    if(soptions.yap_smiles)
     {
-        InsertSmiles(soptions.soptions.yap_smiles, yap_container);
+        InsertSmiles(soptions.yap_smiles, yap_container);
     }
 }
 
