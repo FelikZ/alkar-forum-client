@@ -1481,15 +1481,25 @@ function ShowSettingsPopup()
     $.colorbox({open:true, returnFocus:false});
     $.getScript('http://alkar-forum-client.googlecode.com/svn/trunk/settings/settings.js', function()
     {
-        $('<div>')
-        .css('display', 'none')
-        .css('position', 'absolute')
-        .attr('id', '#settings_popup_content')
-        .appendTo('body:first')
-        .html(GetSettingsHtml());
+        var div = $('div#settings_popup_content:first');
+        if(div.is(':empty'))
+        {
+            $('<div>')
+            .css('display', 'none')
+            .css('position', 'absolute')
+            .attr('id', '#settings_popup_content')
+            .appendTo('body:first')
+            .html(GetSettingsHtml());
+        }
+        else
+        {
+            div.html(GetSettingsHtml());
+        }
         $.colorbox({
             inline:true,
             returnFocus:false,
+            innerWidth:425,
+            innerHeight:344,
             href:"#settings_popup_content"
         });
        
