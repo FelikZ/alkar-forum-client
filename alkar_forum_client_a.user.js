@@ -117,22 +117,22 @@ function InsertSmileContainers(parent)
         yap_container = CreateSpoiler(parent, "fxs_yap", "Yap");
     }
     //----------------------------------
-    if(soptions.enable_soptions.qip_smiles)
+    if(soptions.qip_smiles)
     {
         InsertSmiles(soptions.qip_smiles, qip_container);
     }
     //----------------------------------
-    if(soptions.enable_soptions.goha_smiles)
+    if(soptions.goha_smiles)
     {
         InsertSmiles(soptions.goha_smiles, goha_container);
     }
     //----------------------------------
-    if(soptions.enable_soptions.anime_smiles)
+    if(soptions.anime_smiles)
     {
         InsertSmiles(soptions.anime_smiles, anime_container);
     }
     //----------------------------------
-    if(soptions.enable_soptions.soptions.yap_smiles)
+    if(soptions.soptions.yap_smiles)
     {
         InsertSmiles(soptions.soptions.yap_smiles, yap_container);
     }
