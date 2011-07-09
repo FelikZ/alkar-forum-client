@@ -56,22 +56,22 @@
             /***************************************************
             Fast settings
             ***************************************************/
-            "enable_fast_reply": true,
-            "enable_fast_paging": true,
-            "enable_fast_refresh": true,
-            "enable_auto_page_refresh": true,
-            "auto_page_refresh_interval": 30, //sec
+            "enable_fast_reply": true,              //Включить быстрые ответы
+            "enable_fast_paging": true,             //Включить быстрые переходы по теме, без перезагрузки страницы
+            "enable_fast_refresh": true,            //Включить быстрое обновление списка тем
+            "enable_auto_page_refresh": true,       //Включить авто-обновление списка тем
+            "auto_page_refresh_interval": 30,       //Интервал авто-обновления (сек)
             /***************************************************
             Twitter settings
             ***************************************************/
-            "enable_twitter_block": true,
-            "twits_count": 12,
+            "enable_twitter_block": true,               //ключить FelikZ's Mind
+            "twits_count": 12,                          //Колличество последних твитов
             //---------------------------------------------------------------------------------------------------
             // Ignore arrays
             //---------------------------------------------------------------------------------------------------
-            "ignore_authors": [],            
-            "punisher_authors": [],            
-            "punisher_avatar": "http://img405.imageshack.us/img405/994/ffffuuuu.gif",
+            "ignore_authors": "",                                                     //Пользователи в игноре
+            "punisher_authors": "",                                                   //Панишед
+            "punisher_avatar": "http://img405.imageshack.us/img405/994/ffffuuuu.gif", //Аватара для панишед
             "punisher_inner_html": "<span style='font-weight: bold,'><span style='font-size: 150%; line-height: normal;'>Я нубъ и апазорился.ок</span></span>",
             // Smile arrays
             //------------------------------------------------------------------------------------------------------

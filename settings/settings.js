@@ -123,9 +123,9 @@
         Ignore settings\
         -->\
         <h2>Настройка игнора</h2>\
-        <div class=\"script_option\"><input type=\"text\" name=\"ignore_authors\" value=\"[]\" />       <label>Пользователи в игноре</label></div>\
+        <div class=\"script_option\"><input type=\"text\" name=\"ignore_authors\" value=\"\" />       <label>Пользователи в игноре</label></div>\
         <div style=\"clear:both;\"></div>\
-        <div class=\"script_option\"><input type=\"text\" name=\"punisher_authors\" value=\"[]\" />       <label>Панишед пользователи</label></div>\
+        <div class=\"script_option\"><input type=\"text\" name=\"punisher_authors\" value=\"\" />       <label>Панишед пользователи</label></div>\
         <div style=\"clear:both;\"></div>\
         <div class=\"script_option\"><input type=\"text\" name=\"punisher_avatar\" value=\"\" />       <label>Аватара для панишед пользователей</label></div>\
         <div style=\"clear:both;\"></div>\
@@ -160,36 +160,6 @@
 }
 function OnLoadData()
 {
-    // Handle check options
-    $('#settings_box form#settings .script_option:has("input[type=checkbox]")').click(function(e) {
-        var cb = $(this).find('input[type=checkbox]');
-        if(cb.is(':checked'))
-        {
-            cb.attr('checked', false);
-            eval('soptions.'+cb.attr('name')+' = false;');
-        }
-        else
-        {
-            cb.attr('checked', true);
-            eval('soptions.'+cb.attr('name')+' = true;');
-        }
-    });
-    // Handle text options
-    $('#settings_box form#settings .script_option:has("input[type=text]"), #settings_box form#settings .script_option:has("textarea")').click(function(e) {
-        var cb = $(this).find('input[type=text], textarea');
-        switch(cb.attr('name'))
-        {
-            case 'qip_smiles':
-            case 'goha_smiles':
-            case 'anime_smiles':
-            case 'yap_smiles':
-                eval('soptions.'+cb.attr('name')+' = '+cb.attr('value').split(',\n'));
-                break;
-            default:
-                eval('soptions.'+cb.attr('name')+' = '+cb.attr('value'));
-                break;
-        }
-    });
     // Load data to window
     $.each(soptions, function(key, val) {
         var field = $('#settings_box form#settings input[name='+key+'], #settings_box form#settings textarea[name='+key+']');
@@ -214,6 +184,36 @@ function OnLoadData()
             {
                 field.attr('value', val);
             }
+        }
+    });
+    // Handle check options
+    $('#settings_box form#settings .script_option:has("input[type=checkbox]")').click(function(e) {
+        var cb = $(this).find('input[type=checkbox]');
+        if(cb.is(':checked'))
+        {
+            cb.attr('checked', false);
+            eval('soptions.'+cb.attr('name')+' = false;');
+        }
+        else
+        {
+            cb.attr('checked', true);
+            eval('soptions.'+cb.attr('name')+' = true;');
+        }
+    });
+    // Handle text options
+    $('#settings_box form#settings .script_option:has("input[type=text]"), #settings_box form#settings .script_option:has("textarea")').click(function(e) {
+        var cb = $(this).find('input[type=text], textarea');
+        switch(cb.attr('name'))
+        {
+            case 'qip_smiles':
+            case 'goha_smiles':
+            case 'anime_smiles':
+            case 'yap_smiles':
+                eval('soptions.' + cb.attr('name') + ' = [' + cb.attr('value').split(',\n').toString() + '];');
+                break;
+            default:
+                eval('soptions.' + cb.attr('name') + ' = "' + cb.attr('value') + '";');
+                break;
         }
     });
 }

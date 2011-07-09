@@ -941,9 +941,10 @@ function ProfilePass(table)
                 user_name = b.innerHTML;
                 if(soptions.enable_extended_ignore)
                 {
-                    for(var u=0; u<soptions.ignore_authors.length; u++)
+                    ignore_authors = soptions.ignore_authors.split(',');
+                    for(var u=0; u<ignore_authors.length; u++)
                     {
-                        if(user_name == soptions.ignore_authors[u])
+                        if(user_name == ignore_authors[u])
                         {
                             return -1;
                         }
@@ -954,9 +955,10 @@ function ProfilePass(table)
                 {
                     $(td).find('img[alt="' + unescape('%u0410%u0432%u0430%u0442%u0430%u0440%u0430%20%u043F%u043E%u043B%u044C%u0437%u043E%u0432%u0430%u0442%u0435%u043B%u044F') + '"]').each(function(i, img)
                     {
-                        for(var y=0; y<soptions.punisher_authors.length; y++)
+                        punisher_authors = soptions.punisher_authors.split(',');
+                        for(var y=0; y<punisher_authors.length; y++)
                         {
-                            if(soptions.punisher_authors[y] == user_name)
+                            if(punisher_authors[y] == user_name)
                             {
                                 img.setAttribute('src', soptions.punisher_avatar);
                                 img.setAttribute('width', "120");
