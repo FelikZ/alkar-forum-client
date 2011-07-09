@@ -266,19 +266,22 @@ function OnLoadData()
     // Handle text options
     $('#settings_box form#settings div.script_option:has("input[type=text]"), #settings_box form#settings .script_option:has("textarea")').change(function(e) {
         var cb = $(this).find('input[type=text], textarea');
-        switch(cb.attr('name'))
+        var nm = cb.attr('name');
+        var vl = cb.attr('value');
+        if(typeof(nm) == 'undefined' || nm == null || typeof(vl) == 'undefined' || vl == null)
+        {
+            return true;
+        }
+        switch(nm)
         {
             case 'qip_smiles':
             case 'goha_smiles':
             case 'anime_smiles':
             case 'yap_smiles':
-                eval('soptions.' + cb.attr('name') + ' = ["' + $.trim(cb.attr('value').split(',\n').toString()).replace(/,(.*?)/gi, '","$1') + '"];');
-                break;
-            case 'null':
-            case 'undefined':
+                eval('soptions.' + nm + ' = ["' + $.trim(vl.split(',\n').toString()).replace(/,(.*?)/gi, '","$1') + '"];');
                 break;
             default:
-                eval('soptions.' + cb.attr('name') + ' = "' + $.trim(cb.attr('value')) + '";');
+                eval('soptions.' + nm + ' = "' + $.trim(vl) + '";');
                 break;
         }
     });
