@@ -1189,6 +1189,7 @@ function BindCtrlEnter()
     {
         if (e.ctrlKey && e.keyCode == 13) 
         {
+            e.preventDefault();
             $('form[name="postform"] input[type="submit"][value="'+unescape("%u041E%u0442%u043F%u0440%u0430%u0432%u0438%u0442%u044C")+'"]').click();
         }
     });

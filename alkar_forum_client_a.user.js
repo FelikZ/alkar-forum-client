@@ -1189,6 +1189,7 @@ function BindCtrlEnter()
     {
         if (e.ctrlKey && e.keyCode == 13) 
         {
+            e.preventDefault();
             $('form[name="postform"] input[type="submit"][value="'+unescape("%u041E%u0442%u043F%u0440%u0430%u0432%u0438%u0442%u044C")+'"]').click();
         }
     });
@@ -1566,6 +1567,39 @@ function Eliterization()
 	}
 }
 //#
+function _ShowSettingsPopup()
+{
+    $('div#wrapheader div#menubar td.genmed[align=right] a#settings_pop_button').colorbox({href: 'http://alkar-forum-client.googlecode.com/svn/trunk/settings/settings.html'});
+}
+//#
+function ShowSettingsPopup()
+{
+    var css_url = 'http://alkar-forum-client.googlecode.com/svn/trunk/settings/colorbox.css';
+    var script_url = 'http://alkar-forum-client.googlecode.com/svn/trunk/settings/jquery.colorbox-min.js';
+    if(!$('head link[href="'+css_url+'"]').is())
+    {
+        $('<link>').appendTo('head').attr({
+            rel: 'stylesheet',
+            type: 'text/css',
+            href: css_url
+        });
+    }
+    if(!$('head script[src="'+script_url+'"]').is())
+    {
+        $.getScript(script_url, function() {
+            _ShowSettingsPopup();
+        });
+    }
+    else
+    {
+        _ShowSettingsPopup();
+    }
+}
+//#
+function AddSettingsButton()
+{
+    $('<a id="settings_pop_button" href="javascript:void(0);" onlick="ShowSettingsPopup();" style="margin-right: 12px;"><img src="http://img849.imageshack.us/img849/796/settingsicong.png" width="12" alt="*"> Настройки скрипта</a>').insertBefore('div#wrapheader div#menubar td.genmed[align=right] a:first');
+}
 //#
 // General Scripts
 //#
@@ -1639,10 +1673,10 @@ function PostProcess()
 (function() 
 {
 	root.document.title = root.document.title + ' • ForumClient v' + version + ' • by FelikZ';
-	var datebar = root.document.getElementById('datebar');
-	var div_info = root.document.createElement('div');
-	div_info.setAttribute('style', 'float:right;');
-	div_info.innerHTML = "• Forum client v" + version + " • by <a href='http://thefelikz.blogspot.com/' title='Блог разработчика' target='_blank' style='color:darkred;letter-spacing:1px;'><strong>FelikZ</strong></a>";
+	var datebar = $('#datebar');
+	var div_info = $(root.document.createElement('div'));
+	div_info.css('float', 'right;');
+	div_info.html("• Forum client v" + version + " • by <a href='http://thefelikz.blogspot.com/' title='Блог разработчика' target='_blank' style='color:darkred;letter-spacing:1px;'><strong>FelikZ</strong></a>");
 	datebar.appendChild(div_info);
 	//#
 	// Start scripts
