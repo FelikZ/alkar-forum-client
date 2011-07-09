@@ -1,4 +1,4 @@
-function GetSettingsHtml()
+п»їfunction GetSettingsHtml()
 {
     var html = "<style type=\"text/css\">\
                 div#settings_box {\
@@ -29,92 +29,92 @@ function GetSettingsHtml()
                 </style>";
     html += "<div id=\"settings_box\">\
     <form id=\"settings\" method=\"post\" action=\".\">\
-        <h2 class=\"first\">Обычные настройки</h2>\
-        <div class=\"script_option\"><input type=\"checkbox\" name=\"enable_smiles\" />                <label>Показывать новые смайлы</label></div>\
+        <h2 class=\"first\">РћР±С‹С‡РЅС‹Рµ РЅР°СЃС‚СЂРѕР№РєРё</h2>\
+        <div class=\"script_option\"><input type=\"checkbox\" name=\"enable_smiles\" />                <label>РџРѕРєР°Р·С‹РІР°С‚СЊ РЅРѕРІС‹Рµ СЃРјР°Р№Р»С‹</label></div>\
         <div style=\"clear:both;\"></div>\
-        <div class=\"script_option\"><input type=\"checkbox\" name=\"enable_style\" />                <label>Показывать стильную кнопку</label></div>\
+        <div class=\"script_option\"><input type=\"checkbox\" name=\"enable_style\" />                <label>РџРѕРєР°Р·С‹РІР°С‚СЊ СЃС‚РёР»СЊРЅСѓСЋ РєРЅРѕРїРєСѓ</label></div>\
         <div style=\"clear:both;\"></div>\
-        <div class=\"script_option\"><input type=\"checkbox\" name=\"enable_vualizator\" />            <label>Включить вуализатор</label></div>\
+        <div class=\"script_option\"><input type=\"checkbox\" name=\"enable_vualizator\" />            <label>Р’РєР»СЋС‡РёС‚СЊ РІСѓР°Р»РёР·Р°С‚РѕСЂ</label></div>\
         <div style=\"clear:both;\"></div>\
-        <div class=\"script_option\"><input type=\"checkbox\" name=\"enable_linkyfy\" />                <label>Делать текстовые ссылки кликабельными</label></div>\
+        <div class=\"script_option\"><input type=\"checkbox\" name=\"enable_linkyfy\" />                <label>Р”РµР»Р°С‚СЊ С‚РµРєСЃС‚РѕРІС‹Рµ СЃСЃС‹Р»РєРё РєР»РёРєР°Р±РµР»СЊРЅС‹РјРё</label></div>\
         <div style=\"clear:both;\"></div>\
-        <div class=\"script_option\"><input type=\"checkbox\" name=\"enable_flash_videos\" />        <label>Менять ссылки видео на флеш</label></div>\
+        <div class=\"script_option\"><input type=\"checkbox\" name=\"enable_flash_videos\" />        <label>РњРµРЅСЏС‚СЊ СЃСЃС‹Р»РєРё РІРёРґРµРѕ РЅР° С„Р»РµС€</label></div>\
         <div style=\"clear:both;\"></div>\
-        <div class=\"script_option\"><input type=\"checkbox\" name=\"enable_quote_hider\" />            <label>Прятать цитаты. Прячет длинные цитаты (1000+ символов) / цитаты с картинками, видео</label></div>\
+        <div class=\"script_option\"><input type=\"checkbox\" name=\"enable_quote_hider\" />            <label>РџСЂСЏС‚Р°С‚СЊ С†РёС‚Р°С‚С‹. РџСЂСЏС‡РµС‚ РґР»РёРЅРЅС‹Рµ С†РёС‚Р°С‚С‹ (1000+ СЃРёРјРІРѕР»РѕРІ) / С†РёС‚Р°С‚С‹ СЃ РєР°СЂС‚РёРЅРєР°РјРё, РІРёРґРµРѕ</label></div>\
         <div style=\"clear:both;\"></div>\
-        <div class=\"script_option\"><input type=\"checkbox\" name=\"enable_quote_force_hide\" />    <label>Прятать все цитаты без разбору</label></div>\
+        <div class=\"script_option\"><input type=\"checkbox\" name=\"enable_quote_force_hide\" />    <label>РџСЂСЏС‚Р°С‚СЊ РІСЃРµ С†РёС‚Р°С‚С‹ Р±РµР· СЂР°Р·Р±РѕСЂСѓ</label></div>\
         <div style=\"clear:both;\"></div>\
-        <div class=\"script_option\"><input type=\"checkbox\" name=\"enable_ignore_remover\" />        <label>Удалять сообщения игнорируемого пользоватедя, целиком</label></div>\
+        <div class=\"script_option\"><input type=\"checkbox\" name=\"enable_ignore_remover\" />        <label>РЈРґР°Р»СЏС‚СЊ СЃРѕРѕР±С‰РµРЅРёСЏ РёРіРЅРѕСЂРёСЂСѓРµРјРѕРіРѕ РїРѕР»СЊР·РѕРІР°С‚РµРґСЏ, С†РµР»РёРєРѕРј</label></div>\
         <div style=\"clear:both;\"></div>\
-        <div class=\"script_option\"><input type=\"checkbox\" name=\"enable_uncounter\" />            <label>Удалять ПК</label></div>\
+        <div class=\"script_option\"><input type=\"checkbox\" name=\"enable_uncounter\" />            <label>РЈРґР°Р»СЏС‚СЊ РџРљ</label></div>\
         <div style=\"clear:both;\"></div>\
-        <div class=\"script_option\"><input type=\"checkbox\" name=\"enable_status\" />                <label>Показывать статус в зависимости от даты регистрации</label></div>\
+        <div class=\"script_option\"><input type=\"checkbox\" name=\"enable_status\" />                <label>РџРѕРєР°Р·С‹РІР°С‚СЊ СЃС‚Р°С‚СѓСЃ РІ Р·Р°РІРёСЃРёРјРѕСЃС‚Рё РѕС‚ РґР°С‚С‹ СЂРµРіРёСЃС‚СЂР°С†РёРё</label></div>\
         <div style=\"clear:both;\"></div>\
-        <div class=\"script_option\"><input type=\"checkbox\" name=\"enable_auto_topic_sort\" />        <label>Авто сортировка тем по \"отвечено\" / \"не\"</label></div>\
+        <div class=\"script_option\"><input type=\"checkbox\" name=\"enable_auto_topic_sort\" />        <label>РђРІС‚Рѕ СЃРѕСЂС‚РёСЂРѕРІРєР° С‚РµРј РїРѕ \"РѕС‚РІРµС‡РµРЅРѕ\" / \"РЅРµ\"</label></div>\
         <div style=\"clear:both;\"></div>\
-        <div class=\"script_option\"><input type=\"checkbox\" name=\"enable_topic_hover_links\" />    <label>Подсветка тем + ссылки</label></div>\
+        <div class=\"script_option\"><input type=\"checkbox\" name=\"enable_topic_hover_links\" />    <label>РџРѕРґСЃРІРµС‚РєР° С‚РµРј + СЃСЃС‹Р»РєРё</label></div>\
         <div style=\"clear:both;\"></div>\
-        <div class=\"script_option\"><input type=\"checkbox\" name=\"enable_extended_ignore\" />        <label>Удалять сообщения описанных ниже пользователей*</label></div>\
+        <div class=\"script_option\"><input type=\"checkbox\" name=\"enable_extended_ignore\" />        <label>РЈРґР°Р»СЏС‚СЊ СЃРѕРѕР±С‰РµРЅРёСЏ РѕРїРёСЃР°РЅРЅС‹С… РЅРёР¶Рµ РїРѕР»СЊР·РѕРІР°С‚РµР»РµР№*</label></div>\
         <div style=\"clear:both;\"></div>\
         <div class=\"script_option\"><input type=\"checkbox\" name=\"enable_punisher\" />            <label>FFFFFFFFFFFFFFFUUUUUUUUUUUU mode</label></div>\
         <div style=\"clear:both;\"></div>\
         <div class=\"script_option\"><select name=\"theme\">\
-            <option value=\"0\">Стандартная</option>\
+            <option value=\"0\">РЎС‚Р°РЅРґР°СЂС‚РЅР°СЏ</option>\
             <option value=\"1\">Prosilver</option>\
         </select>\
-        <label>тема на форуме</label></div>\
+        <label>С‚РµРјР° РЅР° С„РѕСЂСѓРјРµ</label></div>\
         <div style=\"clear:both;\"></div>\
         <!--\
         Smile settings\
         -->\
-        <h2>Настройка смайлов</h2>\
-        <div class=\"script_option\"><input type=\"checkbox\" name=\"enable_qip_smiles\" />            <label>Показывать смайлы qip</label></div>\
+        <h2>РќР°СЃС‚СЂРѕР№РєР° СЃРјР°Р№Р»РѕРІ</h2>\
+        <div class=\"script_option\"><input type=\"checkbox\" name=\"enable_qip_smiles\" />            <label>РџРѕРєР°Р·С‹РІР°С‚СЊ СЃРјР°Р№Р»С‹ qip</label></div>\
         <div style=\"clear:both;\"></div>\
-        <div class=\"script_option\"><input type=\"checkbox\" name=\"enable_goha_smiles\" />            <label>Показывать смайлы гохи</label></div>\
+        <div class=\"script_option\"><input type=\"checkbox\" name=\"enable_goha_smiles\" />            <label>РџРѕРєР°Р·С‹РІР°С‚СЊ СЃРјР°Р№Р»С‹ РіРѕС…Рё</label></div>\
         <div style=\"clear:both;\"></div>\
-        <div class=\"script_option\"><input type=\"checkbox\" name=\"enable_anime_smiles\" />        <label>Показывать смайлы анимэ</label></div>\
+        <div class=\"script_option\"><input type=\"checkbox\" name=\"enable_anime_smiles\" />        <label>РџРѕРєР°Р·С‹РІР°С‚СЊ СЃРјР°Р№Р»С‹ Р°РЅРёРјСЌ</label></div>\
         <div style=\"clear:both;\"></div>\
-        <div class=\"script_option\"><input type=\"checkbox\" name=\"enable_yap_smiles\" />            <label>Показывать смайлы ЯПлакал.com</label></div>\
+        <div class=\"script_option\"><input type=\"checkbox\" name=\"enable_yap_smiles\" />            <label>РџРѕРєР°Р·С‹РІР°С‚СЊ СЃРјР°Р№Р»С‹ РЇРџР»Р°РєР°Р».com</label></div>\
         <div style=\"clear:both;\"></div>\
-        <div class=\"script_option\"><input type=\"checkbox\" name=\"enable_spoiler\" />             <label>Обернуть смайлы в спойлеры</label></div>\
+        <div class=\"script_option\"><input type=\"checkbox\" name=\"enable_spoiler\" />             <label>РћР±РµСЂРЅСѓС‚СЊ СЃРјР°Р№Р»С‹ РІ СЃРїРѕР№Р»РµСЂС‹</label></div>\
         <div style=\"clear:both;\"></div>\
         <!--\
         Style settings\
         -->\
-        <h2>Настройка стиля</h2>\
-        <div class=\"script_option\"><input type=\"input\" name=\"tags_before\" value=\"\" />        <label>Теги перед текстом</label></div>\
+        <h2>РќР°СЃС‚СЂРѕР№РєР° СЃС‚РёР»СЏ</h2>\
+        <div class=\"script_option\"><input type=\"input\" name=\"tags_before\" value=\"\" />        <label>РўРµРіРё РїРµСЂРµРґ С‚РµРєСЃС‚РѕРј</label></div>\
         <div style=\"clear:both;\"></div>\
-        <div class=\"script_option\"><input type=\"input\" name=\"color\" value=\"#220000\" onfocus=\"$('#text_color').css('color', this.value);\" onchange=\"$('#text_color').css('color', this.value);\" maxlength=\"14\" />        <label id=\"text_color\">Цвет текста</label></div> (<a href=\"http://www.colorpicker.com/\" target=\"_blank\">выбрать цвет</a>)\
+        <div class=\"script_option\"><input type=\"input\" name=\"color\" value=\"#220000\" onfocus=\"$('#text_color').css('color', this.value);\" onchange=\"$('#text_color').css('color', this.value);\" maxlength=\"14\" />        <label id=\"text_color\">Р¦РІРµС‚ С‚РµРєСЃС‚Р°</label></div> (<a href=\"http://www.colorpicker.com/\" target=\"_blank\">РІС‹Р±СЂР°С‚СЊ С†РІРµС‚</a>)\
         <div style=\"clear:both;\"></div>\
-        <div class=\"script_option\"><input type=\"input\" name=\"tags_after\" value=\"\" />        <label>Теги после текста</label></div>\
+        <div class=\"script_option\"><input type=\"input\" name=\"tags_after\" value=\"\" />        <label>РўРµРіРё РїРѕСЃР»Рµ С‚РµРєСЃС‚Р°</label></div>\
         <div style=\"clear:both;\"></div>\
         <!--\
         Vualizator settings\
         -->\
-        <h2>Настройка вуализатора</h2>\
-        <div class=\"script_option\"><input type=\"checkbox\" name=\"enable_auto_vualization\" />            <label>Включить авто-вуализацию</label></div>\
+        <h2>РќР°СЃС‚СЂРѕР№РєР° РІСѓР°Р»РёР·Р°С‚РѕСЂР°</h2>\
+        <div class=\"script_option\"><input type=\"checkbox\" name=\"enable_auto_vualization\" />            <label>Р’РєР»СЋС‡РёС‚СЊ Р°РІС‚Рѕ-РІСѓР°Р»РёР·Р°С†РёСЋ</label></div>\
         <div style=\"clear:both;\"></div>\
         <!--\
         Fast settings\
         -->\
-        <h2>Настройки Ajax'а</h2>\
-        <div class=\"script_option\"><input type=\"checkbox\" name=\"enable_fast_reply\" />          <label>Включить быстрые ответы</label></div>\
+        <h2>РќР°СЃС‚СЂРѕР№РєРё Ajax'Р°</h2>\
+        <div class=\"script_option\"><input type=\"checkbox\" name=\"enable_fast_reply\" />          <label>Р’РєР»СЋС‡РёС‚СЊ Р±С‹СЃС‚СЂС‹Рµ РѕС‚РІРµС‚С‹</label></div>\
         <div style=\"clear:both;\"></div>\
-        <div class=\"script_option\"><input type=\"checkbox\" name=\"enable_fast_paging\" />         <label>Включить быстрые переходы по теме, без перезагрузки страницы</label></div>\
+        <div class=\"script_option\"><input type=\"checkbox\" name=\"enable_fast_paging\" />         <label>Р’РєР»СЋС‡РёС‚СЊ Р±С‹СЃС‚СЂС‹Рµ РїРµСЂРµС…РѕРґС‹ РїРѕ С‚РµРјРµ, Р±РµР· РїРµСЂРµР·Р°РіСЂСѓР·РєРё СЃС‚СЂР°РЅРёС†С‹</label></div>\
         <div style=\"clear:both;\"></div>\
-        <div class=\"script_option\"><input type=\"checkbox\" name=\"enable_fast_refresh\" />        <label>Включить быстрое обновление списка тем</label></div>\
+        <div class=\"script_option\"><input type=\"checkbox\" name=\"enable_fast_refresh\" />        <label>Р’РєР»СЋС‡РёС‚СЊ Р±С‹СЃС‚СЂРѕРµ РѕР±РЅРѕРІР»РµРЅРёРµ СЃРїРёСЃРєР° С‚РµРј</label></div>\
         <div style=\"clear:both;\"></div>\
-        <div class=\"script_option\"><input type=\"checkbox\" name=\"enable_auto_page_refresh\" />   <label>Включить авто-обновление списка тем</label></div>\
+        <div class=\"script_option\"><input type=\"checkbox\" name=\"enable_auto_page_refresh\" />   <label>Р’РєР»СЋС‡РёС‚СЊ Р°РІС‚Рѕ-РѕР±РЅРѕРІР»РµРЅРёРµ СЃРїРёСЃРєР° С‚РµРј</label></div>\
         <div style=\"clear:both;\"></div>\
-        <div class=\"script_option\"><input type=\"input\" name=\"auto_page_refresh_invterval\" value=\"30\" /> <label>Интервал авто-обновления (сек)</label></div>\
+        <div class=\"script_option\"><input type=\"input\" name=\"auto_page_refresh_invterval\" value=\"30\" /> <label>РРЅС‚РµСЂРІР°Р» Р°РІС‚Рѕ-РѕР±РЅРѕРІР»РµРЅРёСЏ (СЃРµРє)</label></div>\
         <div style=\"clear:both;\"></div>\
         <!--\
         Twitter settings\
         -->\
-        <h2>Настройка twitter'а</h2>\
-        <div class=\"script_option\"><input type=\"checkbox\" name=\"enable_twitter_block\" />       <label>Включить FelikZ's Mind</label></div>\
+        <h2>РќР°СЃС‚СЂРѕР№РєР° twitter'Р°</h2>\
+        <div class=\"script_option\"><input type=\"checkbox\" name=\"enable_twitter_block\" />       <label>Р’РєР»СЋС‡РёС‚СЊ FelikZ's Mind</label></div>\
         <div style=\"clear:both;\"></div>\
-        <div class=\"script_option\"><input type=\"input\" name=\"twits_count\" value=\"12\" />     <label>Колличество последних твитов</label></div>\
+        <div class=\"script_option\"><input type=\"input\" name=\"twits_count\" value=\"12\" />     <label>РљРѕР»Р»РёС‡РµСЃС‚РІРѕ РїРѕСЃР»РµРґРЅРёС… С‚РІРёС‚РѕРІ</label></div>\
         <div style=\"clear:both;\"></div>\
     </form>\
     <script type=\"text/javascript\">\
