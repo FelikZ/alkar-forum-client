@@ -26,6 +26,10 @@
                 div#settings_box label {\
                     cursor: pointer;\
                 }\
+                div#settings_box textarea {\
+                    width: 500px;\
+                    height: 300px;\
+                }\
                 </style>";
     html += "<div id=\"settings_box\">\
     <form id=\"settings\" method=\"post\" action=\".\">\
@@ -127,7 +131,7 @@
         Qip smiles\
         -->\
         <h2>QIP смайлы</h2>\
-        <div class=\"script_option\"><textarea name=\"ignore_authors\" /></textarea></div>\
+        <div class=\"script_option\"><textarea name=\"qip_smiles\" /></textarea></div>\
         <div style=\"clear:both;\"></div>\
         <!--\
         Goha smiles\
@@ -166,7 +170,7 @@ function OnCompleteLoad()
     
     $.each(soptions, function(key, val) {
         var field = $('#settings input[name='+key+'], #settings textarea[name='+key+']');
-        if(!field.is(':empty'))
+        if(field.length)
         {
             if(typeof(val) == 'boolean')
             {
@@ -179,9 +183,13 @@ function OnCompleteLoad()
                     field.attr('checked', false);
                 }
             }
+            else if((typeof(val) == 'object' || typeof(val) == 'array') && String(field.get(0).tagName).toLowerCase() == 'textarea')
+            {
+                field.attr('value', val.toString().replace(/,/g, ',\n'));
+            }
             else
             {
-                field.value = val;
+                field.attr('value', val);
             }
         }
     });
