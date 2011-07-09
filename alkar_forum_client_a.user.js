@@ -42,23 +42,6 @@ var loc = "" + window.location.href;
         cur_location = 4;
     }
 })();
-//#
-// Public settings definer
-//#
-if(typeof(enable_fast_reply) == 'undefined') 
-    enable_fast_reply = true;
-if(typeof(enable_fast_reply) == 'undefined') 
-    enable_fast_paging = true;
-if(typeof(enable_fast_refresh) == 'undefined') 
-    enable_fast_refresh = true;
-if(typeof(enable_auto_page_refresh) == 'undefined') 
-    enable_auto_page_refresh = true;
-if(typeof(auto_page_refresh_invterval) == 'undefined') 
-    auto_page_refresh_invterval = 30;
-if(typeof(enable_twitter_block) == 'undefined')
-    enable_twitter_block = true;
-if(typeof(twits_count) == 'undefined')
-    twits_count = 12;
 
 // jStorage plugin
 (function(f){if(!f||!(f.toJSON||Object.toJSON||window.JSON)){throw new Error("jQuery, MooTools or Prototype needs to be loaded before jStorage!")}var g={},d={jStorage:"{}"},h=null,j=0,l=f.toJSON||Object.toJSON||(window.JSON&&(JSON.encode||JSON.stringify)),e=f.evalJSON||(window.JSON&&(JSON.decode||JSON.parse))||function(m){return String(m).evalJSON()},i=false;_XMLService={isXML:function(n){var m=(n?n.ownerDocument||n:0).documentElement;return m?m.nodeName!=="HTML":false},encode:function(n){if(!this.isXML(n)){return false}try{return new XMLSerializer().serializeToString(n)}catch(m){try{return n.xml}catch(o){}}return false},decode:function(n){var m=("DOMParser" in window&&(new DOMParser()).parseFromString)||(window.ActiveXObject&&function(p){var q=new ActiveXObject("Microsoft.XMLDOM");q.async="false";q.loadXML(p);return q}),o;if(!m){return false}o=m.call("DOMParser" in window&&(new DOMParser())||window,n,"text/xml");return this.isXML(o)?o:false}};function k(){if("localStorage" in window){try{if(window.localStorage){d=window.localStorage;i="localStorage"}}catch(p){}}else{if("globalStorage" in window){try{if(window.globalStorage){d=window.globalStorage[window.location.hostname];i="globalStorage"}}catch(o){}}else{h=document.createElement("link");if(h.addBehavior){h.style.behavior="url(#default#userData)";document.getElementsByTagName("head")[0].appendChild(h);h.load("jStorage");var n="{}";try{n=h.getAttribute("jStorage")}catch(m){}d.jStorage=n;i="userDataBehavior"}else{h=null;return}}}b()}function b(){if(d.jStorage){try{g=e(String(d.jStorage))}catch(m){d.jStorage="{}"}}else{d.jStorage="{}"}j=d.jStorage?String(d.jStorage).length:0}function c(){try{d.jStorage=l(g);if(h){h.setAttribute("jStorage",d.jStorage);h.save("jStorage")}j=d.jStorage?String(d.jStorage).length:0}catch(m){}}function a(m){if(!m||(typeof m!="string"&&typeof m!="number")){throw new TypeError("Key name must be string or numeric")}return true}f.jStorage={version:"0.1.5.0",set:function(m,n){a(m);if(_XMLService.isXML(n)){n={_is_xml:true,xml:_XMLService.encode(n)}}g[m]=n;c();return n},get:function(m,n){a(m);if(m in g){if(typeof g[m]=="object"&&g[m]._is_xml&&g[m]._is_xml){return _XMLService.decode(g[m].xml)}else{return g[m]}}return typeof(n)=="undefined"?null:n},deleteKey:function(m){a(m);if(m in g){delete g[m];c();return true}return false},flush:function(){g={};c();try{window.localStorage.clear()}catch(m){}return true},storageObj:function(){function m(){}m.prototype=g;return new m()},index:function(){var m=[],n;for(n in g){if(g.hasOwnProperty(n)){m.push(n)}}return m},storageSize:function(){return j},currentBackend:function(){return i},storageAvailable:function(){return !!i},reInit:function(){var m,o;if(h&&h.addBehavior){m=document.createElement("link");h.parentNode.replaceChild(m,h);h=m;h.style.behavior="url(#default#userData)";document.getElementsByTagName("head")[0].appendChild(h);h.load("jStorage");o="{}";try{o=h.getAttribute("jStorage")}catch(n){}d.jStorage=o;i="userDataBehavior"}b()}};k()})(window.jQuery||window.$);
@@ -126,7 +109,7 @@ function InsertSmileContainers(parent)
     parent.appendChild(b);
     parent.appendChild(root.document.createElement("br"));
     //----------------------------------
-    if(enable_spoiler)
+    if(soptions.enable_spoiler)
     {
         qip_container = CreateSpoiler(parent, "fxs_qip", "Qip");
         goha_container = CreateSpoiler(parent, "fxs_goha", "Goha");
@@ -134,30 +117,30 @@ function InsertSmileContainers(parent)
         yap_container = CreateSpoiler(parent, "fxs_yap", "Yap");
     }
     //----------------------------------
-    if(enable_qip_smiles)
+    if(soptions.enable_soptions.qip_smiles)
     {
-        InsertSmiles(qip_smiles, qip_container);
+        InsertSmiles(soptions.qip_smiles, qip_container);
     }
     //----------------------------------
-    if(enable_goha_smiles)
+    if(soptions.enable_soptions.goha_smiles)
     {
-        InsertSmiles(goha_smiles, goha_container);
+        InsertSmiles(soptions.goha_smiles, goha_container);
     }
     //----------------------------------
-    if(enable_anime_smiles)
+    if(soptions.enable_soptions.anime_smiles)
     {
-        InsertSmiles(anime_smiles, anime_container);
+        InsertSmiles(soptions.anime_smiles, anime_container);
     }
     //----------------------------------
-    if(enable_yap_smiles)
+    if(soptions.enable_soptions.soptions.yap_smiles)
     {
-        InsertSmiles(yap_smiles, yap_container);
+        InsertSmiles(soptions.soptions.yap_smiles, yap_container);
     }
 }
 
 function SmileIt()
 {
-    switch(theme)
+    switch(soptions.theme)
     {
         case 0:
             // looking for TD's
@@ -209,8 +192,8 @@ function SmileIt()
 //#
 // Vualizator
 //#
-var scr = "var auto_vualization=";
-if(auto_vualization)
+var scr = "var soptions.auto_vualization=";
+if(soptions.auto_vualization)
     scr += "true;";
 else
     scr += "false;";
@@ -620,11 +603,11 @@ function SetButtonsAutoVual(is_true)\
         preview.setAttribute('onclick','return true;');\
         post.setAttribute('onclick','return true;');\
     }\
-    auto_vualization = is_true;\
+    soptions.auto_vualization = is_true;\
 }\
 function OnAutoVualorClick(its)\
 {\
-    SetButtonsAutoVual(!auto_vualization);\
+    SetButtonsAutoVual(!soptions.auto_vualization);\
 }\
 ";
 function AddStyle()
@@ -656,7 +639,7 @@ function SetButtonsAutoVual_inner(is_true)
         preview.setAttribute('onclick','return true;');
         post.setAttribute('onclick','return true;');
     }
-    auto_vualization = is_true;
+    soptions.auto_vualization = is_true;
 }
 function VualIt()
 {
@@ -665,7 +648,7 @@ function VualIt()
     s.text = scr;
 
     root.document.getElementsByTagName('head')[0].appendChild(s); 
-    SetButtonsAutoVual_inner(auto_vualization);
+    SetButtonsAutoVual_inner(soptions.auto_vualization);
     
     var tds = root.document.getElementsByTagName("td");
     
@@ -695,7 +678,7 @@ function VualIt()
             auto_vual.setAttribute('name','auto_vualor');
             auto_vual.setAttribute('onclick','OnAutoVualorClick(this); return true;');
             
-            if(auto_vualization)
+            if(soptions.auto_vualization)
                 auto_vual.setAttribute('checked','checked');
             else
                 auto_vual.setAttribute('checked','unchecked');
@@ -721,10 +704,10 @@ function VualIt()
             in2.setAttribute('name','vual_one');
             in2.setAttribute('onclick','VualPart();');
             
-            if(enable_vual_part_button)
+            if(soptions.enable_vual_part_button)
             tds[i].appendChild(in2);
             
-            if(enable_vual_all_button)
+            if(soptions.enable_vual_all_button)
             tds[i].appendChild(in1);
             
             tds[i].appendChild(span);
@@ -743,11 +726,11 @@ function StyleIt()
         return;
         
     td.html('');
-    td.attr('bgcolor', color);
+    td.attr('bgcolor', soptions.color);
     var a = root.document.createElement('a');
     a.setAttribute('href', '#');
-    a.setAttribute('style', 'text-decoration: none;style="color:'+color+';');
-    a.setAttribute('onclick', "bbfontstyle('"+tags_before+"[color="+color+"]', '[/color]"+tags_after+"'); return false;");
+    a.setAttribute('style', 'text-decoration: none;style="color:'+soptions.color+';');
+    a.setAttribute('onclick', "bbfontstyle('"+soptions.tags_before+"[color="+soptions.color+"]', '[/color]"+soptions.tags_after+"'); return false;");
     a.innerHTML = '<img height="10" width="50" title="FelikZ Color" alt="FelikZ Color" src="images/spacer.gif"/>';
 
     td.html(a);
@@ -998,7 +981,7 @@ function ProfilePass(table)
                     profile = td;
                     $(profile).find('span.postdetails').each(function(x, span)
                     {
-                        if(enable_status && user.innerHTML == unescape('%u041F%u043E%u043B%u044C%u0437%u043E%u0432%u0430%u0442%u0435%u043B%u044C'))
+                        if(soptions.enable_status && user.innerHTML == unescape('%u041F%u043E%u043B%u044C%u0437%u043E%u0432%u0430%u0442%u0435%u043B%u044C'))
                         {
                             reg = new RegExp('\<b\>'+unescape('%u0417%u0430%u0440%u0435%u0433%u0438%u0441%u0442%u0440%u0438%u0440%u043E%u0432%u0430%u043D')+'\:\<\/b\> (['+unescape('%u0430-%u044F%u0410-%u042F')+']{2}) (['+unescape('%u0430-%u044F%u0410-%u042F')+']{3}) ([0-9]{2})\, ([0-9]{4}) ([0-9]{1,2})\:([0-9]{2})','i');
 
@@ -1017,7 +1000,7 @@ function ProfilePass(table)
                                 }
                             }
                         }
-                        if(enable_uncounter)
+                        if(soptions.enable_uncounter)
                         {
                             reg = new RegExp('\<br.{0,2}\>\<b\>'+unescape('%u0421%u043E%u043E%u0431%u0449%u0435%u043D%u0438%u044F')+'\:\<\/b\> [0-9]*','i');
                             span.innerHTML = span.innerHTML.replace(reg, '');
@@ -1031,26 +1014,26 @@ function ProfilePass(table)
                 var b = $(td).find('b.postauthor:first');
 
                 user_name = b.innerHTML;
-                if(enable_extended_ignore)
+                if(soptions.enable_extended_ignore)
                 {
-                    for(var u=0; u<ignore_authors.length; u++)
+                    for(var u=0; u<soptions.ignore_authors.length; u++)
                     {
-                        if(user_name == ignore_authors[u])
+                        if(user_name == soptions.ignore_authors[u])
                         {
                             return -1;
                         }
                     }
                 }
                 
-                if(enable_punisher)
+                if(soptions.enable_punisher)
                 {
                     $(td).find('img[alt="' + unescape('%u0410%u0432%u0430%u0442%u0430%u0440%u0430%20%u043F%u043E%u043B%u044C%u0437%u043E%u0432%u0430%u0442%u0435%u043B%u044F') + '"]').each(function(i, img)
                     {
-                        for(var y=0; y<punisher_authors.length; y++)
+                        for(var y=0; y<soptions.punisher_authors.length; y++)
                         {
-                            if(punisher_authors[y] == user_name)
+                            if(soptions.punisher_authors[y] == user_name)
                             {
-                                img.setAttribute('src', punisher_avatar);
+                                img.setAttribute('src', soptions.punisher_avatar);
                                 img.setAttribute('width', "120");
                                 img.setAttribute('height', "120");
                                 is_punisher_target = true;
@@ -1063,7 +1046,7 @@ function ProfilePass(table)
                     {
                         $(td).find('div.postbody').each(function(t, div)
                         {
-                            div.innerHTML = punisher_inner_html;
+                            div.innerHTML = soptions.punisher_inner_html;
                         
                             $(td).find('span.postbody,span.gensmall').each(function(u, span)
                             {
@@ -1083,7 +1066,7 @@ function ProfilePass(table)
 function TestSpecTrForUnread(tr)
 {
     var img = tr.getElementsByTagName('img');
-    if(enable_topic_hover_links)
+    if(soptions.enable_topic_hover_links)
         UpdateRowStyle(tr);
     for(var i=0; i<img.length; i++)
     {
@@ -1139,7 +1122,7 @@ function AutoSort()
                             sorted_read[sorted_read.length] = tr.cloneNode(true);
                             
                         tru_table = tr.parentNode;
-                        if(enable_auto_topic_sort)
+                        if(soptions.enable_auto_topic_sort)
                         {
                             tr.parentNode.removeChild(tr);
                             j--;
@@ -1154,14 +1137,14 @@ function AutoSort()
             return false;
         }
     });
-    if(sorted_unread.length > 0 && enable_auto_topic_sort)
+    if(sorted_unread.length > 0 && soptions.enable_auto_topic_sort)
     {
         for(var i=0; i<sorted_unread.length; i++)
         {
             tru_table.insertBefore(sorted_unread[i],end_table);
         }
     }
-    if(sorted_read.length > 0 && enable_auto_topic_sort)
+    if(sorted_read.length > 0 && soptions.enable_auto_topic_sort)
     {
         for(var i=0; i<sorted_read.length; i++)
         {
@@ -1177,7 +1160,7 @@ function QuotePass()
     var reg = new RegExp("(\<object.*\>)|(\<img.*alt\=\""+unescape('%u0418%u0437%u043E%u0431%u0440%u0430%u0436%u0435%u043D%u0438%u0435')+"\")",'i');
     $('div.quotecontent').each(function(i, div)
     {
-        if(!enable_quote_force_hide && div.innerHTML.length < 1000 && div.innerHTML.match(reg) == null)
+        if(!soptions.enable_quote_force_hide && div.innerHTML.length < 1000 && div.innerHTML.match(reg) == null)
             return true;
         var sub_div = root.document.createElement("div");
         sub_div.style.display = 'none';
@@ -1250,11 +1233,11 @@ function FastReply()
     {
         SetPageFooterFormFromData(data);
         //----------------------------------
-        if(enable_smiles)
+        if(soptions.enable_smiles)
             SmileIt();
-        if(enable_style && theme == 0)
+        if(soptions.enable_style && soptions.theme == 0)
             StyleIt();
-        if(enable_vualizator && theme == 0)
+        if(soptions.enable_vualizator && soptions.theme == 0)
             VualIt();
         //----------------------------------
         BindCtrlEnter();
@@ -1294,20 +1277,20 @@ function _fpCallback(data)
 {
     var content = $(data).find('#pagecontent');
     $('#pagecontent').replaceWith(content);
-    if(theme == 0)
+    if(soptions.theme == 0)
         PostPass();
-    if(enable_ignore_remover && theme == 0)
+    if(soptions.enable_ignore_remover && soptions.theme == 0)
         IgnoreIt();
-    if(enable_flash_videos)
+    if(soptions.enable_flash_videos)
         LinksPass();
-    if(enable_quote_hider)
+    if(soptions.enable_quote_hider)
         QuotePass();
-    if(enable_fast_reply)
+    if(soptions.enable_fast_reply)
     {
         //FastReply();
         FastQuote();
     }
-    if(enable_fast_paging)
+    if(soptions.enable_fast_paging)
     {
         FastPaging();
     }
@@ -1327,10 +1310,10 @@ function FastPageRefresh()
 {
     $('div#wrapcentre > table.tablebg tr > td.row1 > p.breadcrumbs > a:last-child').click(function()
     {
-        if(enable_auto_page_refresh)
+        if(soptions.enable_auto_page_refresh)
         {
             clearInterval(ref_int);
-            ref_int = setInterval(PageRefresh, auto_page_refresh_invterval*1000);
+            ref_int = setInterval(PageRefresh, soptions.auto_page_refresh_interval*1000);
         }
         PageRefresh();
         return false;
@@ -1353,12 +1336,12 @@ function PageRefresh()
 
         var content = $(data).find('#pagecontent').html();
         $('#pagecontent').html(content);
-        if(enable_auto_topic_sort || enable_topic_hover_links && theme == 0)
+        if(soptions.enable_auto_topic_sort || soptions.enable_topic_hover_links && soptions.theme == 0)
             AutoSort();
         //----------------------------------
-        if(enable_twitter_block)
+        if(soptions.enable_twitter_block)
         {
-            tLoadTwits(twits_count);
+            tLoadTwits(soptions.twits_count);
         }
         //----------------------------------
         $('div#wrapcentre > table.tablebg tr > td.row1 > p.breadcrumbs > span#page_refresh').html('&nbsp;&raquo;&nbsp;Обновлено').fadeOut(1000, function()
@@ -1602,32 +1585,32 @@ function AddSettingsButton()
 //#
 function OnPosting()
 {
-    if(enable_smiles)
+    if(soptions.enable_smiles)
         SmileIt();
-    if(enable_style && theme == 0)
+    if(soptions.enable_style && soptions.theme == 0)
         StyleIt();
-    if(enable_vualizator && theme == 0)
+    if(soptions.enable_vualizator && soptions.theme == 0)
         VualIt();
-    if(enable_quote_hider)
+    if(soptions.enable_quote_hider)
         QuotePass();
 }
 //#
 function OnViewTopic()
 {
-    if(theme == 0)
+    if(soptions.theme == 0)
         PostPass();
-    if(enable_ignore_remover && theme == 0)
+    if(soptions.enable_ignore_remover && soptions.theme == 0)
         IgnoreIt();
-    if(enable_flash_videos)
+    if(soptions.enable_flash_videos)
         LinksPass();
-    if(enable_quote_hider)
+    if(soptions.enable_quote_hider)
         QuotePass();
-    if(enable_fast_reply)
+    if(soptions.enable_fast_reply)
     {
         FastReply();
         FastQuote();
     }
-    if(enable_fast_paging)
+    if(soptions.enable_fast_paging)
     {
         FastPaging();
     }
@@ -1636,14 +1619,14 @@ function OnViewTopic()
 function OnViewForum()
 {
     AddStyle();
-    if(theme == 0)
+    if(soptions.theme == 0)
     {
-        if(enable_auto_topic_sort || enable_topic_hover_links)
+        if(soptions.enable_auto_topic_sort || soptions.enable_topic_hover_links)
             AutoSort();
-        if(enable_fast_refresh)
+        if(soptions.enable_fast_refresh)
             FastPageRefresh();
-        if(enable_auto_page_refresh)
-            ref_int = setInterval(PageRefresh, auto_page_refresh_invterval*1000);
+        if(soptions.enable_auto_page_refresh)
+            ref_int = setInterval(PageRefresh, soptions.auto_page_refresh_interval*1000);
     }
 }
 //#
@@ -1651,20 +1634,20 @@ function PreProcess()
 {
     Eliterization();
     AddSettingsButton();
-    if(enable_twitter_block)
+    if(soptions.enable_twitter_block)
     {
         tInitTwits();
-        tLoadTwits(twits_count);
+        tLoadTwits(soptions.twits_count);
     }
-	if(enable_quote_force_hide)
-		enable_quote_hider = true;
+	if(soptions.enable_quote_force_hide)
+		soptions.enable_quote_hider = true;
 }
 //#
 function PostProcess()
 {
     // bind hotkeys
 	SetHotkeys(cur_location);
-	if(enable_linkyfy)
+	if(soptions.enable_linkyfy)
 		LinkyfyIt();
 }
 //#
