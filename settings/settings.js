@@ -196,7 +196,7 @@ function ObjToString(obj)
                 rez += '"' + String(val) + '",';
                 break;
         }
-    }
+    });
     if(once)
     {
         rez = rez.substring(0, rez.length-1);
