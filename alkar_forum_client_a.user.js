@@ -926,6 +926,10 @@ function ProfilePass()
     {
         $.each(soptions.ignore_authors.split(','), function(i,pname)
         {
+            if(String(pname).length < 1)
+            {
+                return true;
+            }
             $('div#pagecontent > table.tablebg:has("tr > td > b.postauthor"):contains("'+pname+'")').remove();
         });
     }
@@ -934,6 +938,10 @@ function ProfilePass()
     {
         $.each(soptions.punisher_authors.split(','), function(i,pname)
         {
+            if(String(pname).length < 1)
+            {
+                return true;
+            }
             var table = $('div#pagecontent > table.tablebg:has("tr > td > b.postauthor"):contains("'+pname+'")');
             // Update avatar
             $(table).find('tr:nth-child(2) > td > img')
