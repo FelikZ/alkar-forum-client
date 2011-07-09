@@ -1479,7 +1479,8 @@ function Eliterization()
 function ShowSettingsPopup()
 {
     $.colorbox({
-        href: 'http://alkar-forum-client.googlecode.com/svn/trunk/settings/settings.html',
+        inline:true, 
+        href:"#twitter_block",
         onLoad: function() { 
             alert('onLoad: colorbox has started to load the targeted content'); 
         }
