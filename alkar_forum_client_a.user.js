@@ -961,7 +961,7 @@ function ProfilePass()
         });
         if(soptions.enable_extended_ignore)
         {
-            $.each(soptions.punisher_authors.split(','), function(i,pname)
+            $.each(soptions.ignore_authors.split(','), function(i,pname)
             {
                 $('div#pagecontent table.tablebg:has("tr > td > b.postauthor"):contains("'+pname+'")').remove();
             });
