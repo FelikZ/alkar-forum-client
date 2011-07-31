@@ -102,8 +102,6 @@ function GetSettingsHtml()
         Fast settings\
         -->\
         <h2>Настройки Ajax'а</h2>\
-        <div class=\"script_option\"><input type=\"checkbox\" name=\"enable_fast_reply\" />          <label>Включить быстрые ответы</label></div>\
-        <div style=\"clear:both;\"></div>\
         <div class=\"script_option\"><input type=\"checkbox\" name=\"enable_fast_paging\" />         <label>Включить быстрые переходы по теме, без перезагрузки страницы</label></div>\
         <div style=\"clear:both;\"></div>\
         <div class=\"script_option\"><input type=\"checkbox\" name=\"enable_fast_refresh\" />        <label>Включить быстрое обновление списка тем</label></div>\

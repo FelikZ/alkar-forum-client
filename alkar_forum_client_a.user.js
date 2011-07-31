@@ -1138,32 +1138,13 @@ function SetPageFooterFormFromData(data)
     var form = $(data).find('form[name="postform"]:first').outer();
     $('#pagefooter').html(form);
 }
-function FastQuote()
-{
-    $('table.tablebg div[class="gensmall"][style="float: right;"] a:last-child').click(function(e)
-    { 
-        $.get($(this).attr('href'), null, function(data)
-        {
-            var quote = $(data).find('form[name="postform"]:first table.tablebg textarea').html();
-            var area = $('form[name="postform"]:first table.tablebg textarea');
-            var old_txt = area.attr('value');
-            var new_txt = old_txt;
-            if(new_txt.length > 0 && new_txt.charAt(new_txt.length-1) != '\n')
-                new_txt += '\n';
-            new_txt += quote;
-            area.attr('value', new_txt);
-            $('table.tablebg textarea').focus();
-        });
-        return false; 
-    }); 
-}
 //#
 // Fast reply
 //#
 function FastReply()
 {
-    $('head').append('<script type="text/javascript">var form_name = "postform";var text_name = "message";var bbcode = new Array();var bbtags = new Array(\'[b]\',\'[/b]\',\'[i]\',\'[/i]\',\'[u]\',\'[/u]\',\'[quote]\',\'[/quote]\',\'[code]\',\'[/code]\',\'[list]\',\'[/list]\',\'[list=]\',\'[/list]\',\'[img]\',\'[/img]\',\'[url]\',\'[/url]\',\'[flash=]\', \'[/flash]\',\'[size=]\',\'[/size]\', \'[a_center]\', \'[/a_center]\', \'[a_right]\', \'[/a_right]\', \'[frame]\', \'[/frame]\', \'[line]\', \'[/line]\', \'[offtopic]\', \'[/offtopic]\', \'[s]\', \'[/s]\', \'[spoiler2=]\', \'[/spoiler2]\', \'[spoiler=]\', \'[/spoiler]\', \'[youtube]\', \'[/youtube]\');var imageTag = false;var help_line = {b:    \'Жирный текст: [b]text[/b]\',c:    \'Код: [code]code[/code]\',cb_22:    \'Выравнивание по центру: [a_center]text[/a_center]\',cb_24:    \'Выравнивание по правому краю: [a_right]text[/a_right]\',cb_26:    \'Текст в рамке: [frame]text[/frame]\',cb_28:    \'Горизонтальная линия\',cb_30:    \'Оффтоп: [offtopic]text[/offtopic]\',cb_32:    \'Зачёркнутый текст: [s]text[/s]\',cb_34:    \'Скрываемое содержимое: [spoiler2=название спойлера]text[/spoiler2]\',cb_36:    \'Скрываемое содержимое: [spoiler=название спойлера]text[/spoiler]\',cb_38:    \'Встроенный плеер: [youtube]Ссылка на страницу видео[/youtube]\',d:    \'Флэш: [flash=width,height]http://url[/flash]\',e:    \'Список: добавить элемент списка\',f:    \'Размер шрифта: [size=85]small text[/size]\',i:    \'Наклонный текст: [i]text[/i]\',l:    \'Список: [list]text[/list]\',o:    \'Нумерованный список: [list=]text[/list]\',p:    \'Вставить изображение: [img]http://image_url[/img]\',q:    \'Цитата: [quote]text[/quote]\',s:    \'Цвет шрифта: [color=red]text[/color] Совет: Вы можете использовать также конструкцию color=#FF0000\',t:    \'{ BBCODE_T_HELP }\',tip:    \'Совет: можно быстро применить стили к выделенному тексту.\',u:    \'Подчеркнутый текст: [u]text[/u]\',w:    \'Вставить ссылку: [url]http://url[/url] или [url=http://url]URL text[/url]\' };</script>')
-            .append('<script type="text/javascript" src="/phpBB/styles/subsilver2/template/editor.js"></script>');
+    //$('head').append('<script type="text/javascript">var form_name = "postform";var text_name = "message";var bbcode = new Array();var bbtags = new Array(\'[b]\',\'[/b]\',\'[i]\',\'[/i]\',\'[u]\',\'[/u]\',\'[quote]\',\'[/quote]\',\'[code]\',\'[/code]\',\'[list]\',\'[/list]\',\'[list=]\',\'[/list]\',\'[img]\',\'[/img]\',\'[url]\',\'[/url]\',\'[flash=]\', \'[/flash]\',\'[size=]\',\'[/size]\', \'[a_center]\', \'[/a_center]\', \'[a_right]\', \'[/a_right]\', \'[frame]\', \'[/frame]\', \'[line]\', \'[/line]\', \'[offtopic]\', \'[/offtopic]\', \'[s]\', \'[/s]\', \'[spoiler2=]\', \'[/spoiler2]\', \'[spoiler=]\', \'[/spoiler]\', \'[youtube]\', \'[/youtube]\');var imageTag = false;var help_line = {b:    \'Жирный текст: [b]text[/b]\',c:    \'Код: [code]code[/code]\',cb_22:    \'Выравнивание по центру: [a_center]text[/a_center]\',cb_24:    \'Выравнивание по правому краю: [a_right]text[/a_right]\',cb_26:    \'Текст в рамке: [frame]text[/frame]\',cb_28:    \'Горизонтальная линия\',cb_30:    \'Оффтоп: [offtopic]text[/offtopic]\',cb_32:    \'Зачёркнутый текст: [s]text[/s]\',cb_34:    \'Скрываемое содержимое: [spoiler2=название спойлера]text[/spoiler2]\',cb_36:    \'Скрываемое содержимое: [spoiler=название спойлера]text[/spoiler]\',cb_38:    \'Встроенный плеер: [youtube]Ссылка на страницу видео[/youtube]\',d:    \'Флэш: [flash=width,height]http://url[/flash]\',e:    \'Список: добавить элемент списка\',f:    \'Размер шрифта: [size=85]small text[/size]\',i:    \'Наклонный текст: [i]text[/i]\',l:    \'Список: [list]text[/list]\',o:    \'Нумерованный список: [list=]text[/list]\',p:    \'Вставить изображение: [img]http://image_url[/img]\',q:    \'Цитата: [quote]text[/quote]\',s:    \'Цвет шрифта: [color=red]text[/color] Совет: Вы можете использовать также конструкцию color=#FF0000\',t:    \'{ BBCODE_T_HELP }\',tip:    \'Совет: можно быстро применить стили к выделенному тексту.\',u:    \'Подчеркнутый текст: [u]text[/u]\',w:    \'Вставить ссылку: [url]http://url[/url] или [url=http://url]URL text[/url]\' };</script>')
+            //.append('<script type="text/javascript" src="/phpBB/styles/subsilver2/template/editor.js"></script>');
     //----------------------------------
     var url = $('div#pagecontent table tr td[align="left"][valign="middle"][nowrap="nowrap"]:last a:nth-child(2)').attr('href');
     $.get(url, null, function(data)
@@ -1222,11 +1203,7 @@ function _fpCallback(data)
         LinksPass();
     if(soptions.enable_quote_hider)
         QuotePass();
-    if(soptions.enable_fast_reply)
-    {
-        //FastReply();
-        FastQuote();
-    }
+
     if(soptions.enable_fast_paging)
     {
         FastPaging();
@@ -1543,11 +1520,9 @@ function OnViewTopic()
         LinksPass();
     if(soptions.enable_quote_hider)
         QuotePass();
-    if(soptions.enable_fast_reply)
-    {
-        FastReply();
-        FastQuote();
-    }
+
+    FastReply();
+    
     if(soptions.enable_fast_paging)
     {
         FastPaging();
