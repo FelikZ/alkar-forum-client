@@ -189,7 +189,7 @@ function SmileIt()
         case 0:
             // looking for TD's
             //----------------------------------
-            var tds = $('td[align="center"]');
+            var tds = $('div#wrapcentre > form > table.tablebg > tbody > tr > td.row1 > table > tbody > tr > td:last');
             if(!tds)
                 return;
             //----------------------------------
