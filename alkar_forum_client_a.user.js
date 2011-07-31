@@ -2,7 +2,7 @@
 // Do not touch the text below!!!
 //#
 //----------------------------------
-var version = "2.273";
+var version = "2.285";
 var required_updater_version = 3;
 //----------------------------------
 // Check version of updater
@@ -976,25 +976,6 @@ function ProfilePass()
             profile = td;
             $(profile).find('span.postdetails').each(function(x, span)
             {
-                if(soptions.enable_status && user.innerHTML == "Пользователь")
-                {
-                    reg = new RegExp('\<b\>"Зарегистрирован\:\<\/b\> (['+unescape('%u0430-%u044F%u0410-%u042F')+']{2}) (['+unescape('%u0430-%u044F%u0410-%u042F')+']{3}) ([0-9]{2})\, ([0-9]{4}) ([0-9]{1,2})\:([0-9]{2})','i');
-                    
-                    match = span.innerHTML.match(reg);
-                    if(match != null)
-                    {
-                        user.innerHTML = GetStatusName(match[2], match[4]);
-                    }
-                    else
-                    {
-                        reg = new RegExp('\<b\>Зарегистрирован\:\<\/b\> ([0-9]{2}) (['+unescape('%u0430-%u044F%u0410-%u042F')+']{3}) ([0-9]{4})\, ([0-9]{1,2})\:([0-9]{2})','i');
-                        match = span.innerHTML.match(reg);
-                        if(match != null)
-                        {
-                            user.innerHTML = GetStatusName(match[2], match[3]);
-                        }
-                    }
-                }
                 if(soptions.enable_uncounter)
                 {
                     reg = new RegExp('\<br.{0,2}\>\<b\>Сообщения\:\<\/b\> [0-9]*','i');
@@ -1151,8 +1132,6 @@ function SetPageFooterFormFromData(data)
 //#
 function FastReply()
 {
-    //$('head').append('<script type="text/javascript">var form_name = "postform";var text_name = "message";var bbcode = new Array();var bbtags = new Array(\'[b]\',\'[/b]\',\'[i]\',\'[/i]\',\'[u]\',\'[/u]\',\'[quote]\',\'[/quote]\',\'[code]\',\'[/code]\',\'[list]\',\'[/list]\',\'[list=]\',\'[/list]\',\'[img]\',\'[/img]\',\'[url]\',\'[/url]\',\'[flash=]\', \'[/flash]\',\'[size=]\',\'[/size]\', \'[a_center]\', \'[/a_center]\', \'[a_right]\', \'[/a_right]\', \'[frame]\', \'[/frame]\', \'[line]\', \'[/line]\', \'[offtopic]\', \'[/offtopic]\', \'[s]\', \'[/s]\', \'[spoiler2=]\', \'[/spoiler2]\', \'[spoiler=]\', \'[/spoiler]\', \'[youtube]\', \'[/youtube]\');var imageTag = false;var help_line = {b:    \'Жирный текст: [b]text[/b]\',c:    \'Код: [code]code[/code]\',cb_22:    \'Выравнивание по центру: [a_center]text[/a_center]\',cb_24:    \'Выравнивание по правому краю: [a_right]text[/a_right]\',cb_26:    \'Текст в рамке: [frame]text[/frame]\',cb_28:    \'Горизонтальная линия\',cb_30:    \'Оффтоп: [offtopic]text[/offtopic]\',cb_32:    \'Зачёркнутый текст: [s]text[/s]\',cb_34:    \'Скрываемое содержимое: [spoiler2=название спойлера]text[/spoiler2]\',cb_36:    \'Скрываемое содержимое: [spoiler=название спойлера]text[/spoiler]\',cb_38:    \'Встроенный плеер: [youtube]Ссылка на страницу видео[/youtube]\',d:    \'Флэш: [flash=width,height]http://url[/flash]\',e:    \'Список: добавить элемент списка\',f:    \'Размер шрифта: [size=85]small text[/size]\',i:    \'Наклонный текст: [i]text[/i]\',l:    \'Список: [list]text[/list]\',o:    \'Нумерованный список: [list=]text[/list]\',p:    \'Вставить изображение: [img]http://image_url[/img]\',q:    \'Цитата: [quote]text[/quote]\',s:    \'Цвет шрифта: [color=red]text[/color] Совет: Вы можете использовать также конструкцию color=#FF0000\',t:    \'{ BBCODE_T_HELP }\',tip:    \'Совет: можно быстро применить стили к выделенному тексту.\',u:    \'Подчеркнутый текст: [u]text[/u]\',w:    \'Вставить ссылку: [url]http://url[/url] или [url=http://url]URL text[/url]\' };</script>')
-            //.append('<script type="text/javascript" src="/phpBB/styles/subsilver2/template/editor.js"></script>');
     //----------------------------------
     if(soptions.enable_smiles)
         SmileIt();

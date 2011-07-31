@@ -2,7 +2,7 @@
 // Do not touch the text below!!!
 //#
 //----------------------------------
-var version = "2.273";
+var version = "2.285";
 var required_updater_version = 3;
 //----------------------------------
 // Check version of updater
@@ -189,7 +189,7 @@ function SmileIt()
         case 0:
             // looking for TD's
             //----------------------------------
-            var tds = $('td[align="center"]');
+            var tds = $('div#wrapcentre > form > table.tablebg > tbody > tr > td.row1 > table > tbody > tr > td:last');
             if(!tds)
                 return;
             //----------------------------------
@@ -681,10 +681,18 @@ function VualIt()
 //#
 function StyleIt()
 {
-    var td = $('table.tablebg tbody tr td.row2 table[border="0"][cellspacing="0"] > tbody > tr:nth-child(3) > td:nth-child(2):last');
+    var td = null;
+    if(cur_location == 1)
+    {
+        td = $('table.tablebg tbody tr td.row2 table[border="0"][cellspacing="0"] > tbody > tr:nth-child(3) > td:nth-child(2):last');
+    }
+    else if(cur_location == 2)
+    {
+        td = $('table.tablebg tbody tr td.row2 table[border="0"][cellspacing="0"] > tbody > tr:nth-child(2) > td:nth-child(2):last');
+    }
     if(td == null)
         return;
-        
+    
     td.html('');
     td.attr('bgcolor', soptions.color);
     var a = document.createElement('a');
@@ -968,25 +976,6 @@ function ProfilePass()
             profile = td;
             $(profile).find('span.postdetails').each(function(x, span)
             {
-                if(soptions.enable_status && user.innerHTML == "Пользователь")
-                {
-                    reg = new RegExp('\<b\>"Зарегистрирован\:\<\/b\> (['+unescape('%u0430-%u044F%u0410-%u042F')+']{2}) (['+unescape('%u0430-%u044F%u0410-%u042F')+']{3}) ([0-9]{2})\, ([0-9]{4}) ([0-9]{1,2})\:([0-9]{2})','i');
-                    
-                    match = span.innerHTML.match(reg);
-                    if(match != null)
-                    {
-                        user.innerHTML = GetStatusName(match[2], match[4]);
-                    }
-                    else
-                    {
-                        reg = new RegExp('\<b\>Зарегистрирован\:\<\/b\> ([0-9]{2}) (['+unescape('%u0430-%u044F%u0410-%u042F')+']{3}) ([0-9]{4})\, ([0-9]{1,2})\:([0-9]{2})','i');
-                        match = span.innerHTML.match(reg);
-                        if(match != null)
-                        {
-                            user.innerHTML = GetStatusName(match[2], match[3]);
-                        }
-                    }
-                }
                 if(soptions.enable_uncounter)
                 {
                     reg = new RegExp('\<br.{0,2}\>\<b\>Сообщения\:\<\/b\> [0-9]*','i');
@@ -1138,48 +1127,20 @@ function SetPageFooterFormFromData(data)
     var form = $(data).find('form[name="postform"]:first').outer();
     $('#pagefooter').html(form);
 }
-function FastQuote()
-{
-    $('table.tablebg div[class="gensmall"][style="float: right;"] a:last-child').click(function(e)
-    { 
-        $.get($(this).attr('href'), null, function(data)
-        {
-            var quote = $(data).find('form[name="postform"]:first table.tablebg textarea').html();
-            var area = $('form[name="postform"]:first table.tablebg textarea');
-            var old_txt = area.attr('value');
-            var new_txt = old_txt;
-            if(new_txt.length > 0 && new_txt.charAt(new_txt.length-1) != '\n')
-                new_txt += '\n';
-            new_txt += quote;
-            area.attr('value', new_txt);
-            $('table.tablebg textarea').focus();
-        });
-        return false; 
-    }); 
-}
 //#
 // Fast reply
 //#
 function FastReply()
 {
-    $('head').append('<script type="text/javascript">var form_name = "postform";var text_name = "message";var bbcode = new Array();var bbtags = new Array(\'[b]\',\'[/b]\',\'[i]\',\'[/i]\',\'[u]\',\'[/u]\',\'[quote]\',\'[/quote]\',\'[code]\',\'[/code]\',\'[list]\',\'[/list]\',\'[list=]\',\'[/list]\',\'[img]\',\'[/img]\',\'[url]\',\'[/url]\',\'[flash=]\', \'[/flash]\',\'[size=]\',\'[/size]\', \'[a_center]\', \'[/a_center]\', \'[a_right]\', \'[/a_right]\', \'[frame]\', \'[/frame]\', \'[line]\', \'[/line]\', \'[offtopic]\', \'[/offtopic]\', \'[s]\', \'[/s]\', \'[spoiler2=]\', \'[/spoiler2]\', \'[spoiler=]\', \'[/spoiler]\', \'[youtube]\', \'[/youtube]\');var imageTag = false;var help_line = {b:    \'Жирный текст: [b]text[/b]\',c:    \'Код: [code]code[/code]\',cb_22:    \'Выравнивание по центру: [a_center]text[/a_center]\',cb_24:    \'Выравнивание по правому краю: [a_right]text[/a_right]\',cb_26:    \'Текст в рамке: [frame]text[/frame]\',cb_28:    \'Горизонтальная линия\',cb_30:    \'Оффтоп: [offtopic]text[/offtopic]\',cb_32:    \'Зачёркнутый текст: [s]text[/s]\',cb_34:    \'Скрываемое содержимое: [spoiler2=название спойлера]text[/spoiler2]\',cb_36:    \'Скрываемое содержимое: [spoiler=название спойлера]text[/spoiler]\',cb_38:    \'Встроенный плеер: [youtube]Ссылка на страницу видео[/youtube]\',d:    \'Флэш: [flash=width,height]http://url[/flash]\',e:    \'Список: добавить элемент списка\',f:    \'Размер шрифта: [size=85]small text[/size]\',i:    \'Наклонный текст: [i]text[/i]\',l:    \'Список: [list]text[/list]\',o:    \'Нумерованный список: [list=]text[/list]\',p:    \'Вставить изображение: [img]http://image_url[/img]\',q:    \'Цитата: [quote]text[/quote]\',s:    \'Цвет шрифта: [color=red]text[/color] Совет: Вы можете использовать также конструкцию color=#FF0000\',t:    \'{ BBCODE_T_HELP }\',tip:    \'Совет: можно быстро применить стили к выделенному тексту.\',u:    \'Подчеркнутый текст: [u]text[/u]\',w:    \'Вставить ссылку: [url]http://url[/url] или [url=http://url]URL text[/url]\' };</script>')
-            .append('<script type="text/javascript" src="/phpBB/styles/subsilver2/template/editor.js"></script>');
     //----------------------------------
-    var url = $('div#pagecontent table tr td[align="left"][valign="middle"][nowrap="nowrap"]:last a:nth-child(2)').attr('href');
-    $.get(url, null, function(data)
-    {
-        SetPageFooterFormFromData(data);
-        //----------------------------------
-        if(soptions.enable_smiles)
-            SmileIt();
-        if(soptions.enable_style && soptions.theme == 0)
-            StyleIt();
-        if(soptions.enable_vualizator && soptions.theme == 0)
-            VualIt();
-        //----------------------------------
-        BindCtrlEnter();
-    });
-    
+    if(soptions.enable_smiles)
+        SmileIt();
+    if(soptions.enable_style && soptions.theme == 0)
+        StyleIt();
+    if(soptions.enable_vualizator && soptions.theme == 0)
+        VualIt();
+    //----------------------------------
+    BindCtrlEnter();
 }
 //#
 // Fast paging
@@ -1222,11 +1183,7 @@ function _fpCallback(data)
         LinksPass();
     if(soptions.enable_quote_hider)
         QuotePass();
-    if(soptions.enable_fast_reply)
-    {
-        //FastReply();
-        FastQuote();
-    }
+
     if(soptions.enable_fast_paging)
     {
         FastPaging();
@@ -1502,7 +1459,15 @@ function ShowSettingsPopup()
     });
     $.getScript('http://alkar-forum-client.googlecode.com/svn/trunk/settings/settings.js', function()
     {
-        Show();
+        $.colorbox({
+            returnFocus:false,
+            innerWidth:525,
+            innerHeight:684,
+            opacity: 0.4,
+            html:GetSettingsHtml(),
+            onComplete:OnLoadData,
+            onCleanup:OnSaveData
+        });
     });
 }
 //#
@@ -1535,11 +1500,9 @@ function OnViewTopic()
         LinksPass();
     if(soptions.enable_quote_hider)
         QuotePass();
-    if(soptions.enable_fast_reply)
-    {
-        FastReply();
-        FastQuote();
-    }
+
+    FastReply();
+    
     if(soptions.enable_fast_paging)
     {
         FastPaging();

@@ -4,7 +4,7 @@
 // @namespace      FelikZ
 // @description    enjoy it :)
 // @include        http://games.alkar.net/phpBB*
-// @version        3
+// @version        4
 // @author         FelikZ ( http://thefelikz.blogspot.com/ )
 // ==/UserScript==
 
@@ -31,7 +31,6 @@
 
             "enable_ignore_remover": true,        //Удалять сообщения игнорируемого пользоватедя, целиком
             "enable_uncounter": false,            //Удалять ПК
-            "enable_status": true,                //Показывать статус в зависимости от даты регистрации
             "enable_auto_topic_sort": true,        //Авто сортировка тем по "отвечено" / "не"
             "enable_topic_hover_links": true,    //Подсветка тем + ссылки
             "enable_extended_ignore": false,        //Удалять сообщения описанных ниже пользователей*

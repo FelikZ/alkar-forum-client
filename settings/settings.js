@@ -55,7 +55,6 @@ function GetSettingsHtml()
         <div style=\"clear:both;\"></div>\
         <div class=\"script_option\"><input type=\"checkbox\" name=\"enable_uncounter\" />            <label>Удалять ПК</label></div>\
         <div style=\"clear:both;\"></div>\
-        <div class=\"script_option\"><input type=\"checkbox\" name=\"enable_status\" />                <label>Показывать статус в зависимости от даты регистрации</label></div>\
         <div style=\"clear:both;\"></div>\
         <div class=\"script_option\"><input type=\"checkbox\" name=\"enable_auto_topic_sort\" />        <label>Авто сортировка тем по \"отвечено\" / \"не\"</label></div>\
         <div style=\"clear:both;\"></div>\
