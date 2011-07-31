@@ -18,7 +18,7 @@
     ***************************************************/
     function Script()
     {
-        var updater_version = 3;
+        var updater_version = 4;
         var soptions = {
             "enable_smiles": true,                //Показывать новые смайлы
             "enable_style": true,                //Показывать стильную кнопку
