@@ -681,10 +681,18 @@ function VualIt()
 //#
 function StyleIt()
 {
-    var td = $('table.tablebg tbody tr td.row2 table[border="0"][cellspacing="0"] > tbody > tr:nth-child(3) > td:nth-child(2):last');
+    var td = null;
+    if(cur_location == 1)
+    {
+        td = $('table.tablebg tbody tr td.row2 table[border="0"][cellspacing="0"] > tbody > tr:nth-child(3) > td:nth-child(2):last');
+    }
+    else if(cur_location == 2)
+    {
+        td = $('table.tablebg tbody tr td.row2 table[border="0"][cellspacing="0"] > tbody > tr:nth-child(2) > td:nth-child(2):last');
+    }
     if(td == null)
         return;
-        
+    
     td.html('');
     td.attr('bgcolor', soptions.color);
     var a = document.createElement('a');
