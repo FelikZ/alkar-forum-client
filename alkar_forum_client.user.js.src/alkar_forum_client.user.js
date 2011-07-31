@@ -189,8 +189,16 @@ function SmileIt()
         case 0:
             // looking for TD's
             //----------------------------------
-            var tds = $('div#wrapcentre > form > table.tablebg > tbody > tr > td.row1 > table > tbody > tr > td:last');
-            if(!tds)
+            var tds = null;
+            if(cur_location == 2)
+            {
+                tds = $('div#wrapcentre > form > table.tablebg > tbody > tr > td.row1 > table > tbody > tr > td:last');
+            }
+            else
+            {
+                tds = $('div#wrapcentre > form > table.tablebg > tbody > tr > td.row1 > table:first > tbody > tr:nth-child(2) > td:last');
+            }
+            if(tds == null)
                 return;
             //----------------------------------
             tds.each(function(i, td)
