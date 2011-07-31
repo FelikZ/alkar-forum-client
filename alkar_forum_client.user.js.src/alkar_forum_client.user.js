@@ -3,7 +3,7 @@
 //#
 //----------------------------------
 var version = "2.285";
-var required_updater_version = 3;
+var required_updater_version = 4;
 //----------------------------------
 // Check version of updater
 if(typeof(updater_version) == 'undefined' || updater_version < required_updater_version)
@@ -1459,15 +1459,7 @@ function ShowSettingsPopup()
     });
     $.getScript('http://alkar-forum-client.googlecode.com/svn/trunk/settings/settings.js', function()
     {
-        $.colorbox({
-            returnFocus:false,
-            innerWidth:525,
-            innerHeight:684,
-            opacity: 0.4,
-            html:GetSettingsHtml(),
-            onComplete:OnLoadData,
-            onCleanup:OnSaveData
-        });
+        Show();
     });
 }
 //#

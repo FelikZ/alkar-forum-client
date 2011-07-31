@@ -3,7 +3,7 @@
 //#
 //----------------------------------
 var version = "2.285";
-var required_updater_version = 3;
+var required_updater_version = 4;
 //----------------------------------
 // Check version of updater
 if(typeof(updater_version) == 'undefined' || updater_version < required_updater_version)
